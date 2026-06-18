@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">
-                    CWD Upload Portal Login
+                    CWD Upload Portal Logins
                 </h1>
 
                 <p class="text-gray-500 mb-8 text-center">
