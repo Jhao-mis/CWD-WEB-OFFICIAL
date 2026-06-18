@@ -161,7 +161,7 @@ if (!empty($article['news_image'])) {
                 <div class="carousel-box relative w-full aspect-video overflow-hidden">
 
                     <?php foreach ($images as $index => $img): ?>
-                        <img src="Uploads/News/<?= htmlspecialchars($img) ?>"
+                        <img src="uploads/news/<?= htmlspecialchars($img) ?>"
                             class="carousel-img absolute w-full h-full object-cover transition-opacity duration-500 pointer-events-none <?= $index === 0 ? 'opacity-100' : 'opacity-0' ?>">
                     <?php endforeach; ?>
 

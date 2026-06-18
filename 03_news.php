@@ -159,7 +159,7 @@ $latestNews = $latestStmt->fetchAll(PDO::FETCH_ASSOC);
 
                             <?php if (!empty($image)): ?>
                                 <div class="overflow-hidden">
-                                    <img src="Uploads/News/<?= htmlspecialchars($image) ?>"
+                                    <img src="uploads/news/<?= htmlspecialchars($image) ?>"
                                         class="w-full h-48 object-cover hover:scale-105 transition duration-500">
                                 </div>
                             <?php else: ?>
@@ -285,7 +285,7 @@ $latestNews = $latestStmt->fetchAll(PDO::FETCH_ASSOC);
                                     ?>
 
                                     <?php if (!empty($thumb)): ?>
-                                        <img src="Uploads/News/<?= htmlspecialchars($thumb) ?>" class="w-full h-full object-cover">
+                                        <img src="uploads/news/<?= htmlspecialchars($thumb) ?>" class="w-full h-full object-cover">
                                     <?php endif; ?>
                                 <?php else: ?>
                                     <div class="w-full h-full bg-[#1a589e] flex items-center justify-center text-white text-xs">

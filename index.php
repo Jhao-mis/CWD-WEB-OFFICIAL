@@ -522,7 +522,7 @@ $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <?php if (!empty($featuredImage)): ?>
                         <img class="w-full h-56 lg:h-72 object-cover"
-                            src="Uploads/News/<?= htmlspecialchars($featuredImage) ?>">
+                            src="uploads/news/<?= htmlspecialchars($featuredImage) ?>">
                     <?php else: ?>
                         <div class="w-full h-56 lg:h-72 bg-gray-300 flex items-center justify-center text-gray-500">
                             No Image Available
@@ -577,7 +577,7 @@ $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
                                 ?>
 
                                 <?php if (!empty($thumb)): ?>
-                                    <img src="Uploads/News/<?= htmlspecialchars($thumb) ?>" class="w-full h-full object-cover">
+                                    <img src="uploads/news/<?= htmlspecialchars($thumb) ?>" class="w-full h-full object-cover">
                                 <?php else: ?>
                                     <div class="w-full h-full bg-gray-300 flex items-center justify-center text-xs">
                                         N/A

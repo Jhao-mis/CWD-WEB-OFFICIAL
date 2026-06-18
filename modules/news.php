@@ -41,7 +41,7 @@ if (!$userInfo || empty($userInfo['role'])) {
 
 $role = strtolower(trim($userInfo['role']));
 
-$uploadDir = "../Uploads/News/";
+$uploadDir = "../uploads/news/";
 if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
@@ -517,7 +517,7 @@ $newsList = $newsStmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="relative w-full h-40 overflow-hidden rounded-lg mb-3">
 
                             <?php foreach ($images as $index => $img): ?>
-                                <img src="../Uploads/News/<?= htmlspecialchars($img) ?>"
+                                <img src="../uploads/news/<?= htmlspecialchars($img) ?>"
                                     class="carousel-img absolute w-full h-full object-cover transition-opacity duration-500 <?= $index === 0 ? 'opacity-100' : 'opacity-0' ?>">
                             <?php endforeach; ?>
 
@@ -771,7 +771,7 @@ $newsList = $newsStmt->fetchAll(PDO::FETCH_ASSOC);
                 div.className = "relative";
 
                 div.innerHTML = `
-            <img src="../Uploads/News/${img}" class="w-24 h-24 object-cover rounded">
+            <img src="../uploads/news/${img}" class="w-24 h-24 object-cover rounded">
             <button type="button" onclick="removeImage(this, '${img}')"
                 class="absolute top-0 right-0 bg-red-500 text-white text-xs px-1 rounded">
                 ✕
