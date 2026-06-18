@@ -1,0 +1,51 @@
+.carousel-track {
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch; 
+            scroll-behavior: smooth;
+            padding-bottom: 1rem; /* Space for shadow/indicators */
+        }
+
+        /* Hide scrollbar but allow scrolling */
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel-track {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Custom indicator styles */
+        .dot-active {
+            @apply bg-blue-600 w-4 h-4;
+        }
+        .dot-inactive {
+            @apply bg-gray-300 w-3 h-3;
+        }
+
+        /* Card sizing and snap points based on Tailwind breakpoints */
+        .card-container {
+            /* Mobile: 1 card per view */
+            width: 100%;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+        @media (min-width: 640px) { /* sm/md: 2 cards per view */
+            .card-container {
+                width: 50%;
+            }
+        }
+        @media (min-width: 1024px) { /* lg: 4 cards per view */
+            .card-container {
+                width: 25%;
+            }
+        }
+        
+        /* Card hover effects */
+        .link-card {
+            transition: all 0.3s ease;
+        }
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6; 
+        }

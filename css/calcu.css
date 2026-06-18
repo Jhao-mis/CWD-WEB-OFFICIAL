@@ -1,0 +1,11 @@
+   /* Custom blue accent color */
+        .btn-primary {
+            background-color: #1a589e; /* Blue-800 */
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #1a589e;
+        }
+        .text-blue-900 {
+            color: #1a589e;
+        }

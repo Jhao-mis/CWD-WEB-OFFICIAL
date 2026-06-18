@@ -1,0 +1,189 @@
+/* ---------------------- BASE NAVBAR STYLES ---------------------- */
+
+#main-navbar {
+    transition: all 0.3s ease-in-out;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    z-index: 1030;
+    background-color: transparent !important;
+}
+
+#main-navbar .navbar-brand {
+    color: #333 !important;
+    margin: 10px 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link-togg {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Toggler Icon and Border Styles */
+.navbar-toggler {
+    border-width: 0px;
+    color: var(--color-primary);
+}
+
+.navbar-toggler-icon {
+    /* Using a dark color for the hamburger icon when the navbar is transparent */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2831, 41, 55, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-logo {
+    max-width: 250px;
+    height: auto;
+}
+
+
+/* ---------------------- SCROLLED NAVBAR STYLES ---------------------- */
+
+/* Style applied when scrolled past the threshold */
+#main-navbar.scrolled {
+    background-color: white !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Text color change when scrolled */
+#main-navbar.scrolled .nav-link,
+#main-navbar.scrolled .navbar-brand {
+    color: #1f2937 !important;
+    /* Dark text color when background is white */
+}
+
+
+/* ---------------------- ANIMATED UNDERLINE WIPE EFFECT ---------------------- */
+
+/* Ensure all links have necessary positioning for the pseudo-element */
+.navbar-nav .nav-link,
+.nav-link-togg {
+    position: relative;
+    text-decoration: none;
+    /* Resetting conflicting border/background styles from previous attempts */
+    background-color: transparent !important;
+    border-radius: 0;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    /* Standard desktop padding */
+}
+
+/* Base Pseudo-element for Underline (Shared default: Horizontal Wipe) */
+.navbar-nav .nav-link::before,
+.nav-link-togg::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    /* Spans the full width of the nav link element */
+    height: 4px;
+    /* User requested 4px height */
+    border-radius: 4px;
+    background-color: var(--color-primary);
+    /* CWD Blue line */
+    bottom: 0;
+    /* Position at the bottom */
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+    /* User requested ease-in-out transition */
+}
+
+/* Hover Effect: Scale the line from right (origin) to left (100% scale) */
+.navbar-nav .nav-link:hover::before,
+.nav-link-togg:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+
+/* ---------------------- DESKTOP HOVER & ACTIVE STATES ---------------------- */
+
+/* Text and Icon Color on Hover/Active */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--color-primary) !important;
+    /* Removed background/border conflicts */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Active State: Permanent wipe underline and bold text */
+.navbar-nav .nav-link.active {
+    font-weight: 600;
+}
+
+.navbar-nav .nav-link.active::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+
+.navbar-nav .nav-link svg path,
+.nav-link-togg svg path {
+    stroke: var(--color-text-dark);
+    /* Default Dark Icon */
+    transition: stroke 0.2s ease-in-out;
+}
+
+
+/* ---------------------- MOBILE OFFCANVAS SPECIFIC STYLES ---------------------- */
+
+/* Reset for vertical menu in offcanvas */
+.offcanvas-body .nav-link-togg {
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--color-nav-hover-bg);
+    /* Retaining light separation border for mobile */
+}
+
+/* Active State for Mobile (Text/Bold/Underline) */
+.nav-link-togg.active {
+    color: var(--color-primary) !important;
+    font-weight: 600;
+}
+
+/* Vertical Left Bar Animation Override */
+.offcanvas-body .nav-link-togg::before {
+    /* OVERRIDE shared horizontal styles for mobile links */
+    width: 4px;
+    /* Thickness of the bar */
+    height: 100%;
+    /* Full height of the element */
+    left: 0;
+    /* Align to the left edge */
+    bottom: 0;
+    top: 0;
+    transform-origin: top;
+    /* Animation starts from the top */
+    transform: scaleY(0);
+    /* Start scaled down vertically */ 
+    transition: transform 0.3s ease-in-out;
+    /* Ensure transition is applied */
+}
+
+/* Override the shared HOVER rule to use Y-axis scaling */
+.offcanvas-body .nav-link-togg:hover::before {
+    transform-origin: top;
+    transform: scaleY(1);
+}
+
+/* Override the shared ACTIVE rule to use Y-axis scaling */
+.offcanvas-body .nav-link-togg.active::before {
+    transform-origin: top;
+    transform: scaleY(1);
+}
+
+/* Mobile Hover/Active state now only uses the vertical bar effect */
+.nav-link-togg:hover,
+.nav-link-togg.active {
+    /* Removed border-left and background-color */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Remove bottom border on the last mobile link item */
+.offcanvas-body .nav-link-togg:last-child {
+    border-bottom: none;
+}

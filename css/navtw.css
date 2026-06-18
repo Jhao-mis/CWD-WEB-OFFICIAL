@@ -1,0 +1,134 @@
+   /* ---------------------- BASE NAVBAR STYLES ---------------------- */
+
+        #main-navbar {
+            transition: all 0.3s ease-in-out;
+            padding-top: 25px;
+            padding-bottom: 20px;
+            z-index: 1030;
+            background-color: transparent;
+            color: #333 !important;
+        }
+
+        .navbar-logo {
+            max-width: 250px;
+            height: auto;
+        }
+
+        .lucide-icons-main {
+            stroke: white !important;
+        }
+
+        /* ---------------------- SCROLLED NAVBAR STYLES ---------------------- */
+
+        #main-navbar.scrolled {
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        #main-navbar.scrolled .nav-link {
+            color: #1f2937 !important; /* Dark text color when background is white */
+        }
+
+        #main-navbar.scrolled .lucide-icons-main
+        {
+            stroke: #333 !important;
+        }
+        
+        /* ---------------------- ANIMATED UNDERLINE WIPE EFFECT ---------------------- */
+
+        .nav-link, .nav-link-pag {
+            position: relative;
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            color: var(--color-text-dark); /* Default dark text color for contrast */
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link svg {
+             /* Stroke style for inactive icons (Home, Events, etc.) */
+            color: var(--color-text-dark); 
+            stroke: var(--color-text-dark); 
+            transition: stroke 0.2s ease-in-out;
+        }
+
+        /* Base Pseudo-element for Underline (Horizontal Wipe for Desktop) */
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            border-radius: 4px;
+            background-color: var(--color-primary);
+            bottom: 0;
+            left: 0;
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Desktop Hover Effect */
+        .nav-link:hover::before {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        /* Desktop Active State */
+        .nav-link.active, .nav-link-pag.active {
+            font-weight: 600;
+            color: var(--color-primary) !important;
+        }
+
+        .nav-link.active::before {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+
+        .nav-link.active svg {
+            color: var(--color-primary); /* Active icon color */
+            stroke: var(--color-primary); 
+        }
+
+        /* ---------------------- MOBILE OFFCANVAS SPECIFIC STYLES ---------------------- */
+
+        /* Vertical Left Bar Animation Override */
+        .nav-link-togg {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #f3f4f6;
+            text-decoration: none;
+            color: var(--color-text-dark);
+            width: 100%; /* Important for scaleY to work correctly */
+        }
+        
+        .nav-link-togg.active {
+            color: var(--color-primary) !important;
+            font-weight: 600;
+        }
+        
+        .nav-link-togg.active svg {
+            color: var(--color-primary);
+            stroke: var(--color-primary);
+        }
+
+        .nav-link-togg::before {
+            /* OVERRIDE shared horizontal styles for mobile links */
+            width: 4px; /* Thickness of the bar */
+            height: 100%; /* Full height of the element */
+            left: 0;
+            bottom: 0;
+            top: 0;
+            transform-origin: top;
+            transform: scaleY(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-link-togg:hover::before,
+        .nav-link-togg.active::before {
+            transform-origin: top;
+            transform: scaleY(1);
+        }

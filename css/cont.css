@@ -1,0 +1,101 @@
+/* Style for the Office Cards */
+
+.location-tag {
+    background-color: #0d6efd;
+    /* Bootstrap Primary Blue */
+    color: white;
+    padding: 0.35rem 1rem;
+    border-radius: 0.7rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    /* Smaller font size */
+}
+
+.card {
+    border: none;
+    /* Remove default card border */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    /* Subtle shadow */
+}
+
+.card-title {
+    font-size: 1.3rem;
+    /* Slightly larger title */
+    margin-bottom: 0.75rem;
+    /* Space below title */
+}
+
+
+/* Style for the Contact Us Cards */
+
+.red-text {
+    color: #dc3545;
+    /* Bootstrap's danger red */
+}
+
+.blue-text {
+    color: #0d6efd;
+    /* Bootstrap's primary blue */
+}
+
+.phone-number-lg {
+    font-size: 2.8rem;
+    /* Larger font size for main numbers */
+    font-weight: bold;
+}
+
+.phone-number-md {
+    font-size: 1.5rem;
+    /* Medium font size for additional numbers */
+    font-weight: bold;
+}
+
+.transaction-number {
+    font-size: 2.8rem;
+    font-weight: bold;
+}
+
+.custom-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.custom-list-item .badge {
+    min-width: 1.5em;
+    /* Ensure badge is circular */
+    height: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    /* Make it round */
+    background-color: #0d6efd;
+    /* Blue background */
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 0.75rem;
+}
+
+/* Specific styling for card headers for the blue border effect */
+.card-header-blue-border {
+    border-bottom: 2px solid #0d6efd;
+    /* Primary blue border */
+    padding-bottom: 0.5rem;
+    /* Adjust padding below title */
+    margin-bottom: 1rem;
+    /* Space before content */
+}
+
+.card-header-red-border {
+    border-bottom: 2px solid #dc3545;
+    /* Danger red border */
+    padding-bottom: 0.5rem;
+    /* Adjust padding below title */
+    margin-bottom: 1rem;
+    /* Space before content */
+}

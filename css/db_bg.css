@@ -1,0 +1,13 @@
+.full-page-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            /* Using a placeholder URL for the background image */
+            background-image: url('/img/bld.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Optional: keeps background fixed during scroll */
+            z-index: -10; /* Move it behind all content */
+        }

@@ -1,0 +1,37 @@
+/* Fade in effect for the grid */
+#gad-news-grid {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Hide scrollbar for the tab container */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Line clamping for headlines and excerpts */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Card hover effect */
+#gad-news-grid article {
+    transform: translateY(0);
+}
+
+#gad-news-grid article:hover {
+    transform: translateY(-8px);
+}

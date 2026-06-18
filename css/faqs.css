@@ -1,0 +1,38 @@
+
+    /* Accordion Animation */
+    .faq-content {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s ease-out, padding 0.3s ease;
+        visibility: hidden;
+    }
+
+    .faq-item.active .faq-content {
+        grid-template-rows: 1fr;
+        visibility: visible;
+        padding-bottom: 1.25rem;
+    }
+
+    /* Inner wrapper to make the grid-row transition work */
+    .faq-content > div, 
+    .faq-content > p {
+        overflow: hidden;
+    }
+
+    /* Chevron Rotation */
+    .faq-item.active .fa-chevron-down {
+        transform: rotate(180deg);
+        color: #1a589e;
+    }
+
+    /* Active Tab Styling */
+    .tab-btn.active {
+        background-color: white;
+        color: #1a589e;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    /* Glow effect on hover */
+    .faq-item:hover {
+        border-color: #1a589e33;
+    }

@@ -1,0 +1,433 @@
+/* Used by 2 Pages: Waterlife & Index
+
+/* Style for Waterlife Cards */
+.custom-card-width {
+  max-width: 600px;
+  width: 100%;
+}
+
+.custom-card-width-index {
+  max-width: 500px;
+  width: 100%;
+}
+
+.card-img-small {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 2000px;
+  border-top-left-radius: var(--bs-border-radius);
+  border-bottom-left-radius: var(--bs-border-radius);
+}
+
+
+/* Index Page: Style for Office Address Bottom Banner */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.header-banner {
+  background-color: #0d6efd;
+  /* Bootstrap Primary Blue */
+  color: rgba(255, 255, 255, 0);
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.btn-custom-yellow {
+  background-color: #fdd835;
+  /* A bright yellow */
+  color: #333333;
+  text-decoration: none;
+  padding: 1rem 1rem;
+  font-weight: 700;
+  transition: background-color 0.2s;
+  border-radius: 0.5rem;
+  letter-spacing: 0.05em;
+  /* text-uppercase effect */
+}
+
+.btn-custom-yellow:hover {
+  background-color: #fbc02d;
+  /* Slightly darker yellow on hover */
+}
+
+.overl {
+  background-color: #0d6dfd00;
+}
+
+
+.text-success {
+  background-image: linear-gradient(to right,
+      #0d6efd,
+      #0d6efd 50%,
+      #000000 50%);
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.text-success:before {
+  content: '';
+  background: #0d6efd;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.text-success:hover {
+  background-position: 0;
+}
+
+.text-success:hover::before {
+  width: 100%;
+}
+
+/* style for new header */
+
+.active-dot {
+  background-color: white !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.carousel-item {
+  transform: scale(1.05);
+  /* Slight zoom for transition effect */
+}
+
+.carousel-item.opacity-100 {
+  transform: scale(1);
+}
+
+/* ==========================================
+   INSTANT GALLERY DEPTH STACK (ANTI-BLACK FIX)
+   ========================================== */
+
+/* 1. Make all slides position on top of each other instead of hiding */
+.carousel-container {
+  position: relative !important;
+}
+
+.carousel-item {
+  display: block !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Keep inactive slides buried underneath */
+  z-index: 1 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 2. Force the active slide to instantly pop to the very top layer */
+.carousel-item.active,
+.carousel-item.opacity-100 {
+  position: relative !important;
+  /* Keeps container height intact */
+  z-index: 10 !important;
+  /* Throws it directly over the black background */
+}
+
+/* 3. Ensure the active image and text are fully locked over the layer */
+.carousel-item.active img,
+.carousel-item.opacity-100 img,
+.carousel-item.active .carousel-overlay,
+.carousel-item.opacity-100 .carousel-overlay {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 4. Keep your navigation arrows and dots on the absolute top layer */
+.carousel-arrow,
+.indicator-container {
+  z-index: 20 !important;
+}
+
+/* Style for About US */
+
+.about {
+  padding: 0px 0px 0px 0px;
+}
+
+.about h2 {
+  font-weight: 300;
+  color: #495057;
+}
+
+/* Ensure nav-pills are centered and stacked correctly on mobile */
+#inspr {
+  justify-content: center !important;
+}
+
+#pills-tab .nav-link,
+.nav-link-pag {
+  border-radius: 50px !important;
+  padding: 0.75rem 1.5rem;
+  color: #1a589e;
+  font-weight: 600;
+}
+
+#pills-tab .nav-link.active,
+.nav-link-pag.active {
+  background-color: #1a589e;
+  color: #fff !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+
+/* Style for Quick Link Cards */
+
+
+/* Hide the scrollbar for the custom carousel container */
+.carousel-track {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom styles for the card hover effect */
+.card-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card-body a {
+  color: #198754 !important;
+  /* text-success */
+}
+
+
+
+/* Mobile specific adjustments for image size if needed */
+@media (max-width: 575.98px) {
+  .ql .card {
+    max-width: 75%;
+    /* Constrain the card itself to 90% of its column container */
+    margin-left: auto;
+    /* Center the card */
+    margin-right: auto;
+  }
+
+  .card-img-container img {
+    width: 100px;
+    height: 120px;
+  }
+}
+
+
+
+@media (max-width: 400px) {
+
+  .container .ql {
+    max-width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ql .card {
+    max-width: 50%;
+    /* Constrain the card itself to 90% of its column container */
+    margin-left: auto;
+    /* Center the card */
+    margin-right: auto;
+  }
+
+  .card-img-container img {
+    width: 70px;
+    /* Reduce image size further for extremely narrow viewports */
+    height: 70px;
+  }
+
+  .card-body h4 {
+    font-size: 1.1rem !important;
+    /* Slightly reduce title size */
+  }
+
+  .card-body p {
+    font-size: 0.85rem;
+    /* Slightly reduce body text size */
+  }
+
+  .card-body a {
+    font-size: 1.1rem !important;
+    /* Slightly reduce link size */
+  }
+
+  /* Quick Links Card Fixes */
+  .ql .card {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card-img-container img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body h4 {
+    font-size: 1.1rem !important;
+  }
+
+  .card-body p {
+    font-size: 0.85rem;
+  }
+
+  .card-body a {
+    font-size: 1.1rem !important;
+  }
+
+
+  /* About Us Fixes */
+  .about .tab-content .tab-pane {
+    font-size: 1rem !important;
+    padding: 0 1rem;
+  }
+
+  #pills-tab {
+
+    /* Constrain pill navigation width */
+    font-size: 0.9rem !important;
+  }
+
+  .nanda {
+    /* Shrink the entire section to 70% of its normal size */
+    transform: scale(0.8);
+    /* Center the scaled element */
+    transform-origin: center;
+    margin-top: 10px;
+
+  }
+
+  /* Additional adjustment for the header text of the section */
+  .nanda+.text-center {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* Style for the General Manager (Top Level) */
+.gm-card {
+  border: 2px solid #1e40af;
+  /* Dark Blue Border */
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gm-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(30, 64, 175, 0.2);
+}
+
+/* Style for Department Managers (Middle Level) */
+.dept-card-container {
+  border: 2px solid #1a589e;
+  /* Medium Blue Border */
+  background-color: #ffffff;
+  transition: background-color 0.2s;
+}
+
+.dept-card-container:hover {
+  background-color: #f3f4f6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Style for Division Managers (Lower Level) */
+.division-item {
+  border-left: 4px solid #1a589e;
+  /* Blue indicator line (not a connector line) */
+  transition: all 0.2s ease;
+}
+
+.division-item:hover {
+  background-color: #eff6ff;
+  /* Very light blue background on hover */
+  transform: translateX(4px);
+}
+
+/* Custom style for the overall container that groups departments and divisions */
+.group-container {
+  border: 1px solid #1a589e;
+  /* Light gray dashed line to visually group the whole structure */
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 0.75rem;
+}
+
+.staff-office-card {
+  border: 1px solid #059669;
+  /* Green Border */
+  background-color: #ecfdf5;
+  /* Light Green BG */
+  transition: transform 0.2s ease;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+
+.staff-office-card:hover {
+  transform: scale(1.05);
+}
+
+.section-item {
+  border-left: 2px solid #1a589e;
+  /* Lighter blue indicator */
+  background-color: #f7fbff;
+  /* Very light background */
+  transition: background-color 0.1s;
+}
+
+.section-item:hover {
+  background-color: #e0f2fe;
+}
+
+
+@media (max-width: 360px) {
+
+  /* Reduce padding/margin inside the card body */
+  .card-body {
+    padding: 0.75rem !important;
+  }
+
+  /* Shrink the main title */
+  .card-body h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* Shrink the body text */
+  .card-body .card-text {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Shrink the button */
+  .card-body .btn-primary {
+    padding: 0.3rem 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Reduce image height for a compact look when stacked */
+  .card-img-small {
+    max-height: 100px;
+    height: 100px;
+  }
+}

@@ -1,0 +1,34 @@
+
+        /* ======================================================= */
+        /* MEDIA QUERY: Make the card smaller on 340px screens */
+        /* ======================================================= */
+        @media (max-width: 340px) {
+            
+            /* Reduce overall card title size */
+            h3.text-center {
+                font-size: 1.2rem !important;
+                margin-top: 0.5rem !important;
+            }
+            
+            /* Reduce padding in card header and body */
+            .card-header, .card-body {
+                padding: 0.5rem !important;
+            }
+            
+            /* Reduce padding and font size of tab links to fit three words */
+            .nav-link {
+                padding: 0.4rem 0.2rem !important;
+                font-size: 0.7rem !important; /* Smaller font for tabs */
+            }
+            
+            /* Force tabs to share available space equally */
+            .card-header-tabs .nav-item {
+                flex: 1 1 0%; 
+                text-align: center;
+            }
+            
+            /* Reduce tab content text size */
+            .tab-content {
+                font-size: 0.8rem !important;
+            }
+        }

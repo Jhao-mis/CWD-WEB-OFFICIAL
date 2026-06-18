@@ -1,0 +1,101 @@
+/* Styling for the Main Table */
+.content-table {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+}
+
+.header-row {
+    background-color: #1a589e;
+    /* Primary blue header */
+    color: white;
+    width: 100%;
+    font-weight: bold;
+    padding: 1rem;
+    display: flex;
+}
+
+.header-month {
+    color: #1a589e;
+    font-weight: bold;
+    padding: .25rem;
+    display: flex;
+}
+
+.data-row {
+    padding: 0.75rem 1rem;
+    display: flex;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.data-row:nth-child(odd) {
+    background-color: #f8f9fa;
+    /* Light grey stripe */
+}
+
+.data-row:hover {
+    background-color: #e9ecef;
+}
+
+.col-bidcode {
+    width: 20%;
+    text-align: left;
+}
+
+.col-title {
+    width: 60%;
+    padding-right: 15px;
+    font-weight: 500;
+}
+
+.col-date {
+    width: 20%;
+    text-align: right;
+}
+
+
+/* Styling for the Year Pagination (Pills) */
+.nav-pills .nav-link {
+    border-radius: 1rem;
+    margin: 0 0.25rem;
+    color: #007bff;
+    font-weight: 600;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.container .bo {
+    padding: 1rem;
+}
+
+.inv {
+    color: #1a589e;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+#scrollableTableBody {
+    /* h-96 (24rem or 384px) equivalent and overflow-y-auto equivalent */
+    height: 20rem;
+    overflow-y: auto;
+}
+
+#scrollableTableBody::-webkit-scrollbar {
+    width: 4px;
+}
+
+#scrollableTableBody::-webkit-scrollbar-thumb {
+    background-color: #bfdbfe;
+    /* blue-200 */
+    border-radius: 4px;
+}
+
+#scrollableTableBody::-webkit-scrollbar-track {
+    background-color: #f3f4f6;
+    /* gray-100 */
+}

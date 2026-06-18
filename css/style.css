@@ -1,0 +1,437 @@
+/* ---------------------- MAIN CSS (Applied to All Sites ---------------------- */
+
+/* ---------------------- CLEANING ---------------------- */
+
+
+
+/* ---------------------- ROOT: Color Palette & Font Family ---------------------- */
+
+body {
+  font-family: var(--font-primary) !important;
+  /* padding-top: 65px; */
+}
+
+:root {
+  /* --- CWD Brand Colors --- */
+  --cwd-blue: #0A3D62;
+  /* Deep Blue from CWD Logo (New Primary) */
+  --cwd-red: #D62828;
+  /* Bright Red from CWD Logo (New Accent/Alert) */
+  --cwd-light-blue: #1a589e;
+  /* Standard Bootstrap Blue (Retained for secondary UI elements/links) */
+
+  /* --- Role-Based Colors (Mapped to CWD Brand) --- */
+  --color-primary: var(--cwd-blue);
+  /* Main brand color for headers, buttons */
+  --color-secondary: #6c757d;
+  /* Standard Gray for muted text */
+  --color-accent: var(--cwd-red);
+  /* For important highlights, alerts, or calls to action */
+  --color-link: var(--cwd-light-blue);
+  /* Links and interactive elements */
+
+  /* --- Background & UI Colors --- */
+  --color-background-light: #f8f9fa;
+  /* Very light gray */
+  --color-background-dark: #333;
+  /* Dark gray */
+  --color-white: #ffffff;
+
+  /* --- Text Colors --- */
+  --color-text-dark: #212529;
+  --color-text-muted: #6c757d;
+
+  /* --- Component Usage --- */
+  --color-card-bg: var(--color-white);
+  --color-nav-active: var(--color-primary);
+
+  --font-primary: 'Montserrat', sans-serif;
+  /* New variable for Montserrat */
+}
+
+
+/* ---------------------- Styling for the Footer ---------------------- */
+.foot {
+  padding: 24px;
+  margin: 10px;
+  align-content: center;
+}
+
+
+.container .ql {
+  margin: -100px;
+}
+
+/* ---------------------- Styling for the Left Navigation (BAC, Ol & Fl Services Page) ---------------------- */
+.lnav a {
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #007bff;
+  box-shadow: inset 0 0 0 0 #007bff;
+  color: black;
+  margin: 5px 0;
+  padding: 1rem;
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.lnav a.active,
+.lnav a:hover {
+  border-left: 5px solid #333;
+  box-shadow: inset 1200px 0 0 0 #007bff;
+  color: white;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out
+}
+
+.lnav-red a {
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #f61a1a;
+  box-shadow: inset 0 0 0 0 #f61a1a;
+  color: black;
+  margin: 5px 0;
+  padding: 1rem;
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+
+.lnav-red a.active,
+.lnav-red a:hover {
+  border-left: 5px solid rgb(114, 13, 13);
+  box-shadow: inset 1200px 0 0 0 #f61a1a9d;
+  color: white;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out
+}
+
+
+/* ---------------------- Styling for the Carousel Controls ---------------------- */
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230000FF' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230000FF' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+/* Styling for the Carousel Controls (under cards) */
+
+.no-caret-hover::after {
+  display: none;
+}
+
+/* ---------------------- Styling for the Index Banner ---------------------- */
+
+.hero-container {
+  height: 1100px;
+}
+
+.hero-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-content {
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Optional: semi-transparent dark overlay for text contrast */
+  color: white;
+  padding-top: 4rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Style for the container div inside the columns to add visual separation */
+.col-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  height: 100%;
+  /* Ensure all cards are the same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Ensure text is centered inside the card */
+}
+
+/* Ensure images are responsive within their grid cell */
+.badge-grid img {
+  width: 100%;
+  height: auto;
+  max-width: 95px;
+  margin: auto;
+}
+
+/* Custom style to handle the grid of small badges */
+.badge-grid {
+  /* CRITICAL FIX: 
+  On small screens, display the grid items in one column,
+  then switch to 3 columns on medium (md) and up. 
+  */
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  /* Default: 1 column on mobile */
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+.headtext {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #1a589e;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------------------- Styling for the Header Waves ---------------------- */
+.wave-bottom {
+  position: relative;
+  z-index: 1;
+  /* Ensure text is above the wave */
+  background-color: #0A3D62 !important;
+  /* Your dark blue color */
+}
+
+/* SVG wave for a smoother, more controlled curve */
+.wave-bottom::after {
+
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1000px;
+  /* Adjust height of the wave as needed */
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 60C360 20 720 20 1080 60L1440 100V0H0V60Z" fill="white"/></svg>');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  transform: translateY(50%);
+  /* Adjust to push the wave fully down */
+  z-index: 2;
+  /* Make the wave appear above the main background */
+}
+
+/* Styling for the back button */
+.back-button {
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Styling for the Accordions */
+
+
+/* 3. Styling the content panel (body) to match the card style */
+.faq-content-body {
+  /* Inherit card look */
+  border-top: none !important;
+  background-color: white;
+  border-radius: 0 0 0.5rem 0.5rem;
+  /* rounded-b-lg */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  /* shadow-md */
+}
+
+/* Styling for the Modals */
+
+.modal-body object {
+  display: block;
+  max-width: 100%;
+  height: 70vh;
+  /* Use viewport height for better responsiveness */
+  border: 1px solid #ccc;
+}
+
+/* Styling for the Modals */
+
+.box {
+  height: 100px;
+  width: 100%;
+  background: var(--cYellow);
+  border: 2px solid var(--cBlack);
+}
+
+
+/* Custom Hover Effect for Image Overlay */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.image-container:hover .preview-overlay {
+  opacity: 1;
+}
+
+/* Rule to hide the main app content when modal is open and prevent scroll */
+body.modal-open #app-container {
+  display: none;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Basic transition for the modal image for smooth zooming/rotation */
+#modal-image {
+  transition: transform 0.3s ease-in-out;
+  transform-origin: center center;
+  /* Ensure transformations are from the center */
+}
+
+
+
+/* Custom Hover Effect for Tab Scaling (on services > ol services) */
+/* Apply a transition to all tab buttons for smooth effects */
+.tab-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Tailwind's default ease-in-out */
+  transform-origin: bottom center;
+  /* Scale from the bottom line */
+}
+
+/* Target the actively selected button using the aria-selected attribute */
+.tab-button[aria-selected="true"] {
+  transform: scale(1.1);
+  /* Increase size by 8% */
+  z-index: 10;
+  /* Ensures the active tab overlaps its inactive neighbors */
+  position: relative;
+}
+
+/* --- Modal Backdrop --- */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* --- Modal Animation (Optional but nice) --- */
+.modal-content-container {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* --- Hides Scrollbar on Image Preview Modal --- */
+.scrollbar-hidden {
+  /* For Firefox */
+  scrollbar-width: none;
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  /* Ensures no width is reserved for the scrollbar */
+  height: 0;
+}
+
+/* For Internet Explorer and Edge - applied directly to the element */
+/* Note: This is usually set via JS or external CSS but is placed here for completeness */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+/* Style for the scrollbar to make it cleaner */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #1a589e;
+  /* light gray */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+
+
+
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  /* gray-300 */
+  border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background-color: #f1f5f9;
+  /* gray-100 */
+}
+
+
+/* Styling for the Footer */
+footer {
+  background: #1a589e;
+}
+
+.d-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+/* Styling for Responsiveness */
+
+@media (max-width: 991.98px) {
+  body {
+    padding-top: 0px;
+    /* Tweak this value if the overlap persists, based on your actual mobile navbar height */
+  }
+}
+
+@media (max-width: 767.98px) {
+  .dropdown:hover>.dropdown-menu {
+    display: none;
+  }
+
+  .badge-grid {
+    /* On tablets and desktops, show 3 columns */
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .card-img-small {
+    border-top-right-radius: var(--bs-border-radius);
+    border-bottom-left-radius: 0;
+  }
+
+  
+}
