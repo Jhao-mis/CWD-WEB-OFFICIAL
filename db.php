@@ -3,7 +3,7 @@
 $host = "localhost";
 $db   = "cwd-web-test"; //db test only change if needed.
 $user = "root";
-$pass = "Cwdh2o@2025";
+$pass = "";
 $charset = "utf8mb4";
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
