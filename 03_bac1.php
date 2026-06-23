@@ -229,6 +229,24 @@
                                     </div>
 
                                     <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 27-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-27</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 27-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Submersible Pumps and Motors (Rebidding)</a>
+                                        <div class="col-date">June 23</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 26-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-26</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 26-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Submersible Cable, Stranded Wire, Manual Transfer Switch and Accessories (Rebidding)</a>
+                                        <div class="col-date">June 23</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 25-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-25</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 25-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Water Meters</a>
+                                        <div class="col-date">June 23</div>
+                                    </div>
+
+                                    <div class="data-row">
                                         <a href="assets\Files\bac\BidOpp\2026\June\CWD 20-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-20</a>
                                         <a href="assets\Files\bac\BidOpp\2026\June\CWD 20-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals and Filtering Materials (SVP) (2nd Posting)</a>
                                         <div class="col-date">June 3</div>
