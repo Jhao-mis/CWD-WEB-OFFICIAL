@@ -512,7 +512,7 @@ $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (!empty($featuredNews['news_image'])): ?>
                         <div class="w-full h-56 lg:h-72 overflow-hidden bg-slate-100">
                             <img class="w-full h-full object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-95"
-                                src="Uploads/News/<?= htmlspecialchars($featuredNews['news_image']) ?>">
+                                src="uploads/news/<?= htmlspecialchars($featuredNews['news_image']) ?>">
                         </div>
                     <?php else: ?>
                         <div
@@ -571,7 +571,7 @@ $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
                                 <div
                                     class="flex-shrink-0 w-11 h-11 rounded-xl overflow-hidden shadow-2xs border border-white bg-slate-100">
                                     <?php if (!empty($news['news_image'])): ?>
-                                        <img src="Uploads/News/<?= htmlspecialchars($news['news_image']) ?>"
+                                        <img src="uploads/news/<?= htmlspecialchars($news['news_image']) ?>"
                                             class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
                                     <?php else: ?>
                                         <div
