@@ -493,51 +493,6 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-<<<<<<< HEAD
-            <!-- ================= FEATURED (LATEST NEWS) ================= -->
-            <?php if ($featuredNews): ?>
-                <div
-                    class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-md">
-
-                    <?php if (!empty($featuredNews['news_image'])): ?>
-                        <div class="w-full h-56 lg:h-72 overflow-hidden bg-slate-100">
-                            <img class="w-full h-full object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-95"
-                                src="uploads/news/<?= htmlspecialchars($featuredNews['news_image']) ?>">
-                        </div>
-                    <?php else: ?>
-                        <div
-                            class="w-full h-56 lg:h-72 bg-slate-100 flex flex-col items-center justify-center text-slate-400 gap-2">
-                            <i class="fa-regular fa-image text-2xl"></i>
-                            <span class="text-xs font-bold uppercase tracking-wider">No Image Available</span>
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="p-6 sm:p-8 flex-grow flex flex-col justify-between">
-                        <div>
-                            <span
-                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-50 text-xs font-black text-red-600 uppercase tracking-wider mb-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></span>
-                                Latest News
-                            </span>
-
-                            <h3
-                                class="text-xl sm:text-2xl font-black text-slate-800 mb-2 leading-snug group-hover:text-blue-600 transition duration-200">
-                                <?= htmlspecialchars($featuredNews['news_headline']) ?>
-                            </h3>
-
-                            <p class="text-xs font-semibold text-slate-400 flex items-center gap-1 mb-4">
-                                <i class="fa-regular fa-calendar text-[11px]"></i>
-                                <?= date('F d, Y', strtotime($featuredNews['date_published'])) ?>
-                            </p>
-                        </div>
-
-                        <a href="03_newspost.php?id=<?= $featuredNews['id'] ?>"
-                            class="inline-flex items-center gap-1 text-blue-600 font-bold text-xs uppercase tracking-wider hover:text-blue-700 transition group/btn">
-                            Read Full Article
-                            <i
-                                class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover/btn:translate-x-0.5"></i>
-                        </a>
-=======
         <!-- ================= FEATURED (LATEST NEWS) ================= -->
         <?php if ($featuredNews): ?>
 
@@ -590,106 +545,18 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                             <i class="fa-regular fa-calendar text-[11px]"></i>
                             <?= date('F d, Y', strtotime($featuredNews['date_published'])) ?>
                         </p>
->>>>>>> Test-2
                     </div>
 
-<<<<<<< HEAD
-
-            <!-- ================= RECENT NEWS LIST ================= -->
-            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
-
-                <div class="p-4 border-b border-slate-100 bg-slate-50/70 flex items-center justify-between">
-                    <h3 class="text-sm font-black text-slate-700 uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-newspaper text-slate-400"></i> Recent News
-                    </h3>
-                </div>
-
-                <div class="h-[30rem] overflow-y-auto p-3 space-y-2 flex-grow scrollbar-thin">
-
-                    <?php foreach ($recentNews as $news): ?>
-                        <a href="03_newspost.php?id=<?= $news['id'] ?>"
-                            class="flex items-center justify-between p-3 rounded-xl border border-transparent hover:border-slate-100 hover:bg-slate-50/50 transition-all duration-200 group">
-
-                            <div class="flex items-center space-x-3.5 pr-2">
-                                <div
-                                    class="flex-shrink-0 w-11 h-11 rounded-xl overflow-hidden shadow-2xs border border-white bg-slate-100">
-                                    <?php if (!empty($news['news_image'])): ?>
-                                        <img src="uploads/news/<?= htmlspecialchars($news['news_image']) ?>"
-                                            class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
-                                    <?php else: ?>
-                                        <div
-                                            class="w-full h-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400">
-                                            N/A
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-
-                                <div class="flex flex-col gap-0.5">
-                                    <p
-                                        class="text-xs font-bold text-slate-700 leading-snug group-hover:text-blue-600 transition duration-150 line-clamp-2">
-                                        <?= htmlspecialchars($news['news_headline']) ?>
-                                    </p>
-                                    <p class="text-[10px] font-medium text-slate-400 flex items-center gap-1 mt-0.5">
-                                        <i class="fa-regular fa-calendar text-[9px]"></i>
-                                        <?= date('F d, Y', strtotime($news['date_published'])) ?>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div
-                                class="text-slate-300 group-hover:text-blue-600 transition-colors duration-150 pl-2 shrink-0">
-                                <i
-                                    class="fa-solid fa-chevron-right text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>
-
-                    <?php if (empty($recentNews)): ?>
-                        <div class="text-center py-12 text-slate-400 flex flex-col items-center justify-center gap-2">
-                            <i class="fa-solid fa-folder-open text-xl text-slate-300"></i>
-                            <p class="text-xs font-medium">No recent posts available.</p>
-                        </div>
-                    <?php endif; ?>
-
-                </div>
-
-                <div class="p-4 border-t border-slate-100 bg-white text-center">
-                    <a href="03_news.php"
-                        class="inline-flex items-center gap-1.5 text-xs font-black text-blue-600 hover:text-blue-700 uppercase tracking-wider transition-colors group">
-                        View More News
-                        <i
-                            class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
-=======
                     <a href="03_newspost.php?id=<?= $featuredNews['id'] ?>"
                         class="inline-flex items-center gap-1 text-blue-600 font-bold text-xs uppercase tracking-wider hover:text-blue-700 transition group/btn">
                         Read Full Article
                         <i class="fa-solid fa-arrow-right text-[10px] transition-transform group-hover/btn:translate-x-0.5"></i>
->>>>>>> Test-2
                     </a>
                 </div>
 
             </div>
 
-<<<<<<< HEAD
-        </div>
-    
-<style>
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 5px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 10px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-    }
-=======
         <?php endif; ?>
->>>>>>> Test-2
 
 
         <!-- ================= RECENT NEWS LIST ================= -->
@@ -780,16 +647,6 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
         
 
     </div>
-<<<<<<< HEAD
-    <!-- VIEW MORE LINK -->
-    <div class="p-4 border-t border-gray-200 text-center">
-        <a href="02_ol_serv2.php" class="text-blue-600 hover:text-blue-800 font-bold text-lg">
-            VIEW MORE ADVISORY
-        </a>
-    </div>
-
-=======
->>>>>>> Test-2
 </div>
 
         <div id="main-nav-wrapper"
