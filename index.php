@@ -644,7 +644,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                 </a>
             </div>
 
-        </div>
+        
 
     </div>
 </div>
