@@ -474,7 +474,7 @@ $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="relative z-10 animate-float">
                             <div class="p-8 rounded-[3rem] shadow-2xl logo-glow">
-                                <img src="./img/cwdicon2.png" class="w-55 h-auto object-contain" alt="CWD 24/7"
+                                <img src="./img/CWDIcon2.png" class="w-55 h-auto object-contain" alt="CWD 24/7"
                                     onerror="this.src='https://via.placeholder.com/200?text=CWD+24/7'">
                             </div>
                         </div>
