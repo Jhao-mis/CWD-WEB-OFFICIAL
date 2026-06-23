@@ -119,8 +119,8 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 
-    <!-- Kuya Daloy Chatbot -->
-    <?php include 'includes/modals.php'; ?>
+    <!-- Kuya Daloy Chatbot temporary disabled -->
+    <?php //include 'includes/modals.php'; ?>
 
     <!-- Navigation -->
     <?php include 'includes/navigation.php'; ?>
