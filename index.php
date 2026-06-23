@@ -518,7 +518,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="w-full h-56 lg:h-72 overflow-hidden bg-slate-100">
                         <img
                             class="w-full h-full object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-95"
-                            src="Uploads/News/<?= htmlspecialchars($featuredImage) ?>"
+                            src="uploads/news/<?= htmlspecialchars($featuredImage) ?>"
                             alt="News Image">
                     </div>
                 <?php else: ?>
@@ -596,7 +596,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 <?php if (!empty($recentImage)): ?>
                                     <img
-                                        src="Uploads/News/<?= htmlspecialchars($recentImage) ?>"
+                                        src="uploads/news/<?= htmlspecialchars($recentImage) ?>"
                                         class="w-full h-full object-cover transition duration-300 group-hover:scale-105"
                                         alt="News Image">
                                 <?php else: ?>
