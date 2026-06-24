@@ -98,7 +98,6 @@
 
                 <div class="container mx-auto bo">
 
-
                     <!-- Pagination Component (Bootstrap Pills for Quarters) -->
                     <nav aria-label="Year navigation" class="mb-4 d-flex justify-content-center">
                         <ul class="nav nav-pills shadow-sm rounded-pill p-1 bg-white" id="pills-tab" role="tablist">
@@ -330,6 +329,7 @@
                                             Delivery Various I.T Equipment and Accessories of Different Departments</a>
                                         <div class="col-date">January 9</div>
                                     </div>
+                                    
                                 </div>
 
                             </div>
