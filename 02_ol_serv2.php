@@ -140,38 +140,40 @@
                         
                         <!-- Section Header -->
                         <div class="col-12 px-4 mb-4">
-                            <div
-                                class="relative overflow-hidden rounded-2xl bg-gradient-to-r <?= $quarterColor ?> p-5 sm:p-6 text-white shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r <?= $quarterColor ?> p-5 sm:p-6 text-white shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                                style="transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
+
                                 <div
                                     class="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-4 translate-y-4">
                                     <i class="fa-solid fa-bullhorn text-9xl"></i>
                                 </div>
 
-                                <div class="flex items-start gap-3.5 relative z-10">
+                                <div class="flex items-center sm:items-start gap-4 relative z-10 w-full">
                                     <div
-                                        class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shrink-0 mt-0.5">
+                                        class="w-11 h-11 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/20 shrink-0 shadow-2xs">
                                         <i class="fa-solid fa-circle-info text-base text-white"></i>
                                     </div>
-                                    <div class="flex flex-col gap-0.5">
+
+                                    <div class="flex-1 flex flex-col gap-1 min-w-0">
                                         <span
-                                            class="text-[10px] font-black uppercase tracking-widest text-white/80">Active
-                                            Monitoring Window</span>
-                                        <h2 class="text-lg font-black tracking-wide leading-tight">
-                                            Water Advisories & Announcements for
-                                            <?= $quarterName ?> 
-                                            (<?= $currentYear?>)
+                                            class="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-white/75 block">
+                                            Active Monitoring Window
+                                        </span>
+                                        <h2
+                                            class="text-base sm:text-lg font-black tracking-wide leading-snug sm:leading-tight text-white break-words">
+                                            Water Advisories & Announcements for <?= $quarterName ?>
+                                            (<?= $currentYear ?>)
                                         </h2>
-                                        <p class="text-xs font-medium text-white/80">
-                                            Kasalukuyang ipinapakita ang mga talaan mula <span
-                                                class="underline decoration-white/40 decoration-2 font-bold">
-                                                <?= $quarterMonths?>
+                                        <p
+                                            class="text-[11px] sm:text-xs font-medium text-white/80 leading-normal mt-0.5">
+                                            Currently displaying advisories and announcements from
+                                            <span
+                                                class="underline decoration-white/40 decoration-2 font-bold whitespace-nowrap">
+                                                <?= $quarterMonths ?>
                                             </span>
                                         </p>
                                     </div>
                                 </div>
-
-                                
-
                             </div>
                         </div>
 
