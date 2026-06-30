@@ -144,7 +144,7 @@
                                 <div class="header-row bg-[#1a589e]">
                                     <div class="col-bidcode">Bid Code</div>
                                     <div class="col-title text-center font-bold">Bidding Title</div>
-                                    <div class="col-date bac">Upload Date</div>
+                                    
                                 </div>
 
                                 <div id="scrollableTableBody">
@@ -184,7 +184,7 @@
                                 <div class="header-row bg-[#1a589e]">
                                     <div class="col-bidcode">Bid Code</div>
                                     <div class="col-title text-center font-bold">Bidding Title</div>
-                                    <div class="col-date bac">Upload Date</div>
+                                    
                                 </div>
 
                                 <div id="scrollableTableBody">
@@ -225,7 +225,7 @@
                                 <div class="header-row bg-[#1a589e]">
                                     <div class="col-bidcode">Bid Code</div>
                                     <div class="col-title text-center font-bold">Bidding Title</div>
-                                    <div class="col-date bac">Upload Date</div>
+                                    
                                 </div>
 
                                 <div id="scrollableTableBody">
@@ -235,7 +235,13 @@
                                     </div>
 
                                     <div class="data-row">
-                                        
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 10-2026.zip" class="col-date bac text-left text-decoration-none">CWD 10-2026</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 10-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Consumable Pack for Water Purifier (SVP)</a>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 05-2026.zip" class="col-date bac text-left text-decoration-none">CWD 05-2026</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 05-2026.zip" class="col-title bac text-decoration-none">Supply of Services for the Conduct of Microbiological, Physical & Chemical, and Arsenic Testing (SVP)</a>
                                     </div>
 
                                     <div class="data-row justify-content-center">
@@ -243,33 +249,32 @@
                                     </div>
 
                                     <div class="data-row">
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 06-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-06</a>
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 06-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Tokens (Chicken with Assorted Muffins) (SVP)</a>
-                                        <div class="col-date">May 21</div>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 06-2026.zip" class="col-date bac text-left text-decoration-none">CWD 06-2026</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 06-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Tokens (Chicken with Assorted Muffins) (SVP)</a>                                        
                                     </div>
 
                                     <div class="data-row">
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 04-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-04</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 04-2026.zip" class="col-date bac text-left text-decoration-none">CWD 04-2026</a>
                                         <a href="assets\Files\bac\PostAward\2026\CWD 04-2026.zip" class="col-title bac text-decoration-none">Supply of Materials and Services for the Installation of Canopy at CWD Extension Office-Canlubang (SVP) (2nd Posting) (CWD 04-2026)</a>
-                                        <div class="col-date">May 21</div>
+                                        
                                     </div>
 
                                     <div class="data-row">
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-03</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-date bac text-left text-decoration-none">CWD 032026</a>
                                         <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-title bac text-decoration-none">Supply of Services for the Operations and Maintenance of CWD Septage Treatment Plant (SpTP) (Renewal of Contract for Three (3) Months)</a>
-                                        <div class="col-date">May 21</div>
+                                        
                                     </div>
 
                                     <div class="data-row">
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 02-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-02</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 02-2026.zip" class="col-date bac text-left text-decoration-none">CWD 02-2026</a>
                                         <a href="assets\Files\bac\PostAward\2026\CWD 02-2026.zip" class="col-title bac text-decoration-none">Supply of Janitorial Services for CY 2026</a>
-                                        <div class="col-date">May 21</div>
+                                        
                                     </div>
 
                                     <div class="data-row">
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-date bac text-left text-decoration-none">CWD 2026-01</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-date bac text-left text-decoration-none">CWD 01-2026</a>
                                         <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various I.T Equipment and Accessories of Different Departments (Rebidding)</a>
-                                        <div class="col-date">May 21</div>
+                                        
                                     </div>
 
                                     <div class="data-row justify-content-center">
@@ -293,7 +298,7 @@
                                 <div class="header-row bg-[#1a589e]">
                                     <div class="col-bidcode">Bid Code</div>
                                     <div class="col-title text-center font-bold">Bidding Title</div>
-                                    <div class="col-date bac">Upload Date</div>
+                                    
                                 </div>
 
                                 <div id="scrollableTableBody">
@@ -336,64 +341,7 @@
 
 
             <!-- Left Navigation -->
-            <div class="col-6 col-md-3 mx-auto">
-                <nav class="nav flex-column sidebar-nav1">
-                    <h4
-                        class="text-2xl font-black text-[#1a589e] text-center uppercase tracking-wide mt-2 mb-2">
-                        Bids and Awards</h4>
-                    <a class="tab-card1" href="./03_bac1">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-gavel"></i> Bidding Opportunities</h5>
-                    </a>
-                    <a class="tab-card1" href="./03_bac2">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-file-lines"></i> Bid Bulletin / Addendum</h5>
-                    </a>
-                    <a class="tab-card1" href="./03_bac3">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-calendar-days"></i> Notice of Postponement</h5>
-                    </a>
-                    <a class="tab-card1 active" aria-current="page" href="./03_bac4">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-medal"></i> Post-award Information</h5>
-                    </a>
-                    <a class="tab-card1  mb-4" aria-current="page" href="./03_bac5">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-box-archive"></i> Archives</h5>
-                    </a>
-
-                    <h4
-                        class="text-2xl font-black text-[#1a589e] text-center uppercase tracking-wide mt-2 mb-2">
-                        Others</h4>
-                    <a class="tab-card1" aria-current="page" href="./03_waste">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-dumpster"></i> Waste Mangement</h5>
-                    </a>   
-                </nav>
-
-                <div class="bg-white rounded-xl shadow-sm mt-4">
-                    <!-- Header -->
-                    <div class="p-2 bg-[#1a589e] rounded-t-xl">
-                        <h5 class="font-bold text-xl text-white text-center space-x-2">
-                            <i data-lucide="megaphone" class="w-6 h-6"></i>
-                            <span>For BAC Inquiries</span>
-                        </h5>
-                    </div>
-
-                    <!-- Body Content -->
-                    <div class="p-2 space-y-3 text-gray-700">
-                        <p class="text-sm font-semibold text-center">You may contact the following:
-                        </p>
-
-                        <ul class="list-disc list-inside space-y-2 text-sm pl-3">
-                            <li class="font-medium font-semibold text-center list-unstyled text-[#15467e]">Rolando M.
-                                Pizarra <br> Beverly Joy B. Acierto</li>
-                            <li class="font-medium text-gray-900 text-center italic list-unstyled mb-4">BAC Secretariats
-                            </li>
-                            <li class="font-medium text-gray-900 text-left list-unstyled">Telephone Lines: <br> <span
-                                    class="font-semibold text-[#1a589e]"> (049) 545-1614 <br> (049) 545-2863 loc.
-                                    213</span></li>
-                            <li class="font-medium text-gray-900 text-left list-unstyled">Email: <span
-                                    class="font-semibold text-[#1a589e]"><br>cwd_bac@yahoo.com</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
+            <?php include 'includes/bacleftnav.php'; ?>
 
         </div>
     </div>
