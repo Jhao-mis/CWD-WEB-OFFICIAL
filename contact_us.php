@@ -143,8 +143,8 @@
                         <div class="flex gap-3">
                             <div class="info-icon-wrapper"><i class="fa-solid fa-phone"></i></div>
                             <p class="text-slate-600 text-sm font-medium">
-                                (049) 545-1614; 545-2863<br>
-                                545-2728; 545-7895
+                                (049) 545-2863; 545-1614<br>
+                            
                             </p>
                         </div>
                     </div>
@@ -208,9 +208,12 @@
                     <p class="text-slate-500 text-sm mb-8 uppercase tracking-widest font-bold">Inquiries & Reports</p>
 
                     <div class="mb-8">
-                        <a href="tel:0495459344"
+                        <a href="tel:0495452863"
                             class="text-3xl md:text-4xl font-black text-red-600 hover:text-red-700 transition-colors block mb-2">(049)
-                            545-1400</a>
+                            545-2863</a>
+                        <a href="tel:0495451614"
+                            class="text-2xl md:text-3xl font-black text-[#1a589e] hover:text-[#1a589e] transition-colors block mb-4">(049)
+                            545-1614</a>
                         <a href="mailto:cwd_customerservice@yahoo.com"
                             class="text-xl md:text-lg font-bold text-[#1a589e] hover:underline break-all sm:break-normal block">
                             cwd_customerservice@yahoo.com

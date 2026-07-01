@@ -934,7 +934,7 @@
                                     <div class="p-4 text-center">
                                         <h4 class="text-lg font-extrabold text-slate-800">Engr. Rolando V. Baro</h4>
                                         <p class="text-blue-600 text-[12px] font-bold uppercase mt-1">OIC, Engineering
-                                            and Maintenance Division</p>
+                                            and Maintenance Division Manager</p>
                                     </div>
                                 </div>
 
