@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 // Kukunin ang pangalan ng kasalukuyang file mula sa URL (e.g., "03_bac1" o "03_bac1.php")
 $current_page = basename($_SERVER['REQUEST_URI'], ".php");
@@ -125,4 +125,4 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
                 </div>
 
             </div>
->>>>>>> Test
+
