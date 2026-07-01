@@ -65,7 +65,7 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
     </nav>
 </div>
 
- <div class="col-6 col-md-3 mx-auto">
+<div class="col-6 col-md-3 mx-auto">
                 <nav class="nav flex-column sidebar-nav1">
                     <h4
                         class="text-2xl font-black text-[#1a589e] text-center uppercase tracking-wide mt-2 mb-2">
