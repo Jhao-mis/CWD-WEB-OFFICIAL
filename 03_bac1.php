@@ -204,7 +204,21 @@
                                     </div>
 
                                     <div class="data-row">
-                                        
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 32-2026.zip" class="col-date bac text-left text-decoration-none">CWD 32-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 32-2026.zip" class="col-title bac text-decoration-none">Calibration and Preventive Maintenance of Various Laboratory Equipment (SVP)</a>
+                                        <div class="col-date">July 1</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 31-2026.zip" class="col-date bac text-left text-decoration-none">CWD 31-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 31-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Traffic and Road Safety Equipment and Accessories (SVP)</a>
+                                        <div class="col-date">July 1</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 30-2026.zip" class="col-date bac text-left text-decoration-none">CWD 30-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 30-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of uPVC Pipes and Fittings (SVP)</a>
+                                        <div class="col-date">July 1</div>
                                     </div>
 
                                 </div>
@@ -226,6 +240,18 @@
 
                                     <div class="data-row justify-content-center">
                                         <div class="header-month font-bold">JUNE</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 29-2026.zip" class="col-date bac text-left text-decoration-none">CWD 29-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 29-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals for Septage Treatment  Plant</a>
+                                        <div class="col-date">June 29</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 28-2026.zip" class="col-date bac text-left text-decoration-none">CWD 28-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 28-2026.zip" class="col-title bac text-decoration-none">Preventive Maintenance of Ultra Violet Hydro-Optic Disinfectant (UV-HOD) System</a>
+                                        <div class="col-date">June 29</div>
                                     </div>
 
                                     <div class="data-row">

@@ -209,6 +209,11 @@
                                         <div class="header-month font-bold">JULY</div>
                                     </div>
 
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 07-2026.zip" class="col-date bac text-left text-decoration-none">CWD 07-2026</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 07-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Denorado Rice</a>
+                                    </div>
+
                                 </div>
 
                             </div>
