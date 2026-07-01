@@ -231,14 +231,11 @@
                                     </div>
 
                                     <div class="data-row">
-<<<<<<< HEAD
                                         <a href="assets\Files\bac\PostAward\2026\CWD 10-2026.zip" class="col-date bac text-left text-decoration-none">CWD 10-2026</a>
                                         <a href="assets\Files\bac\PostAward\2026\CWD 10-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Consumable Pack for Water Purifier (SVP)</a>
                                     </div>
 
                                     <div class="data-row">
-=======
->>>>>>> Test
                                         <a href="assets\Files\bac\PostAward\2026\CWD 05-2026.zip" class="col-date bac text-left text-decoration-none">CWD 05-2026</a>
                                         <a href="assets\Files\bac\PostAward\2026\CWD 05-2026.zip" class="col-title bac text-decoration-none">Supply of Services for the Conduct of Microbiological, Physical & Chemical, and Arsenic Testing (SVP)</a>
                                     </div>
@@ -259,11 +256,7 @@
                                     </div>
 
                                     <div class="data-row">
-<<<<<<< HEAD
                                         <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-date bac text-left text-decoration-none">CWD 03-2026</a>
-=======
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-date bac text-left text-decoration-none">CWD 032026</a>
->>>>>>> Test
                                         <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-title bac text-decoration-none">Supply of Services for the Operations and Maintenance of CWD Septage Treatment Plant (SpTP) (Renewal of Contract for Three (3) Months)</a>
                                         
                                     </div>
@@ -276,12 +269,7 @@
 
                                     <div class="data-row">
                                         <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-date bac text-left text-decoration-none">CWD 01-2026</a>
-<<<<<<< HEAD
                                         <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various I.T Equipment and Accessories of Different Departments (Rebidding)</a>                                        
-=======
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various I.T Equipment and Accessories of Different Departments (Rebidding)</a>
-                                        
->>>>>>> Test
                                     </div>
 
                                     <div class="data-row">
