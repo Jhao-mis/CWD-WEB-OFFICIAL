@@ -243,6 +243,7 @@
                                     </div>
 
                                     <div class="data-row">
+<<<<<<< HEAD
                                         <a href="assets\Files\bac\BidOpp\2026\June\CWD 29-2026.zip" class="col-date bac text-left text-decoration-none">CWD 29-2026</a>
                                         <a href="assets\Files\bac\BidOpp\2026\June\CWD 29-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals for Septage Treatment  Plant</a>
                                         <div class="col-date">June 29</div>
@@ -255,6 +256,8 @@
                                     </div>
 
                                     <div class="data-row">
+=======
+>>>>>>> Test
                                         <a href="assets\Files\bac\BidOpp\2026\June\CWD 27-2026.zip" class="col-date bac text-left text-decoration-none">CWD 27-2026</a>
                                         <a href="assets\Files\bac\BidOpp\2026\June\CWD 27-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Submersible Pumps and Motors (Rebidding)</a>
                                         <div class="col-date">June 23</div>
