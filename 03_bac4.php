@@ -209,10 +209,6 @@
                                         <div class="header-month font-bold">JULY</div>
                                     </div>
 
-                                    <div class="data-row">
-                                        
-                                    </div>
-
                                 </div>
 
                             </div>
@@ -260,7 +256,7 @@
                                     </div>
 
                                     <div class="data-row">
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-date bac text-left text-decoration-none">CWD 032026</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-date bac text-left text-decoration-none">CWD 03-2026</a>
                                         <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip" class="col-title bac text-decoration-none">Supply of Services for the Operations and Maintenance of CWD Septage Treatment Plant (SpTP) (Renewal of Contract for Three (3) Months)</a>
                                         
                                     </div>
@@ -273,9 +269,14 @@
 
                                     <div class="data-row">
                                         <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-date bac text-left text-decoration-none">CWD 01-2026</a>
-                                        <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various I.T Equipment and Accessories of Different Departments (Rebidding)</a>
-                                        
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various I.T Equipment and Accessories of Different Departments (Rebidding)</a>                                        
                                     </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 84-2025.zip" class="col-date bac text-left text-decoration-none">CWD 84-2025</a>
+                                        <a href="assets\Files\bac\PostAward\2026\CWD 84-2025.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Office Equipment, Furniture and Fixtures of Different Departments (Rebidding)</a>                                        
+                                    </div>
+
 
                                     <div class="data-row justify-content-center">
                                         <div class="header-month font-bold">APRIL</div>
