@@ -97,6 +97,40 @@
 
                 <div class="container mx-auto bo">
 
+
+                    <!-- Pagination Component (Bootstrap Pills for Quarters) -->
+                    <nav aria-label="Year navigation" class="mb-4 d-flex justify-content-center">
+                        <ul class="nav nav-pills shadow-sm rounded-pill p-1 bg-white" id="pills-tab" role="tablist">
+
+                            <!-- 2025 is the latest year, so it is marked active and selected -->
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-pag" id="pills-q4-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-bo" type="button" role="tab" aria-controls="pills-q4"
+                                    aria-selected="true"><i class="fa-solid fa-gavel"></i></button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-pag" id="pills-q3-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-bba" type="button" role="tab" aria-controls="pills-q3"
+                                    aria-selected="false"><i class="fa-solid fa-file-lines"></i></button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-pag" id="pills-q2-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-nop" type="button" role="tab" aria-controls="pills-q2"
+                                    aria-selected="false"><i class="fa-solid fa-calendar-days"></i></button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-pag" id="pills-q1-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-pai" type="button" role="tab" aria-controls="pills-q1"
+                                    aria-selected="false"><i class="fa-solid fa-medal"></i></button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link-pag" id="pills-q0-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-oldweb" type="button" role="tab" aria-controls="pills-q1"
+                                    aria-selected="false"><i class="fa-solid fa-box-archive"></i></button>
+                            </li>
+                        </ul>
+                    </nav>
+
                     <!-- Tab Content (Job Postings Tables) -->
                     <div class="tab-content" id="pills-tabContent">
 
