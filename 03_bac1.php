@@ -204,6 +204,13 @@
                                     </div>
 
                                     <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 33-2026.zip" class="col-date bac text-left text-decoration-none">CWD 33-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 33-2026.zip" class="col-title bac text-decoration-none">Supply and Installation of Operable Wall (SVP)</a>
+                                        <div class="col-date">July </div>
+                                    </div>
+
+
+                                    <div class="data-row">
                                         <a href="assets\Files\bac\BidOpp\2026\July\CWD 32-2026.zip" class="col-date bac text-left text-decoration-none">CWD 32-2026</a>
                                         <a href="assets\Files\bac\BidOpp\2026\July\CWD 32-2026.zip" class="col-title bac text-decoration-none">Calibration and Preventive Maintenance of Various Laboratory Equipment (SVP)</a>
                                         <div class="col-date">July 1</div>
