@@ -273,6 +273,30 @@
                                     </div>
 
                                     <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 24-2026.zip" class="col-date bac text-left text-decoration-none">CWD 24-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 24-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Materials for the Installation of Fire Hydrants at Different Service Areas (SVP)</a>
+                                        <div class="col-date">June 9</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 23-2026.zip" class="col-date bac text-left text-decoration-none">CWD 23-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 23-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Cast Iron Fittings (SVP)</a>
+                                        <div class="col-date">June 9</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 22-2026.zip" class="col-date bac text-left text-decoration-none">CWD 22-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 22-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Compression Fittings (NLC) (SVP)</a>
+                                        <div class="col-date">June 9</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 21-2026.zip" class="col-date bac text-left text-decoration-none">CWD 21-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 21-2026.zip" class="col-title bac text-decoration-none">Supply of Materials and Services for the Change of Cowl, Body Repair & Under Coating of Various Service Vehicles (SVP)</a>
+                                        <div class="col-date">June 9</div>
+                                    </div>
+
+                                    <div class="data-row">
                                         <a href="assets\Files\bac\BidOpp\2026\June\CWD 20-2026.zip" class="col-date bac text-left text-decoration-none">CWD 20-2026</a>
                                         <a href="assets\Files\bac\BidOpp\2026\June\CWD 20-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals and Filtering Materials (SVP) (2nd Posting)</a>
                                         <div class="col-date">June 3</div>
