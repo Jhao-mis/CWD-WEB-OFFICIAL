@@ -129,7 +129,7 @@
                     <!-- Tab Content (Job Postings Tables) -->
                     <div class="tab-content" id="pills-tabContent">
 
-                        <!-- Tab Pane for 2025 (Active by default) -->
+                        <!-- Tab Pane for Q4 (Active by default) -->
                         <div class="tab-pane fade" id="pills-q4" role="tabpanel" aria-labelledby="pills-2024-tab">
                             <div class="content-table">
 
@@ -169,7 +169,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Pane for 2024 -->
+                        <!-- Tab Pane for Q3 -->
                         <div class="tab-pane fade" id="pills-q3" role="tabpanel" aria-labelledby="pills-2024-tab">
                             <div class="content-table">
 
@@ -200,6 +200,22 @@
                                     </div>
 
                                     <div class="data-row">
+                                        <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 2 (CWD 27-2026).pdf"
+                                            target="_blank" class="col-date bac text-left text-decoration-none">CWD
+                                            27-2026</a>
+                                        <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 2 (CWD 27-2026).pdf"
+                                            target="_blank" class="col-title bac text-decoration-none">Supply and Delivery of Submersible Cable, Manual Transfer Switch and Accessories (Rebidding)</a>
+                                        <div class="col-date">July 7</div>
+                                    </div>
+
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 26-2026).pdf"
+                                            target="_blank" class="col-date bac text-left text-decoration-none">CWD
+                                            26-2026</a>
+                                        <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 26-2026).pdf"
+                                            target="_blank" class="col-title bac text-decoration-none">Supply and Delivery of Submersible Pumps and Motors (Rebidding)</a>
+                                        <div class="col-date">July 7</div>
                                     </div>
 
                                 </div>
@@ -207,7 +223,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Pane for 2023 -->
+                        <!-- Tab Pane for Q2 -->
                         <div class="tab-pane fade" id="pills-q2" role="tabpanel" aria-labelledby="pills-2024-tab">
                             <div class="content-table">
 
@@ -259,7 +275,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Pane for 2023 -->
+                        <!-- Tab Pane for Q1 -->
                         <div class="tab-pane fade" id="pills-q1" role="tabpanel" aria-labelledby="pills-2024-tab">
                             <div class="content-table">
 

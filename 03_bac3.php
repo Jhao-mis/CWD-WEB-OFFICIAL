@@ -129,7 +129,7 @@
                     <!-- Tab Content (Job Postings Tables) -->
                     <div class="tab-content" id="pills-tabContent">
 
-                        <!-- Tab Pane for 2025 (Active by default) -->
+                        <!-- Tab Pane for Q4 (Active by default) -->
                         <div class="tab-pane fade" id="pills-q4" role="tabpanel" aria-labelledby="pills-2024-tab">
                             <div class="content-table">
 
@@ -169,7 +169,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Pane for 2024 -->
+                        <!-- Tab Pane for Q3 -->
                         <div class="tab-pane fade" id="pills-q3" role="tabpanel" aria-labelledby="pills-2024-tab">
                             <div class="content-table">
 
@@ -210,7 +210,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Pane for 2023 -->
+                        <!-- Tab Pane for Q2 -->
                         <div class="tab-pane fade" id="pills-q2" role="tabpanel" aria-labelledby="pills-2024-tab">
                             <div class="content-table">
 
@@ -252,7 +252,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Pane for 2023 -->
+                        <!-- Tab Pane for Q1 -->
                         <div class="tab-pane fade" id="pills-q1" role="tabpanel" aria-labelledby="pills-2024-tab">
                             <div class="content-table">
 
