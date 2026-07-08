@@ -204,6 +204,36 @@
                                     </div>
 
                                     <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip" class="col-date bac text-left text-decoration-none">CWD 38-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Goods and Services for CWD's 50th Founding Anniversary</a>
+                                        <div class="col-date">July 8</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 37-2026.zip" class="col-date bac text-left text-decoration-none">CWD 37-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 37-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Personal Protective Equipment (SVP)</a>
+                                        <div class="col-date">July 8</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 36-2026.zip" class="col-date bac text-left text-decoration-none">CWD 36-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 36-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of 14" and 16" Concrete Cutter Blade (SVP)</a>
+                                        <div class="col-date">July 8</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 35-2026.zip" class="col-date bac text-left text-decoration-none">CWD 35-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 35-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Concrete Cutter Gasoline Engine and Fanbelt (SVP)</a>
+                                        <div class="col-date">July 8</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 34-2026.zip" class="col-date bac text-left text-decoration-none">CWD 34-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 34-2026.zip" class="col-title bac text-decoration-none">Supply of Labor and Materials Preventive Maintenance of Air Compressor (SVP)</a>
+                                        <div class="col-date">July 8</div>
+                                    </div>
+
+                                    <div class="data-row">
                                         <a href="assets\Files\bac\BidOpp\2026\July\CWD 33-2026.zip" class="col-date bac text-left text-decoration-none">CWD 33-2026</a>
                                         <a href="assets\Files\bac\BidOpp\2026\July\CWD 33-2026.zip" class="col-title bac text-decoration-none">Supply and Installation of Operable Wall (SVP)</a>
                                         <div class="col-date">July 2 </div>
