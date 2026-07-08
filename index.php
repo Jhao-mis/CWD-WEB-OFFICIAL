@@ -49,7 +49,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,900;1,500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -119,9 +119,6 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 
-    <!-- Kuya Daloy Chatbot temporary disabled -->
-    <?php //include 'includes/modals.php'; ?>
-
     <!-- Navigation -->
     <?php include 'includes/navigation.php'; ?>
 
@@ -130,7 +127,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
         <!-- Slide 0 -->
         <div class="carousel-item active">
-            <img src="./img/50th1.png"
+            <img src="./img/50th1.png" fetchpriority="high" decoding="async"
                 onerror="this.src='https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=1600'">
             <div class="carousel-overlay">
                 <div class="carousel-content">
@@ -147,7 +144,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
         <!-- Slide 1 -->
         <div class="carousel-item active">
-            <img src="./img/bgmain.png"
+            <img src="./img/bgmain.png" loading="lazy" decoding="async"
                 onerror="this.src='https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=1600'">
             <div class="carousel-overlay">
                 <div class="carousel-content">
@@ -164,7 +161,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
         <!-- Slide 2 -->
         <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1538300342682-cf57afb97285?q=80&w=1600">
+            <img src="https://images.unsplash.com/photo-1538300342682-cf57afb97285?q=80&w=1600" loading="lazy" decoding="async">
             <div class="carousel-overlay">
                 <div class="carousel-content">
                     <span
@@ -196,13 +193,13 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="container mx-auto px-3">
             <div class="logo-container">
                 <!-- Placeholder URLs - Replace with actual local paths if necessary -->
-                <img src="./img/icons/BP.png" alt="Bagong Pilipinas" class="logo-item">
-                <img src="./img/icons/300.png" alt="300" class="logo-item">
-                <img src="img/icons/PTS.png" alt="PTS" class="logo-item">
-                <img src="./img/icons/FOI.png" alt="FOI" class="logo-item">
-                <img src="./img/icons/PAB.png" alt="PAB" class="logo-item"
+                <img src="./img/icons/BP.png" alt="Bagong Pilipinas" class="logo-item" loading="lazy" decoding="async">
+                <img src="./img/icons/300.png" alt="300" class="logo-item" loading="lazy" decoding="async">
+                <img src="img/icons/PTS.png" alt="PTS" class="logo-item" loading="lazy" decoding="async">
+                <img src="./img/icons/FOI.png" alt="FOI" class="logo-item" loading="lazy" decoding="async">
+                <img src="./img/icons/PAB.png" alt="PAB" class="logo-item" loading="lazy" decoding="async"
                     onerror="this.src='https://via.placeholder.com/100x60?text=PCOO'">
-                <img src="./img/icons/ISO.png" alt="ISO" class="logo-item">
+                <img src="./img/icons/ISO.png" alt="ISO" class="logo-item" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -268,7 +265,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     class="group bg-white rounded-2xl shadow-lg border-t-8 border-[#1a589e] overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                     <div class="p-6 flex flex-col items-center text-center">
                         <div class="mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <img src="img\qlicons\10.png" alt="Water Rates" class="w-12 h-12 object-contain"
+                            <img src="img/qlicons/10.png" alt="Water Rates" class="w-12 h-12 object-contain" loading="lazy" decoding="async"
                                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/1a589e/ffffff?text=WR';">
                         </div>
                         <h4 class="text-xl font-bold text-[#1a589e] mb-2">Water Rates</h4>
@@ -282,7 +279,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     class="group bg-white rounded-2xl shadow-lg border-t-8 border-[#1a589e] overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                     <div class="p-6 flex flex-col items-center text-center">
                         <div class="mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <img src="./img/qlicons/7.png" alt="Transparency Seal" class="w-12 h-12 object-contain"
+                            <img src="./img/qlicons/7.png" alt="Transparency Seal" class="w-12 h-12 object-contain" loading="lazy" decoding="async"
                                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/1a589e/ffffff?text=TS';">
                         </div>
                         <h4 class="text-xl font-bold text-[#1a589e] mb-2">Transparency Seal</h4>
@@ -296,7 +293,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     class="group bg-white rounded-2xl shadow-lg border-t-8 border-[#1a589e] overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                     <div class="p-6 flex flex-col items-center text-center">
                         <div class="mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <img src="./img/qlicons/8.png" alt="eFOI" class="w-12 h-12 object-contain"
+                            <img src="./img/qlicons/8.png" alt="eFOI" class="w-12 h-12 object-contain" loading="lazy" decoding="async"
                                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/1a589e/ffffff?text=FOI';">
                         </div>
                         <h4 class="text-xl font-bold text-[#1a589e] mb-2">eFOI</h4>
@@ -313,7 +310,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     class="group bg-white rounded-2xl shadow-lg border-t-8 border-[#1a589e] overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                     <div class="p-6 flex flex-col items-center text-center">
                         <div class="mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <img src="./img/qlicons/9.png" alt="Payment" class="w-12 h-12 object-contain"
+                            <img src="./img/qlicons/9.png" alt="Payment" class="w-12 h-12 object-contain" loading="lazy" decoding="async"
                                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/1a589e/ffffff?text=PC';">
                         </div>
                         <h4 class="text-xl font-bold text-[#1a589e] mb-2">Payment Centers</h4>
@@ -327,7 +324,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     class="group bg-white rounded-2xl shadow-lg border-t-8 border-[#1a589e] overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                     <div class="p-6 flex flex-col items-center text-center">
                         <div class="mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <img src="./img/qlicons/11.png" alt="Jobs" class="w-12 h-12 object-contain"
+                            <img src="./img/qlicons/11.png" alt="Jobs" class="w-12 h-12 object-contain" loading="lazy" decoding="async"
                                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/1a589e/ffffff?text=JO';">
                         </div>
                         <h4 class="text-xl font-bold text-[#1a589e] mb-2">Job Opportunities</h4>
@@ -341,7 +338,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     class="group bg-white rounded-2xl shadow-lg border-t-8 border-[#1a589e] overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                     <div class="p-6 flex flex-col items-center text-center">
                         <div class="mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <img src="./img/qlicons/12.png" alt="FAQ" class="w-12 h-12 object-contain"
+                            <img src="./img/qlicons/12.png" alt="FAQ" class="w-12 h-12 object-contain" loading="lazy" decoding="async"
                                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/1a589e/ffffff?text=FAQ';">
                         </div>
                         <h4 class="ttext-xl font-bold text-[#1a589e] mb-2">FAQs</h4>
@@ -354,7 +351,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     class="group bg-white rounded-2xl shadow-lg border-t-8 border-[#1a589e] overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                     <div class="p-6 flex flex-col items-center text-center">
                         <div class="mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <img src="./img/qlicons/13.png" alt="Charter" class="w-12 h-12 object-contain"
+                            <img src="./img/qlicons/13.png" alt="Charter" class="w-12 h-12 object-contain" loading="lazy" decoding="async"
                                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/1a589e/ffffff?text=CC';">
                         </div>
                         <h4 class="text-xl font-bold text-[#1a589e] mb-2">Septage Management Program</h4>
@@ -368,7 +365,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     class="group bg-white rounded-2xl shadow-lg border-t-8 border-[#1a589e] overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-4px]">
                     <div class="p-6 flex flex-col items-center text-center">
                         <div class="mb-4 transition-transform duration-300 group-hover:scale-110">
-                            <img src="./img/qlicons/14.png" alt="Quality" class="w-12 h-12 object-contain"
+                            <img src="./img/qlicons/14.png" alt="Quality" class="w-12 h-12 object-contain" loading="lazy" decoding="async"
                                 onerror="this.onerror=null; this.src='https://placehold.co/80x80/1a589e/ffffff?text=WQ';">
                         </div>
                         <h4 class="text-xl font-bold text-[#1a589e] mb-2">GAD</h4>
@@ -460,7 +457,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="relative z-10 animate-float">
                             <div class="p-8 rounded-[3rem] shadow-2xl logo-glow">
-                                <img src="./img/CWDIcon2.png" class="w-55 h-auto object-contain" alt="CWD 24/7"
+                                <img src="./img/CWDIcon2.png" class="w-55 h-auto object-contain" alt="CWD 24/7" loading="lazy" decoding="async"
                                     onerror="this.src='https://via.placeholder.com/200?text=CWD+24/7'">
                             </div>
                         </div>
@@ -517,7 +514,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (!empty($featuredImage)): ?>
                         <div class="w-full h-56 lg:h-72 overflow-hidden bg-slate-100">
                             <img class="w-full h-full object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-95"
-                                src="uploads/news/<?= htmlspecialchars($featuredImage) ?>" alt="News Image">
+                                src="uploads/news/<?= htmlspecialchars($featuredImage) ?>" alt="News Image" loading="lazy" decoding="async">
                         </div>
                     <?php else: ?>
                         <div
@@ -598,7 +595,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                                     <?php if (!empty($recentImage)): ?>
                                         <img src="uploads/news/<?= htmlspecialchars($recentImage) ?>"
                                             class="w-full h-full object-cover transition duration-300 group-hover:scale-105"
-                                            alt="News Image">
+                                            alt="News Image" loading="lazy" decoding="async">
                                     <?php else: ?>
                                         <div
                                             class="w-full h-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400">
@@ -682,7 +679,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button"
                             class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-red-50/30 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
                             data-title="Emergency Water Service Interruption on April 17, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e6.jpg' alt='Emergency Notice'>">
+                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' loading='lazy' src='./assets/Files/advs/e6.jpg' alt='Emergency Notice'>">
 
                             <div class="flex flex-col items-start gap-1">
                                 <span
@@ -701,7 +698,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button"
                             class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-red-50/30 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
                             data-title="Emergency Water Service Interruption on April 17, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e5.jpg' alt='Emergency Notice'>">
+                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' loading='lazy' src='./assets/Files/advs/e5.jpg' alt='Emergency Notice'>">
 
                             <div class="flex flex-col items-start gap-1">
                                 <span
@@ -720,7 +717,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button"
                             class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-red-50/30 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
                             data-title="Emergency Water Service Interruption on April 17, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e4.jpg' alt='Emergency Notice'>">
+                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' loading='lazy' src='./assets/Files/advs/e4.jpg' alt='Emergency Notice'>">
 
                             <div class="flex flex-col items-start gap-1">
                                 <span
@@ -750,7 +747,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button"
                             class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-blue-50/30 hover:border-blue-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
                             data-title="Scheduled Water Service Interruption on July 01, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/s2.jpg' alt='Scheduled Notice'>">
+                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' loading='lazy' src='./assets/Files/advs/s2.jpg' alt='Scheduled Notice'>">
 
                             <div class="flex flex-col items-start gap-1">
                                 <span
@@ -769,7 +766,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button"
                             class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-blue-50/30 hover:border-blue-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
                             data-title="Scheduled Water Service Interruption on July 01, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/s1.jpg' alt='Scheduled Notice'>">
+                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' loading='lazy' src='./assets/Files/advs/s1.jpg' alt='Scheduled Notice'>">
 
                             <div class="flex flex-col items-start gap-1">
                                 <span
@@ -800,7 +797,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button"
                             class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-amber-50/30 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
                             data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/ga5.jpg' alt='Holiday Notice'>">
+                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' loading='lazy' src='./assets/Files/advs/ga5.jpg' alt='Holiday Notice'>">
 
                             <div class="flex flex-col items-start gap-1">
                                 <span
@@ -819,7 +816,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button"
                             class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-amber-50/30 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
                             data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/ga4.jpg' alt='Holiday Notice'>">
+                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' loading='lazy' src='./assets/Files/advs/ga4.jpg' alt='Holiday Notice'>">
 
                             <div class="flex flex-col items-start gap-1">
                                 <span
@@ -838,7 +835,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                         <button type="button"
                             class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-amber-50/30 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
                             data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/ga3.jpg' alt='Holiday Notice'>">
+                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' loading='lazy' src='./assets/Files/advs/ga3.jpg' alt='Holiday Notice'>">
 
                             <div class="flex flex-col items-start gap-1">
                                 <span
@@ -1047,7 +1044,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                             <div class="w-full md:w-5/12 p-4 flex justify-center md:block ">
                                 <!-- Placeholder image URL used, added bg-gray-100 to differentiate from card background -->
                                 <img class="object-contain w-full rounded-xl bg-[#15467e] max-h-56 md:w-full md:h-auto shadow-lg"
-                                    src="./img/wl25.png" alt="Waterlife Magazine 2025 Issue">
+                                    src="./img/wl25.png" alt="Waterlife Magazine 2025 Issue" loading="lazy" decoding="async">
                             </div>
                             <!-- SCROLLING ADDED HERE: max-h-48 (sets max height on mobile) and overflow-y-auto (enables scrolling) -->
                             <div
@@ -1083,7 +1080,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
                             <div class="w-full md:w-5/12 p-4 flex justify-center md:block ">
                                 <!-- Placeholder image URL used, added bg-gray-100 to differentiate from card background -->
                                 <img class="object-contain w-full rounded-xl bg-[#15467e] max-h-56 md:w-full md:h-auto shadow-lg"
-                                    src="./img/wl25.png" alt="Waterlife Magazine 2025 Issue">
+                                    src="./img/wl25.png" alt="Waterlife Magazine 2025 Issue" loading="lazy" decoding="async">
                             </div>
                             <!-- SCROLLING ADDED HERE: max-h-48 (sets max height on mobile) and overflow-y-auto (enables scrolling) -->
                             <div
@@ -1157,7 +1154,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
         <img src="./img/bld1.jpg"
             onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop';"
             class="w-full h-full object-cover absolute inset-0 transition-transform duration-1000 scale-105 group-hover:scale-110"
-            alt="CWD Building">
+            alt="CWD Building" loading="lazy" decoding="async">
 
         <!-- Gradient Overlay for better text legibility -->
         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
@@ -1212,18 +1209,18 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include 'footer.php'; ?>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer
         xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js" defer></script>
 
 
-    <script src="./js/index.js"></script>
-    <script src="./js/counter.js"></script>
-    <script src="./js/style.js"></script>
-    <script src="./js/tabpane2.js"></script>
-    <script src='includes/scripts.js'></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/counter.js" defer></script>
+    <script src="./js/style.js" defer></script>
+    <script src="./js/tabpane2.js" defer></script>
+    <script src='includes/scripts.js' defer></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
