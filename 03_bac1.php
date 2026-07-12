@@ -204,8 +204,26 @@
                                     </div>
 
                                     <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 41-2026.zip" class="col-date bac text-left text-decoration-none">CWD 41-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 41-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (3rd Posting) (SVP)</a>
+                                        <div class="col-date">July 13</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 40-2026.zip" class="col-date bac text-left text-decoration-none">CWD 40-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 40-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (3rd Posting) (SVP) Supply and Delivery of Materials for the Installation of Fire Hydrants  at Different Service Areas (2nd Posting) (SVP)</a>
+                                        <div class="col-date">July 13</div>
+                                    </div>
+
+                                    <div class="data-row">
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 39-2026.zip" class="col-date bac text-left text-decoration-none">CWD 39-2026</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 39-2026.zip" class="col-title bac text-decoration-none">Supply of Materials and Services for the Repair of Autoclave (SVP)</a>
+                                        <div class="col-date">July 13</div>
+                                    </div>
+
+                                    <div class="data-row">
                                         <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip" class="col-date bac text-left text-decoration-none">CWD 38-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Goods and Services for CWD's 50th Founding Anniversary</a>
+                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Goods and Services for CWDs 50th Founding Anniversary</a>
                                         <div class="col-date">July 8</div>
                                     </div>
 
