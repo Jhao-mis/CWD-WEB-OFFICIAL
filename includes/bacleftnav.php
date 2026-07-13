@@ -62,12 +62,22 @@ $current_page = basename($request_path, ".php");
                                 1007</span>
                         </div>
 
-                        <div class="flex items-center justify-center gap-2 pt-2 border-t border-white/10 text-center">
-                            <i class="fa-solid fa-envelope text-blue-200 shrink-0"></i>
-                            <span class="text-center"><strong class="text-white">Email:</strong>
-                                <a href="mailto:cwdbac2025@gmail.com" class="text-white/90 hover:text-white hover:underline">cwdbac2025@gmail.com</a></span>
+                        <div
+                            class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 pt-2 border-t border-white/10 text-center sm:text-left">
+                            <span
+                                class="flex items-center justify-center gap-1.5 text-white font-bold text-[11px] sm:text-xs">
+                                <i class="fa-solid fa-envelope text-blue-200 shrink-0 text-sm"></i>
+                                
+                            </span>
+
+                            <a href="mailto:cwdbac2025@gmail.com"
+                                class="text-white/90 hover:text-white hover:underline text-[11px] sm:text-xs tracking-wide break-all sm:break-normal font-medium block sm:inline-block max-w-full overflow-hidden text-ellipsis">
+                                cwdbac2025@gmail.com
+                            </a>
                         </div>
+
                     </div>
+                    
                 </div>
             </div>
         </div>

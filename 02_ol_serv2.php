@@ -507,30 +507,7 @@
             </div>
 
             <!-- Left Navigation -->
-            <div class="col-6 col-md-3 mx-auto">
-                <nav class="nav flex-column">
-                    <h3 class="text-2xl font-black text-[#1a589e] text-center uppercase tracking-wide mt-2 mb-2">
-                        Online Services</h3>
-                    <a class="tab-card" aria-current="page" href="./02_ol_serv">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-mobile-screen"></i> Online Payment</h5>
-                    </a>
-                    <a class="tab-card" href="./02_ol_serv3" tabindex="-1" aria-disabled="true">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-calculator"></i> Bill Calculator</h5>
-                    </a>
-                    <a class="tab-card active" href="#" tabindex="-1" aria-disabled="true">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-bullhorn"></i> Water Service Notices</h5>
-                    </a>
-                    <a class="tab-card"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSeN07_EsXAdLg6odGiWAUvU7T5mVR7UvjsohcdLQVhmJEm9ZQ/viewform"
-                        target="_blank">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-comment-sms"></i> Email & Text Blast</h5>
-                    </a>
-                    <a class="tab-card" href="https://www.foi.gov.ph/agencies/clwd/" target="_blank">
-                        <h5 class="font-bold text-sm"><i class="fa-solid fa-inbox"></i> eFOI
-                        </h5>
-                    </a>
-                </nav>
-            </div>
+            <?php include 'includes/ol_servln.php'; ?>
 
         </div>
     </div>

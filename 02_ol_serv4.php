@@ -100,13 +100,33 @@
                 <p class="text-gray-600 text-sm font-semibold">Pay your water bills online thru our verified partners</p>
             </a>
 
-            <!-- Card 2: Bill Calculator --><a href="./02_ol_serv3" class="feature-card group">
-                <div class="icon-wrapper">
+            <!-- Card: Bill Calculator (Disabled State) -->
+            <div
+                class="feature-card group relative opacity-60 cursor-not-allowed pointer-events-none select-none border border-gray-200 shadow-sm rounded-xl p-5 bg-gray-50/50">
+
+                <!-- Status Badge: Currently Unavailable -->
+                <span
+                    class="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-bold text-gray-500 shadow-sm border border-gray-200 uppercase tracking-wider">
+                    
+                    <i class="fa-solid fa-link-slash fa-s text-[#1a589e]"></i>Currently Unavailable
+                </span>
+
+                <!-- Icon Box -->
+                <div class="icon-wrapper opacity-50 grayscale">
                     <img src="./img/icons/calc.png" alt="Bill Calculator Icon">
                 </div>
-                <h3 class="text-2xl font-black text-[#1a589e] uppercase tracking-wide mt-2 mb-2">Bill Calculator</h3>
-                <p class="text-gray-600 text-sm font-semibold">Know and calculate your bill consumption.</p>
-            </a>
+
+                <!-- Title -->
+                <h3
+                    class="text-2xl font-black text-slate-400 uppercase tracking-wide mt-2 mb-2">
+                    Bill Calculator
+                </h3>
+
+                <!-- Description -->
+                <p class="text-gray-400 text-sm font-semibold">
+                    Know and calculate your bill consumption.
+                </p>
+            </div>
 
             <!-- Card 3: Water Service Notices --><a href="./02_ol_serv2" class="feature-card group">
                 <div class="icon-wrapper">
