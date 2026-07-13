@@ -146,7 +146,6 @@ $defaultQuarter = !empty($allDocs) ? quarterFromDate($allDocs[0]['upload_date'])
 
             <div class="col-sm-6 col-md-8 mb-4">
 
-<<<<<<< HEAD
                 <h5 class="inv text-slate-600">Invitation to Bid for the Year <span id="bacyear"><?= h((string) $year) ?></span></h5>
 
                 <div class="container mx-auto bo">
@@ -216,34 +215,6 @@ $defaultQuarter = !empty($allDocs) ? quarterFromDate($allDocs[0]['upload_date'])
                         <?php endforeach; ?>
 
                     </div> <!-- End tab-content -->
-=======
-                <!-- Main Heading Section (Polished Version) -->
-                <div class="text-center max-w-2xl mx-auto my-6 px-4">
-                    <!-- Mini Upper Tag (Opsyonal: Nagdaragdag ng modernong dating) -->
-                    <span
-                        class="inline-block text-[10px] font-bold tracking-widest text-[#1a589e] uppercase bg-blue-50 px-2.5 py-1 rounded-full mb-2"><i
-                            class="fa-solid fa-gavel text-[10px]"></i>
-                        Procurement Portal
-                    </span>
-
-                    <!-- Main Heading -->
-                    <h1
-                        class="text-2xl md:text-3xl font-black text-[#1a589e] uppercase tracking-wide mb-3 drop-shadow-sm">
-                        Bidding Opportunities
-                    </h1>
-
-                    <!-- Polished Accent Divider Line -->
-                    <div class="flex items-center justify-center gap-2 mb-4">
-                        <span class="h-[3px] w-8 bg-gradient-to-r from-transparent to-[#1a589e] rounded-full"></span>
-                        <span class="h-1.5 w-1.5 bg-[#1a589e] rounded-full"></span>
-                        <span class="h-[3px] w-8 bg-gradient-to-l from-transparent to-[#1a589e] rounded-full"></span>
-                    </div>
-
-                    <!-- Sub-heading -->
-                    <p class="text-lg font-bold tracking-wide text-slate-500 uppercase md:text-sm">
-                        For the Calendar Year <?= date('Y'); ?>
-                    </p>
->>>>>>> 9bce2aba165c11fe3ab21274ada3f7deb699828e
 
                 </div>
 
