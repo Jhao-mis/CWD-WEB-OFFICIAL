@@ -54,48 +54,30 @@
     text-align: right;
 }
 
-
-/* Styling for the Year Pagination (Pills) */
-.nav-pills .nav-link {
-    border-radius: 1rem;
-    margin: 0 0.25rem;
-    color: #007bff;
-    font-weight: 600;
-}
-
-.nav-pills .nav-link.active {
-    background-color: #007bff;
-    color: white;
-}
-
-.container .bo {
-    padding: 1rem;
-}
-
-.inv {
-    color: #1a589e;
-    margin-bottom: 2rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-#scrollableTableBody {
-    /* h-96 (24rem or 384px) equivalent and overflow-y-auto equivalent */
-    height: 20rem;
+/* TAMA: Naka-Class selector (.) at may max-height + display block */
+.scrollableTableBody {
+    display: block;
+    max-height: 20rem;
+    /* Mas ligtas ang max-height para hindi malaki ang space kapag walang laman */
     overflow-y: auto;
 }
 
-#scrollableTableBody::-webkit-scrollbar {
-    width: 4px;
+/* Mas mataas na specificity para talunin ang mga frameworks */
+.content-table .scrollableTableBody {
+    scrollbar-width: thin;
+    scrollbar-color: #bfdbfe #f3f4f6;
 }
 
-#scrollableTableBody::-webkit-scrollbar-thumb {
-    background-color: #bfdbfe;
-    /* blue-200 */
-    border-radius: 4px;
+.content-table .scrollableTableBody::-webkit-scrollbar {
+    width: 4px !important;
+    display: block !important;
 }
 
-#scrollableTableBody::-webkit-scrollbar-track {
-    background-color: #f3f4f6;
-    /* gray-100 */
+.content-table .scrollableTableBody::-webkit-scrollbar-thumb {
+    background-color: #bfdbfe !important;
+    border-radius: 4px !important;
+}
+
+.content-table .scrollableTableBody::-webkit-scrollbar-track {
+    background-color: #f3f4f6 !important;
 }

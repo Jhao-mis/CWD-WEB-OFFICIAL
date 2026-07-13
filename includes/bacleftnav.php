@@ -1,6 +1,9 @@
 <?php
 // Kukunin ang pangalan ng kasalukuyang file mula sa URL (e.g., "03_bac1" o "03_bac1.php")
-$current_page = basename($_SERVER['REQUEST_URI'], ".php");
+// Uses only the path portion (parse_url) so query strings like ?page=2 or trailing
+// slashes don't break the active-state comparison.
+$request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$current_page = basename($request_path, ".php");
 ?>
 
 <div class="col-6 col-md-3 mx-auto">
@@ -8,27 +11,27 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
         <h4 class="text-2xl font-black text-[#1a589e] text-center uppercase tracking-wide mt-2 mb-2">
             Bids and Awards</h4>
 
-        <a class="tab-card1 <?= ($current_page == '03_bac1') ? 'active' : '' ?>" href="./03_bac1">
+        <a class="tab-card1 <?= ($current_page == '03_bac1') ? 'active' : '' ?>" href="./03_bac1" <?= ($current_page == '03_bac1') ? 'aria-current="page"' : '' ?>>
             <h5 class="font-bold text-sm"><i class="fa-solid fa-gavel"></i> Bidding Opportunities</h5>
         </a>
 
-        <a class="tab-card1 <?= ($current_page == '03_bac2') ? 'active' : '' ?>" href="./03_bac2">
+        <a class="tab-card1 <?= ($current_page == '03_bac2') ? 'active' : '' ?>" href="./03_bac2" <?= ($current_page == '03_bac2') ? 'aria-current="page"' : '' ?>>
             <h5 class="font-bold text-sm"><i class="fa-solid fa-file-lines"></i> Bid Bulletin / Addendum</h5>
         </a>
 
-        <a class="tab-card1 <?= ($current_page == '03_bac3') ? 'active' : '' ?>" href="./03_bac3">
+        <a class="tab-card1 <?= ($current_page == '03_bac3') ? 'active' : '' ?>" href="./03_bac3" <?= ($current_page == '03_bac3') ? 'aria-current="page"' : '' ?>>
             <h5 class="font-bold text-sm"><i class="fa-solid fa-calendar-days"></i> Notice of Postponement</h5>
         </a>
 
-        <a class="tab-card1 <?= ($current_page == '03_bac4') ? 'active' : '' ?>" href="./03_bac4">
+        <a class="tab-card1 <?= ($current_page == '03_bac4') ? 'active' : '' ?>" href="./03_bac4" <?= ($current_page == '03_bac4') ? 'aria-current="page"' : '' ?>>
             <h5 class="font-bold text-sm"><i class="fa-solid fa-medal"></i> Post-award Information</h5>
         </a>
 
-        <a class="tab-card1 mb-4 <?= ($current_page == '03_bac5') ? 'active' : '' ?>" href="./03_bac5">
+        <!-- <a class="tab-card1 mb-4 <?= ($current_page == '03_bac5') ? 'active' : '' ?>" href="./03_bac5" <?= ($current_page == '03_bac5') ? 'aria-current="page"' : '' ?>>
             <h5 class="font-bold text-sm"><i class="fa-solid fa-box-archive"></i> Archives</h5>
-        </a>
+        </a> -->
 
-        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-700 to-[#1a589e] text-white shadow-xs p-5 mb-4 w-full mx-auto"
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-700 to-[#1a589e] text-white shadow-xs p-5 mb-4 w-full mx-auto mt-4"
             style="transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
 
             <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-2 translate-y-2">
@@ -54,14 +57,15 @@ $current_page = basename($_SERVER['REQUEST_URI'], ".php");
                     <div class="space-y-2 bg-slate-900/15 p-3 rounded-lg border border-black/5 w-full mx-auto">
                         <div class="flex items-start justify-center gap-2 text-center sm:text-left">
                             <i class="fa-solid fa-phone text-blue-200 mt-0.5 shrink-0"></i>
-                            <span class="text-center"><strong class="text-white">Lines:</strong> (049) 545-1614 loc.
+                            <span class="text-center"><strong class="text-white">Lines:</strong>
+                                <a href="tel:+63495451614" class="text-white/90 hover:text-white hover:underline">(049) 545-1614</a> loc.
                                 1007</span>
                         </div>
 
                         <div class="flex items-center justify-center gap-2 pt-2 border-t border-white/10 text-center">
                             <i class="fa-solid fa-envelope text-blue-200 shrink-0"></i>
                             <span class="text-center"><strong class="text-white">Email:</strong>
-                                cwdbac2025@gmail.com</span>
+                                <a href="mailto:cwdbac2025@gmail.com" class="text-white/90 hover:text-white hover:underline">cwdbac2025@gmail.com</a></span>
                         </div>
                     </div>
                 </div>
