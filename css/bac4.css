@@ -16,6 +16,13 @@
     padding: 0.75rem 1rem;
 }
 
+/* Pilitin ang Table Body na magkaroon ng scroll bar kapag marami ang laman */
+.bac4-layout .content-table .scrollableTableBody {
+    max-height: 350px !important; /* Limitasyon sa taas ng viewable data box */
+    overflow-y: auto !important;  /* Lalabas ang scrollbar kapag lumampas sa 350px */
+    display: block;              /* Tinitiyak na gagana ang scroll box height block */
+}
+
 /* KALIWANG COLUMN: Project Code / Ref No (Naka-lock sa 30%) */
 .bac4-layout .header-row .col-bidcode,
 .bac4-layout .data-row .col-bidcode,
