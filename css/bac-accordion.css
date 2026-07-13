@@ -1,0 +1,241 @@
+/* ==========================================================================
+   BAC Quarter Accordion
+   Replaces the old pill-tab navigation on the Bids & Awards pages
+   (03_bac1 - 03_bac4). Scoped under .bac-accordion so it can be dropped
+   in alongside the existing bac.css without touching it.
+   ========================================================================== */
+
+.bac-accordion {
+    --bac-brand: #1a589e;
+    --bac-brand-dark: #123f73;
+    --bac-brand-tint: #eaf1fa;
+    --bac-current: #b7791f;
+    --bac-current-tint: #fdf3e0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.bac-accordion-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.9rem;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.bac-accordion-item:has(.bac-accordion-button[aria-expanded="true"]) {
+    border-color: var(--bac-brand);
+    box-shadow: 0 6px 16px -4px rgba(26, 88, 158, 0.25);
+}
+
+/* ---- Header button ---- */
+
+.bac-accordion-button {
+    --bs-accordion-btn-padding-x: 1.25rem;
+    --bs-accordion-btn-padding-y: 1rem;
+    --bs-accordion-active-color: #fff;
+    --bs-accordion-active-bg: var(--bac-brand);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.2rem rgba(26, 88, 158, 0.35);
+    --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231a589e'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-family: inherit;
+    color: var(--bac-brand-dark);
+    background: #fff;
+}
+
+.bac-accordion-button:not(.collapsed) {
+    color: #fff;
+    box-shadow: none;
+}
+
+.bac-accordion-button:hover {
+    background: var(--bac-brand-tint);
+}
+
+.bac-accordion-button:not(.collapsed):hover {
+    background: var(--bac-brand);
+}
+
+.bac-accordion-button:focus-visible {
+    outline: 2px solid var(--bac-brand);
+    outline-offset: 2px;
+}
+
+/* Quarter-progress: a thin "how far through the procurement year" tick,
+   filled to 25/50/75/100% depending on the quarter. A quiet nod to the
+   fact this whole page is organized around the fiscal calendar. */
+.bac-quarter-progress {
+    position: relative;
+    width: 6px;
+    align-self: stretch;
+    min-height: 2.25rem;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.25);
+    flex: 0 0 auto;
+    overflow: hidden;
+}
+
+.bac-accordion-button:not(.collapsed) .bac-quarter-progress {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.bac-quarter-progress::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--q-progress, 25%);
+    border-radius: 999px;
+    background: var(--bac-brand);
+    transition: height 0.25s ease;
+}
+
+.bac-accordion-button:not(.collapsed) .bac-quarter-progress::after {
+    background: #fff;
+}
+
+.bac-quarter-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.bac-quarter-name {
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+}
+
+.bac-quarter-months {
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.bac-current-badge {
+    margin-left: auto;
+    flex: 0 0 auto;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--bac-current);
+    background: var(--bac-current-tint);
+    border: 1px solid rgba(183, 121, 31, 0.35);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    white-space: nowrap;
+}
+
+.bac-accordion-button:not(.collapsed) .bac-current-badge {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.bac-quarter-count {
+    flex: 0 0 auto;
+    font-size: 0.78rem;
+    font-weight: 600;
+    opacity: 0.85;
+    white-space: nowrap;
+}
+
+/* When there's no "Current Quarter" badge, push the count to the right anyway */
+.bac-accordion-button .bac-quarter-count {
+    margin-left: auto;
+}
+
+.bac-accordion-button .bac-current-badge + .bac-quarter-count {
+    margin-left: 0.75rem;
+}
+
+.bac-accordion-button::after {
+    flex: 0 0 auto;
+}
+
+/* ---- Body ---- */
+
+.bac-accordion-item .accordion-body {
+    padding: 0.75rem 1rem 1.1rem;
+    background: #fbfcfe;
+}
+
+.bac-accordion-item .content-table {
+    box-shadow: none;
+}
+
+/* ---- Two-column layout override (used on 03_bac4: Bid Code + Bidding Title only) ---- */
+
+.content-table.two-col .header-row,
+.content-table.two-col .data-row {
+    grid-template-columns: 150px 1fr;
+}
+
+.content-table.two-col .header-row .col-bidcode,
+.content-table.two-col .data-row .col-bidcode {
+    flex: 0 0 150px;
+    width: 150px;
+}
+
+.content-table.two-col .header-row .col-title,
+.content-table.two-col .data-row .col-title {
+    flex: 1 1 auto;
+    width: auto;
+}
+
+/* ---- Small screens ---- */
+
+@media (max-width: 576px) {
+    .bac-accordion-button {
+        gap: 0.6rem;
+        flex-wrap: wrap;
+    }
+
+    .bac-quarter-months {
+        font-size: 0.68rem;
+    }
+
+    .bac-current-badge {
+        order: 3;
+        margin-left: 0;
+    }
+
+    .bac-accordion-button .bac-quarter-count {
+        order: 4;
+        margin-left: 0;
+    }
+}
+
+
+    /* Pinatataas ang priority ng style kapag ang Flowbite dynamic engine ay nag-add/toggle ng aria-expanded="true" */
+    #bac1-accordion button[aria-expanded="true"] {
+        background-color: #eff6ff !important; /* bg-blue-50 equivalent */
+        color: #1a589e !important;
+    }
+    #bac1-accordion button[aria-expanded="true"] svg {
+        color: #1a589e !important;
+    }
+
+
+
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+    .bac-accordion-item,
+    .bac-quarter-progress::after,
+    .accordion-collapse {
+        transition: none !important;
+    }
+}

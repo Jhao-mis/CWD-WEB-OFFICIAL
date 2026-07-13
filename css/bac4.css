@@ -1,0 +1,46 @@
+/* ==========================================================================
+   EXCLUSIVE OVERRIDE: THE 30-70% COLUMN RULE (For .bac4-layout / Post-Award)
+   This section strictly keeps the 2-column rule for post-award documents.
+   ========================================================================== */
+
+/* Remove standard data-row padding to maintain perfect link box block control */
+.bac4-layout .content-table .scrollableTableBody .data-row {
+    padding: 0.75rem 1rem;
+    display: flex;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+/* Ensure post-award links scale perfectly inside the data rows */
+.bac4-layout .content-table .scrollableTableBody .data-row a {
+    display: block;
+    padding: 0.75rem 1rem;
+}
+
+/* KALIWANG COLUMN: Project Code / Ref No (Naka-lock sa 30%) */
+.bac4-layout .header-row .col-bidcode,
+.bac4-layout .data-row .col-bidcode,
+.bac4-layout .data-row a.col-bidcode {
+    width: 30% !important;
+    max-width: 30% !important;
+    flex: 0 0 30% !important;
+    text-align: left;
+}
+
+.bac4-layout .content-table .scrollableTableBody .header-month {
+    color: #1a589e;
+    font-weight: bold;
+    padding: .25rem;
+    display: flex;
+}
+
+
+/* KANANG COLUMN: Procurement Title / Description (Naka-lock sa 70%) */
+.bac4-layout .header-row .col-title,
+.bac4-layout .data-row .col-title,
+.bac4-layout .data-row a.col-title {
+    width: 70% !important;
+    max-width: 70% !important;
+    flex: 0 0 70% !important;
+    text-align: left;
+    padding-left: 1rem;
+}

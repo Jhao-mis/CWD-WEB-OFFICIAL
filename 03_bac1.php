@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>CWD Bidding Opportunities</title>
-    <link rel="icon" type="image/x-icon" href="./img/CWDIcon.png"/>
+    <link rel="icon" type="image/x-icon" href="./img/CWDIcon.png" />
 
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./css/ind.css">
     <link rel="stylesheet" href="./css/bac.css">
     <link rel="stylesheet" href="./css/sidenav.css">
+    <link rel="stylesheet" href="./css/bac-accordion.css">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,7 +61,8 @@
                             </svg>
                             <i class="fa-solid fa-gavel w-5 mr-2"></i>
                             <a href="#"
-                                class="inline-flex items-center text-m font-medium text-white hover:text-fg-brand">Bidding Opportunities</a>
+                                class="inline-flex items-center text-m font-medium text-white hover:text-fg-brand">Bidding
+                                Opportunities</a>
                         </div>
                     </li>
 
@@ -90,437 +92,862 @@
         <div class="row g-0 mt-4">
 
             <!-- Bidding -->
+
             <div class="col-sm-6 col-md-8 mb-4">
-                <h4 class="text-2xl font-black text-[#1a589e] text-center uppercase tracking-wide mt-2 mb-2">
-                    Bidding Opportunities</h4>
 
-                <h5 class="inv text-slate-600">Invitation to Bid for the Year <span id="bacyear">2026</span></h5>
-
-                <div class="container mx-auto bo">
-
-
-                    <!-- Pagination Component (Bootstrap Pills for Quarters) -->
-                    <nav aria-label="Year navigation" class="mb-4 d-flex justify-content-center">
-                        <ul class="nav nav-pills shadow-sm rounded-pill p-1 bg-white" id="pills-tab" role="tablist">
-
-                            <!-- 2025 is the latest year, so it is marked active and selected -->
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q4-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-q1" type="button" role="tab" aria-controls="pills-q4"
-                                    aria-selected="true">Q1</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q3-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-q2" type="button" role="tab" aria-controls="pills-q3"
-                                    aria-selected="false">Q2</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q2-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-q3" type="button" role="tab" aria-controls="pills-q2"
-                                    aria-selected="false">Q3</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q1-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-q4" type="button" role="tab" aria-controls="pills-q1"
-                                    aria-selected="false">Q4</button>
-                            </li>
-                            
-                        </ul>
-                    </nav>
-
-                    <!-- Tab Content (Job Postings Tables) -->
-                    <div class="tab-content" id="pills-tabContent">
-
-                        <!-- Tab Pane for Q4 (Active by default) -->
-                        <div class="tab-pane fade" id="pills-q4" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div class="content-table">
-
-                                <div class="header-row bg-[#1a589e]">
-                                    <div class="col-bidcode">Bid Code</div>
-                                    <div class="col-title text-center font-bold">Bidding Title</div>
-                                    <div class="col-date bac">Upload Date</div>
-                                </div>
-
-                                <div id="scrollableTableBody">
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">DECEMBER</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        
-                                    </div>
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">NOVEMBER</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        
-                                    </div>
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">OCTOBER</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Tab Pane for Q3 -->
-                        <div class="tab-pane fade" id="pills-q3" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div class="content-table">
-
-                                <div class="header-row bg-[#1a589e]">
-                                    <div class="col-bidcode">Bid Code</div>
-                                    <div class="col-title text-center font-bold">Bidding Title</div>
-                                    <div class="col-date bac">Upload Date</div>
-                                </div>
-
-                                <div id="scrollableTableBody">
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">SEPTEMBER</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        
-                                    </div>
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">AUGUST</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        
-                                    </div>
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">JULY</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 41-2026.zip" class="col-date bac text-left text-decoration-none">CWD 41-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 41-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (3rd Posting) (SVP)</a>
-                                        <div class="col-date">July 13</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 40-2026.zip" class="col-date bac text-left text-decoration-none">CWD 40-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 40-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (3rd Posting) (SVP) Supply and Delivery of Materials for the Installation of Fire Hydrants  at Different Service Areas (2nd Posting) (SVP)</a>
-                                        <div class="col-date">July 13</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 39-2026.zip" class="col-date bac text-left text-decoration-none">CWD 39-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 39-2026.zip" class="col-title bac text-decoration-none">Supply of Materials and Services for the Repair of Autoclave (SVP)</a>
-                                        <div class="col-date">July 13</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip" class="col-date bac text-left text-decoration-none">CWD 38-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Goods and Services for CWDs 50th Founding Anniversary</a>
-                                        <div class="col-date">July 8</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 37-2026.zip" class="col-date bac text-left text-decoration-none">CWD 37-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 37-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Personal Protective Equipment (SVP)</a>
-                                        <div class="col-date">July 8</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 36-2026.zip" class="col-date bac text-left text-decoration-none">CWD 36-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 36-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of 14" and 16" Concrete Cutter Blade (SVP)</a>
-                                        <div class="col-date">July 8</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 35-2026.zip" class="col-date bac text-left text-decoration-none">CWD 35-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 35-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Concrete Cutter Gasoline Engine and Fanbelt (SVP)</a>
-                                        <div class="col-date">July 8</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 34-2026.zip" class="col-date bac text-left text-decoration-none">CWD 34-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 34-2026.zip" class="col-title bac text-decoration-none">Supply of Labor and Materials Preventive Maintenance of Air Compressor (SVP)</a>
-                                        <div class="col-date">July 8</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 33-2026.zip" class="col-date bac text-left text-decoration-none">CWD 33-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 33-2026.zip" class="col-title bac text-decoration-none">Supply and Installation of Operable Wall (SVP)</a>
-                                        <div class="col-date">July 2 </div>
-                                    </div>
-
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 32-2026.zip" class="col-date bac text-left text-decoration-none">CWD 32-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 32-2026.zip" class="col-title bac text-decoration-none">Calibration and Preventive Maintenance of Various Laboratory Equipment (SVP)</a>
-                                        <div class="col-date">July 1</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 31-2026.zip" class="col-date bac text-left text-decoration-none">CWD 31-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 31-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Traffic and Road Safety Equipment and Accessories (SVP)</a>
-                                        <div class="col-date">July 1</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 30-2026.zip" class="col-date bac text-left text-decoration-none">CWD 30-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\July\CWD 30-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of uPVC Pipes and Fittings (SVP)</a>
-                                        <div class="col-date">July 1</div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Tab Pane for Q2 -->
-                        <div class="tab-pane fade" id="pills-q2" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div class="content-table">
-
-                                <div class="header-row bg-[#1a589e]">
-                                    <div class="col-bidcode">Bid Code</div>
-                                    <div class="col-title text-center font-bold">Bidding Title</div>
-                                    <div class="col-date bac">Upload Date</div>
-                                </div>
-
-                                <div id="scrollableTableBody">
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">JUNE</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 29-2026.zip" class="col-date bac text-left text-decoration-none">CWD 29-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 29-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals for Septage Treatment  Plant</a>
-                                        <div class="col-date">June 29</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 28-2026.zip" class="col-date bac text-left text-decoration-none">CWD 28-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 28-2026.zip" class="col-title bac text-decoration-none">Preventive Maintenance of Ultra Violet Hydro-Optic Disinfectant (UV-HOD) System</a>
-                                        <div class="col-date">June 29</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 27-2026.zip" class="col-date bac text-left text-decoration-none">CWD 27-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 27-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Submersible Pumps and Motors (Rebidding)</a>
-                                        <div class="col-date">June 23</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 26-2026.zip" class="col-date bac text-left text-decoration-none">CWD 26-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 26-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Submersible Cable, Stranded Wire, Manual Transfer Switch and Accessories (Rebidding)</a>
-                                        <div class="col-date">June 23</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 25-2026.zip" class="col-date bac text-left text-decoration-none">CWD 25-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 25-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Water Meters</a>
-                                        <div class="col-date">June 23</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 24-2026.zip" class="col-date bac text-left text-decoration-none">CWD 24-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 24-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Materials for the Installation of Fire Hydrants at Different Service Areas (SVP)</a>
-                                        <div class="col-date">June 9</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 23-2026.zip" class="col-date bac text-left text-decoration-none">CWD 23-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 23-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Cast Iron Fittings (SVP)</a>
-                                        <div class="col-date">June 9</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 22-2026.zip" class="col-date bac text-left text-decoration-none">CWD 22-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 22-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Compression Fittings (NLC) (SVP)</a>
-                                        <div class="col-date">June 9</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 21-2026.zip" class="col-date bac text-left text-decoration-none">CWD 21-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 21-2026.zip" class="col-title bac text-decoration-none">Supply of Materials and Services for the Change of Cowl, Body Repair & Under Coating of Various Service Vehicles (SVP)</a>
-                                        <div class="col-date">June 9</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 20-2026.zip" class="col-date bac text-left text-decoration-none">CWD 20-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 20-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals and Filtering Materials (SVP) (2nd Posting)</a>
-                                        <div class="col-date">June 3</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 19-2026.zip" class="col-date bac text-left text-decoration-none">CWD 19-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\June\CWD 19-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Manual Rotary Pipe Cutter and Concrete/Asphalt Cutter (SVP) (2nd Posting)</a>
-                                        <div class="col-date">June 3</div>
-                                    </div>
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">MAY</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 18-2026.zip" class="col-date bac text-left text-decoration-none">CWD 18-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 18-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Galvanized Iron Pipes, Brass Valves and Accessories (SVP)</a>
-                                        <div class="col-date">May 28</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 17-2026.zip" class="col-date bac text-left text-decoration-none">CWD 17-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 17-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of HDPE and PVC Pipes C-150 (SVP)</a>
-                                        <div class="col-date">May 28</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 16-2026.zip" class="col-date bac text-left text-decoration-none">CWD 16-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 16-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Materials for Restoration Works (SVP)</a>
-                                        <div class="col-date">May 28</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 15-2026.zip" class="col-date bac text-left text-decoration-none">CWD 15-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 15-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Sodium Hypochlorite (SVP)</a>
-                                        <div class="col-date">May 21</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 14-2026.zip" class="col-date bac text-left text-decoration-none">CWD 14-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 14-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Chlorine Gas (SVP)</a>
-                                        <div class="col-date">May 25</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 13-2026.zip" class="col-date bac text-left text-decoration-none">CWD 13-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 13-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Chlorine Gas (SVP)</a>
-                                        <div class="col-date">May 25</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 12-2026.zip" class="col-date bac text-left text-decoration-none">CWD 12-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 12-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Chlorine Gas (SVP)</a>
-                                        <div class="col-date">May 12</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 11-2026.zip" class="col-date bac text-left text-decoration-none">CWD 11-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 11-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Various Chemicals and Filtering Materials (SVP)</a>
-                                        <div class="col-date">May 12</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 10-2026.zip" class="col-date bac text-left text-decoration-none">CWD 10-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 10-2026.zip" class="col-title bac text-decoration-none"> Supply and Delivery of Consumable Pack for Water Purifier (SVP)</a>
-                                        <div class="col-date">May 12</div>
-                                    </div>
-                                    
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 09-2026.zip" class="col-date bac text-left text-decoration-none">CWD 09-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\May\CWD 09-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Manual Rotary Pipe Cutter and Concrete/Asphalt Cutter (SVP)</a>
-                                        <div class="col-date">May 12</div>
-                                    </div>
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">APRIL</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\April\CWD 08-2026.zip" class="col-date bac text-left text-decoration-none">CWD 08-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\April\CWD 08-2026.zip" class="col-title bac text-decoration-none">Supply of Services for the Preventive Maintenance of CWD's Septage Treatment Plant</a>
-                                        <div class="col-date">April 27</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\April\CWD 07-2026.zip" class="col-date bac text-left text-decoration-none">CWD 07-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\April\CWD 07-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Denorado Rice</a>
-                                        <div class="col-date">April 16</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\April\CWD 06-2026.zip" class="col-date bac text-left text-decoration-none">CWD 06-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\April\CWD 06-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery of Tokens (Chicken with Assorted Muffins) (SVP)</a>
-                                        <div class="col-date">April 15</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\April\CWD 05-2026.zip" class="col-date bac text-left text-decoration-none">CWD 05-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\April\CWD 05-2026.zip" class="col-title bac text-decoration-none">Supply of Services for the Conduct of Microbiological, Physical & Chemical, and Arsenic Testing (SVP)</a>
-                                        <div class="col-date">April 15</div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Tab Pane for Q1 -->
-                        <div class="tab-pane fade" id="pills-q1" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div class="content-table">
-
-                                <div class="header-row bg-[#1a589e]">
-                                    <div class="col-bidcode">Bid Code</div>
-                                    <div class="col-title text-center font-bold">Bidding Title</div>
-                                    <div class="col-date bac">Upload Date</div>
-                                </div>
-
-                                <div id="scrollableTableBody">
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">MARCH</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\March\CWD 04-2026.zip" class="col-date bac text-left text-decoration-none">CWD 04-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\March\CWD 04-2026.zip" class="col-title bac text-decoration-none">Supply of Materials and Services for the Installation of Canopy at CWD Extension Office-Canlubang (SVP) (2nd Posting)</a>
-                                        <div class="col-date">March 3</div>
-                                    </div>
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">FEBRUARY</div>
-                                    </div>
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\February\CWD 02-2026.zip" class="col-date bac text-left text-decoration-none">CWD 02-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\February\CWD 02-2026.zip" class="col-title bac text-decoration-none">Supply of Janitorial Services for CY 2026</a>
-                                        <div class="col-date">February 2</div>
-                                    </div>
-
-                                    
-
-                                    <div class="data-row justify-content-center">
-                                        <div class="header-month font-bold">JANUARY</div>
-                                    </div>
-
-                                    
-
-                                    <div class="data-row">
-                                        <a href="assets\Files\bac\BidOpp\2026\January\CWD 01-2026.zip" class="col-date bac text-left text-decoration-none">CWD 01-2026</a>
-                                        <a href="assets\Files\bac\BidOpp\2026\January\CWD 01-2026.zip" class="col-title bac text-decoration-none">Supply and Delivery Various I.T. Equipment and Accessories of Different Departments (Rebidding)</a>
-                                        <div class="col-date">January 29</div>
-                                    </div>
-
-                                    
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div> <!-- End tab-content -->
+                <!-- Main Heading Section (Polished Version) -->
+                <div class="text-center max-w-2xl mx-auto my-6 px-4">
+                    <!-- Mini Upper Tag (Opsyonal: Nagdaragdag ng modernong dating) -->
+                    <span
+                        class="inline-block text-[10px] font-bold tracking-widest text-[#1a589e] uppercase bg-blue-50 px-2.5 py-1 rounded-full mb-2"><i
+                            class="fa-solid fa-gavel text-[10px]"></i>
+                        Procurement Portal
+                    </span>
+
+                    <!-- Main Heading -->
+                    <h1
+                        class="text-2xl md:text-3xl font-black text-[#1a589e] uppercase tracking-wide mb-3 drop-shadow-sm">
+                        Bidding Opportunities
+                    </h1>
+
+                    <!-- Polished Accent Divider Line -->
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <span class="h-[3px] w-8 bg-gradient-to-r from-transparent to-[#1a589e] rounded-full"></span>
+                        <span class="h-1.5 w-1.5 bg-[#1a589e] rounded-full"></span>
+                        <span class="h-[3px] w-8 bg-gradient-to-l from-transparent to-[#1a589e] rounded-full"></span>
+                    </div>
+
+                    <!-- Sub-heading -->
+                    <p class="text-lg font-bold tracking-wide text-slate-500 uppercase md:text-sm">
+                        For the Calendar Year <?= date('Y'); ?>
+                    </p>
 
                 </div>
 
-            </div>
+                <div class="container mx-auto bo">
 
+                    <div id="accordion-bid-bulletin" data-accordion="collapse"
+                        data-active-classes="bg-blue-50 text-[#1a589e]" data-inactive-classes="text-gray-700 bg-gray-50"
+                        class="space-y-3">
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+
+                            <h2 id="heading-q1">
+
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-q1" aria-expanded="false" aria-controls="body-q1">
+
+                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <!-- Visual Calendar Icon Accent -->
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-sharp fa-regular fa-1 text-base"></i>
+                                        </div>
+
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">1st
+                                                Quarter</span>
+                                            <span
+                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
+                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
+                                                January - March
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                            3 Postings
+                                        </span>
+
+                                        <!-- Chevron Icon Container -->
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+
+                            </h2>
+
+                            <div id="body-q1" class="hidden" aria-labelledby="heading-q1">
+                                <div class="p-4 border-t border-gray-100 bg-white">
+
+                                    <div class="content-table w-full">
+                                        <div
+                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                            <div class="col-bidcode w-1/4">Bid Code</div>
+                                            <div class="col-title text-center font-bold flex-1">Bid Title
+                                            </div>
+                                            <div class="col-date bac w-1/4 text-right">Upload Date</div>
+                                        </div>
+
+                                        <div
+                                            class="scrollableTableBody block max-h-80 overflow-y-auto divide-y divide-gray-100">
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    January</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\January\CWD 01-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    01-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\January\CWD 01-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery
+                                                    Various I.T. Equipment and Accessories of Different Departments
+                                                    (Rebidding)</a>
+                                                <div class="col-date">January 29</div>
+                                            </div>
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    February</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\February\CWD 02-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    02-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\February\CWD 02-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    of Janitorial
+                                                    Services for CY 2026</a>
+                                                <div class="col-date">February 2</div>
+                                            </div>
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    March</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\March\CWD 04-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    04-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\March\CWD 04-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    of Materials and
+                                                    Services for the Installation of Canopy at CWD Extension
+                                                    Office-Canlubang (SVP) (2nd Posting)</a>
+                                                <div class="col-date">March 3</div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+
+                            <h2 id="heading-q2">
+
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-q2" aria-expanded="false" aria-controls="body-q1">
+
+                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <!-- Visual Calendar Icon Accent -->
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-sharp fa-regular fa-2 text-base"></i>
+                                        </div>
+
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">2nd
+                                                Quarter</span>
+                                            <span
+                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
+                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
+                                                April - June
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                            25 Postings
+                                        </span>
+
+                                        <!-- Chevron Icon Container -->
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+
+                            </h2>
+
+                            <div id="body-q2" class="hidden" aria-labelledby="heading-q2">
+                                <div class="p-4 border-t border-gray-100 bg-white">
+
+                                    <div class="content-table w-full">
+                                        <div
+                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                            <div class="col-bidcode w-1/4">Bid Code</div>
+                                            <div class="col-title text-center font-bold flex-1">Bid Title</div>
+                                            <div class="col-date bac w-1/4 text-right">Upload Date</div>
+                                        </div>
+
+                                        <div
+                                            class="scrollableTableBody block max-h-80 overflow-y-auto divide-y divide-gray-100">
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    April</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\April\CWD 06-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    06-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\April\CWD 06-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Tokens (Chicken with Assorted Muffins) (SVP)</a>
+                                                <div class="col-date">April 15</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\April\CWD 05-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    05-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\April\CWD 05-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    of Services for
+                                                    the Conduct of Microbiological, Physical & Chemical, and Arsenic
+                                                    Testing (SVP)</a>
+                                                <div class="col-date">April 15</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\April\CWD 07-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    07-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\April\CWD 07-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Denorado Rice</a>
+                                                <div class="col-date">April 16</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\April\CWD 08-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    08-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\April\CWD 08-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    of Services for
+                                                    the Preventive Maintenance of CWD's Septage Treatment Plant</a>
+                                                <div class="col-date">April 27</div>
+                                            </div>
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    May</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 12-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    12-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 12-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Chlorine Gas (SVP)</a>
+                                                <div class="col-date">May 12</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 11-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    11-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 11-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Various Chemicals and Filtering Materials (SVP)</a>
+                                                <div class="col-date">May 12</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 10-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    10-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 10-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">
+                                                    Supply and Delivery of
+                                                    Consumable Pack for Water Purifier (SVP)</a>
+                                                <div class="col-date">May 12</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 09-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    09-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 09-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Manual Rotary Pipe Cutter and Concrete/Asphalt Cutter (SVP)</a>
+                                                <div class="col-date">May 12</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 15-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    15-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 15-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Sodium Hypochlorite (SVP)</a>
+                                                <div class="col-date">May 21</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 14-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    14-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 14-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Chlorine Gas (SVP)</a>
+                                                <div class="col-date">May 25</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 13-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    13-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 13-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Chlorine Gas (SVP)</a>
+                                                <div class="col-date">May 25</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 18-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    18-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 18-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Galvanized Iron Pipes, Brass Valves and Accessories (SVP)</a>
+                                                <div class="col-date">May 28</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 17-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    17-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 17-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    HDPE and PVC Pipes C-150 (SVP)</a>
+                                                <div class="col-date">May 28</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 16-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    16-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\May\CWD 16-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Various Materials for Restoration Works (SVP)</a>
+                                                <div class="col-date">May 28</div>
+                                            </div>
+
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    June</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 20-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    20-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 20-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Various Chemicals and Filtering Materials (SVP) (2nd Posting)</a>
+                                                <div class="col-date">June 3</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 19-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    19-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 19-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Manual Rotary Pipe Cutter and Concrete/Asphalt Cutter (SVP) (2nd
+                                                    Posting)</a>
+                                                <div class="col-date">June 3</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 24-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    24-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 24-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Materials for the Installation of Fire Hydrants at Different Service
+                                                    Areas (SVP)</a>
+                                                <div class="col-date">June 9</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 23-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    23-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 23-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Cast Iron Fittings (SVP)</a>
+                                                <div class="col-date">June 9</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 22-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    22-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 22-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Compression Fittings (NLC) (SVP)</a>
+                                                <div class="col-date">June 9</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 21-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    21-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 21-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    of Materials and
+                                                    Services for the Change of Cowl, Body Repair & Under Coating of
+                                                    Various Service Vehicles (SVP)</a>
+                                                <div class="col-date">June 9</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 27-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    27-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 27-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Submersible Pumps and Motors (Rebidding)</a>
+                                                <div class="col-date">June 23</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 26-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    26-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 26-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Submersible Cable, Stranded Wire, Manual Transfer Switch and
+                                                    Accessories (Rebidding)</a>
+                                                <div class="col-date">June 23</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 25-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    25-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 25-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Water Meters</a>
+                                                <div class="col-date">June 23</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 29-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    29-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 29-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Various Chemicals for Septage Treatment Plant</a>
+                                                <div class="col-date">June 29</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 28-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    28-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\June\CWD 28-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Preventive
+                                                    Maintenance of
+                                                    Ultra Violet Hydro-Optic Disinfectant (UV-HOD) System</a>
+                                                <div class="col-date">June 29</div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+
+                            <h2 id="heading-q3">
+
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-q3" aria-expanded="false" aria-controls="body-q1">
+
+                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <!-- Visual Calendar Icon Accent -->
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-sharp fa-regular fa-3 text-base"></i>
+                                        </div>
+
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">3rd
+                                                Quarter</span>
+
+                                            <span
+                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
+                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
+                                                July - September
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
+                                        <span
+                                            class="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Current
+                                        </span>
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                            12 Postings
+                                        </span>
+
+                                        <!-- Chevron Icon Container -->
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+
+                            </h2>
+
+                            <div id="body-q3" class="hidden" aria-labelledby="heading-q3">
+                                <div class="p-4 border-t border-gray-100 bg-white">
+
+                                    <div class="content-table w-full">
+                                        <div
+                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                            <div class="col-bidcode w-1/4">Bid Code</div>
+                                            <div class="col-title text-center font-bold flex-1">Bid Title</div>
+                                            <div class="col-date bac w-1/4 text-right">Upload Date</div>
+                                        </div>
+                                        <div
+                                            class="scrollableTableBody block max-h-80 overflow-y-auto divide-y divide-gray-100">
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    July</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 30-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    30-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 30-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    uPVC Pipes and Fittings (SVP)</a>
+                                                <div class="col-date">July 1</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 31-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    31-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 31-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Various Traffic and Road Safety Equipment and Accessories (SVP)</a>
+                                                <div class="col-date">July 1</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 32-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    32-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 32-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Calibration
+                                                    and
+                                                    Preventive Maintenance of Various Laboratory Equipment (SVP)</a>
+                                                <div class="col-date">July 1</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 33-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    33-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 33-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Installation
+                                                    of Operable Wall (SVP)</a>
+                                                <div class="col-date">July 2 </div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 34-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    34-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 34-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    of Labor and
+                                                    Materials Preventive Maintenance of Air Compressor (SVP)</a>
+                                                <div class="col-date">July 8</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 35-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    35-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 35-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Concrete Cutter Gasoline Engine and Fanbelt (SVP)</a>
+                                                <div class="col-date">July 8</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 36-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    36-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 36-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    14" and 16" Concrete Cutter Blade (SVP)</a>
+                                                <div class="col-date">July 8</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 37-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    37-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 37-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Various Personal Protective Equipment (SVP)</a>
+                                                <div class="col-date">July 8</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    38-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 38-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
+                                                    and Delivery of
+                                                    Goods and Services for CWDs 50th Founding Anniversary</a>
+                                                <div class="col-date">July 8</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 39-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    39-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 39-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Materials and Services for the Repair of Autoclave (SVP)</a>
+                                                <div class="col-date">July 13</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 40-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    40-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 40-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (3rd Posting) (SVP) Supply and Delivery of Materials for the Installation of Fire Hydrants  at Different Service Areas (2nd Posting) (SVP)</a>
+                                                <div class="col-date">July 13</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 41-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    41-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 41-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (3rd Posting) (SVP)</a>
+                                                <div class="col-date">July 13</div>
+                                            </div>
+
+
+
+                                            
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    August</div>
+                                            </div>
+
+                                            <div
+                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
+                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bidding
+                                                opportunities posted for this month yet.
+                                            </div>
+
+                                            <div class="bg-slate-50 p-2">
+                                                <div class="header-month font-bold justify-center">
+                                                    September</div>
+                                            </div>
+
+                                            <div
+                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
+                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bidding
+                                                opportunities posted for this month yet.
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+
+                            <h2 id="heading-q4">
+
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-q4" aria-expanded="false" aria-controls="body-q1">
+
+                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <!-- Visual Calendar Icon Accent -->
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-sharp fa-regular fa-4 text-base"></i>
+                                        </div>
+
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">4th
+                                                Quarter</span>
+                                            <span
+                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
+                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
+                                                October - December
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                            0 Postings
+                                        </span>
+
+                                        <!-- Chevron Icon Container -->
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+
+                            </h2>
+                            
+                            <div id="body-q4" class="hidden" aria-labelledby="heading-q4">
+                                <div class="p-4 border-t border-gray-100 bg-white">
+
+                                    <div class="content-table w-full">
+                                        <div
+                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                            <div class="col-bidcode w-1/4">Bid Code</div>
+                                            <div class="col-title text-center font-bold flex-1">Bid Title</div>
+                                            <div class="col-date bac w-1/4 text-right">Upload Date</div>
+                                        </div>
+                                        <div
+                                            class="scrollableTableBody block max-h-80 overflow-y-auto divide-y divide-gray-100">
+                                            <div
+                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
+                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bidding
+                                                opportunities posted for this quarter yet.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
             <!-- Left Navigation -->
             <?php include 'includes/bacleftnav.php'; ?>
-            
+
         </div>
     </div>
 

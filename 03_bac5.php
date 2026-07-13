@@ -42,7 +42,7 @@
             <nav class="flex mt-3 mx-7" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li class="inline-flex items-center">
-                        <a href="./events.html"
+                        <a href="./events"
                             class="inline-flex items-center text-m font-medium text-white hover:text-fg-brand">
                             <i class="fa-solid fa-calendar-days text-sm mr-2"></i>
                             Events
@@ -91,167 +91,369 @@
         <div class="row g-0 mt-4">
 
             <!-- Main Content -->
-            <div class="col-sm-6 col-md-8">
-                <h4 class="text-2xl font-black text-[#1a589e] text-center uppercase tracking-wide mt-2 mb-2">
-                    Data Archives</h4>
+            <div class="col-sm-6 col-md-8 mb-4">
+
+                <div class="text-center max-w-2xl mx-auto my-6 px-4">
+                    <span
+                        class="inline-block text-[10px] font-bold tracking-widest text-[#1a589e] uppercase bg-blue-50 px-2.5 py-1 rounded-full mb-2">
+                        <i class="fa-solid fa-box-archive text-[10px] mr-1"></i> Archives Portal
+                    </span>
+
+                    <h1
+                        class="text-2xl md:text-3xl font-black text-[#1a589e] uppercase tracking-wide mb-3 drop-shadow-sm">
+                        Data Archives
+                    </h1>
+
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <span class="h-[3px] w-8 bg-gradient-to-r from-transparent to-[#1a589e] rounded-full"></span>
+                        <span class="h-1.5 w-1.5 bg-[#1a589e] rounded-full"></span>
+                        <span class="h-[3px] w-8 bg-gradient-to-l from-transparent to-[#1a589e] rounded-full"></span>
+                    </div>
+
+                    <p class="inv text-slate-600 text-xs md:text-sm leading-relaxed max-w-xl mx-auto">
+                        Access comprehensive archives of historical procurement activities, bidding documents, and old
+                        records.
+                    </p>
+                </div>
 
                 <div class="container mx-auto bo">
 
+                    <div id="accordion-data-archives" data-accordion="collapse"
+                        data-active-classes="bg-blue-50/40 text-[#1a589e]"
+                        data-inactive-classes="text-gray-700 bg-gray-50/70" class="space-y-3">
 
-                    <!-- Pagination Component (Bootstrap Pills for Quarters) -->
-                    <nav aria-label="Year navigation" class="mb-4 d-flex justify-content-center">
-                        <ul class="nav nav-pills shadow-sm rounded-pill p-1 bg-white" id="pills-tab" role="tablist">
-
-                            <!-- 2025 is the latest year, so it is marked active and selected -->
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q4-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-bo" type="button" role="tab" aria-controls="pills-q4"
-                                    aria-selected="true"><i class="fa-solid fa-gavel"></i></button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q3-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-bba" type="button" role="tab" aria-controls="pills-q3"
-                                    aria-selected="false"><i class="fa-solid fa-file-lines"></i></button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q2-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-nop" type="button" role="tab" aria-controls="pills-q2"
-                                    aria-selected="false"><i class="fa-solid fa-calendar-days"></i></button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q1-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-pai" type="button" role="tab" aria-controls="pills-q1"
-                                    aria-selected="false"><i class="fa-solid fa-medal"></i></button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link-pag" id="pills-q0-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-oldweb" type="button" role="tab" aria-controls="pills-q1"
-                                    aria-selected="false"><i class="fa-solid fa-box-archive"></i></button>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <!-- Tab Content (Job Postings Tables) -->
-                    <div class="tab-content" id="pills-tabContent">
-
-                        <!-- Tab Pane for 2025 (Active by default) -->
-                        <div class="tab-pane fade" id="pills-bo" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div class="content-table">
-                                <div class="header-row bg-[#1a589e]">
-                                    <div class="col-title font-bold">LINKS</div>
-                                    <div class="col-date sm:mr-4">YEAR</div>
-                                </div>
-
-                                <div class="data-row">
-                                    <a href="https://cwd.com.ph/bac_2025.html" target="_blank"
-                                        class="col-title text-decoration-none">Bidding Opportunities</a>
-                                    <div class="col-date">2025</div>
-                                </div>
-                                <div class="data-row">
-                                    <a href="https://cwd.com.ph/bac_2024.html" target="_blank"
-                                        class="col-title text-decoration-none">Bidding Opportunities</a>
-                                    <div class="col-date">2024</div>
-                                </div>
-                                <div class="data-row">
-                                    <a href="https://cwd.com.ph/bac_2021.html" target="_blank"
-                                        class="col-title text-decoration-none">Bidding Opportunities</a>
-                                    <div class="col-date">2021</div>
-                                </div>
-                                <div class="data-row">
-                                    <a href="https://cwd.com.ph/bac_2020.html" target="_blank"
-                                        class="col-title text-decoration-none">Bidding Opportunities</a>
-                                    <div class="col-date">2020</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab Pane for 2024 -->
-                        <div class="tab-pane fade" id="pills-bba" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div class="content-table">
-                                <div class="header-row bg-[#1a589e]">
-                                    <div class="col-title font-bold">LINKS</div>
-                                    <div class="col-date sm:mr-4">YEAR</div>
-                                </div>
-
-                                <div class="data-row">
-                                    <a href="https://cwd.com.ph/bidbulletin.html" target="_blank"
-                                        class="col-title text-decoration-none">Bid Bulletin/Addendums</a>
-                                    <div class="col-date">2025-2023</div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Tab Pane for 2023 -->
-                        <div class="tab-pane fade" id="pills-nop" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div class="content-table">
-                                <div class="header-row bg-[#1a589e]">
-                                    <div class="col-title font-bold">LINKS</div>
-                                    <div class="col-date sm:mr-4">YEAR</div>
-                                </div>
-
-                                <div class="data-row">
-                                    <a href="https://cwd.com.ph/notice_of_postponement.html" target="_blank"
-                                        class="col-title text-decoration-none">Notices of Postponement</a>
-                                    <div class="col-date">2025</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab Pane for 2023 -->
-                        <div class="tab-pane fade" id="pills-pai" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div class="content-table">
-                                <div class="header-row bg-[#1a589e]">
-                                    <div class="col-title font-bold">LINKS</div>
-                                    <div class="col-date sm:mr-4">YEAR</div>
-                                </div>
-
-                                <div class="data-row">
-                                    <a href="https://cwd.com.ph/post_award.html" target="_blank"
-                                        class="col-title text-decoration-none">Post-Award Information</a>
-                                    <div class="col-date">2025</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="pills-oldweb" role="tabpanel" aria-labelledby="pills-2024-tab">
-                            <div
-                                class="max-w-md mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border-t-8 border-[#1a589e]">
-                                <div class="p-8 text-center">
-                                    <!-- Icon Container matching Model Card -->
-                                    <div
-                                        class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                                        <i class="fas fa-archive text-[#1a589e] text-3xl"></i>
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                            <h2 id="heading-arch-bo">
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-arch-bo" aria-expanded="true"
+                                    aria-controls="body-arch-bo">
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-solid fa-gavel text-base"></i>
+                                        </div>
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">Bidding
+                                                Opportunities</span>
+                                            <span class="text-xs md:text-sm text-gray-500 font-medium">Historical
+                                                Procurement</span>
+                                        </div>
                                     </div>
-
-                                    <!-- Header -->
-                                    <h5 class="text-2xl font-bold text-[#1a589e] mb-4">Visit Our Old Website</h5>
-
-                                    <!-- Description -->
-                                    <p class="text-gray-600 mb-8">
-                                        Looking for older documents? Access our previous website containing past bidding
-                                        opportunities and historical data.
-                                    </p>
-
-                                    <!-- Action Button -->
-                                    <a href="https://cwd.com.ph/bac_2026.html" target="_blank"
-                                        class="inline-flex items-center justify-center w-full px-6 py-3 text-white bg-[#1a589e] hover:bg-blue-800 rounded-lg font-semibold transition duration-200 shadow-lg group">
-                                        Visit Archive
-                                        <i
-                                            class="fas fa-arrow-up-right-from-square ms-2 transition-transform group-hover:scale-110"></i>
-                                    </a>
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <span
+                                            class="bg-amber-100 text-amber-800 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider hidden sm:inline-block">Archive</span>
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                            4 Records
+                                        </span>
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="body-arch-bo" class="hidden" aria-labelledby="heading-arch-bo">
+                                <div class="p-4 border-t border-gray-100 bg-white">
+                                    <div class="content-table w-full">
+                                        <div
+                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                            <div class="col-title font-bold flex-1">LINKS</div>
+                                            <div class="col-date bac w-1/4 text-right pr-4">YEAR</div>
+                                        </div>
+                                        <div class="block max-h-80 overflow-y-auto divide-y divide-gray-100">
+                                            <div
+                                                class="data-row flex items-center p-3 text-sm transition-colors hover:bg-slate-50">
+                                                <a href="https://cwd.com.ph/bac_2025.html" target="_blank"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline transition-colors duration-150 flex-1">Bidding
+                                                    Opportunities</a>
+                                                <div class="col-date bac w-1/4 text-right pr-4 text-gray-500 font-mono">
+                                                    2025</div>
+                                            </div>
+                                            <div
+                                                class="data-row flex items-center p-3 text-sm transition-colors hover:bg-slate-50">
+                                                <a href="https://cwd.com.ph/bac_2024.html" target="_blank"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline transition-colors duration-150 flex-1">Bidding
+                                                    Opportunities</a>
+                                                <div class="col-date bac w-1/4 text-right pr-4 text-gray-500 font-mono">
+                                                    2024</div>
+                                            </div>
+                                            <div
+                                                class="data-row flex items-center p-3 text-sm transition-colors hover:bg-slate-50">
+                                                <a href="https://cwd.com.ph/bac_2021.html" target="_blank"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline transition-colors duration-150 flex-1">Bidding
+                                                    Opportunities</a>
+                                                <div class="col-date bac w-1/4 text-right pr-4 text-gray-500 font-mono">
+                                                    2021</div>
+                                            </div>
+                                            <div
+                                                class="data-row flex items-center p-3 text-sm transition-colors hover:bg-slate-50">
+                                                <a href="https://cwd.com.ph/bac_2020.html" target="_blank"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline transition-colors duration-150 flex-1">Bidding
+                                                    Opportunities</a>
+                                                <div class="col-date bac w-1/4 text-right pr-4 text-gray-500 font-mono">
+                                                    2020</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-
                             </div>
                         </div>
 
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                            <h2 id="heading-arch-bba">
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-arch-bba" aria-expanded="false"
+                                    aria-controls="body-arch-bba">
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-solid fa-file-lines text-base"></i>
+                                        </div>
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">Bid
+                                                Bulletin / Addendums</span>
+                                            <span class="text-xs md:text-sm text-gray-500 font-medium">Procurement
+                                                Supplements</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                            1 Record
+                                        </span>
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="body-arch-bba" class="hidden" aria-labelledby="heading-arch-bba">
+                                <div class="p-4 border-t border-gray-100 bg-white">
+                                    <div class="content-table w-full">
+                                        <div
+                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                            <div class="col-title font-bold flex-1">LINKS</div>
+                                            <div class="col-date bac w-1/4 text-right pr-4">YEAR</div>
+                                        </div>
+                                        <div class="block max-h-80 overflow-y-auto divide-y divide-gray-100">
+                                            <div
+                                                class="data-row flex items-center p-3 text-sm transition-colors hover:bg-slate-50">
+                                                <a href="https://cwd.com.ph/bidbulletin.html" target="_blank"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline transition-colors duration-150 flex-1">Bid
+                                                    Bulletin/Addendums</a>
+                                                <div class="col-date bac w-1/4 text-right pr-4 text-gray-500 font-mono">
+                                                    2025-2023</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                    </div> <!-- End tab-content -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                            <h2 id="heading-arch-nop">
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-arch-nop" aria-expanded="false"
+                                    aria-controls="body-arch-nop">
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-regular fa-calendar-days text-base"></i>
+                                        </div>
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">Notices
+                                                of Postponement</span>
+                                            <span class="text-xs md:text-sm text-gray-500 font-medium">Rescheduled
+                                                Activities</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                            1 Record
+                                        </span>
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="body-arch-nop" class="hidden" aria-labelledby="heading-arch-nop">
+                                <div class="p-4 border-t border-gray-100 bg-white">
+                                    <div class="content-table w-full">
+                                        <div
+                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                            <div class="col-title font-bold flex-1">LINKS</div>
+                                            <div class="col-date bac w-1/4 text-right pr-4">YEAR</div>
+                                        </div>
+                                        <div class="block max-h-80 overflow-y-auto divide-y divide-gray-100">
+                                            <div
+                                                class="data-row flex items-center p-3 text-sm transition-colors hover:bg-slate-50">
+                                                <a href="https://cwd.com.ph/notice_of_postponement.html" target="_blank"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline transition-colors duration-150 flex-1">Notices
+                                                    of Postponement</a>
+                                                <div class="col-date bac w-1/4 text-right pr-4 text-gray-500 font-mono">
+                                                    2025</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                            <h2 id="heading-arch-pai">
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-arch-pai" aria-expanded="false"
+                                    aria-controls="body-arch-pai">
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-solid fa-medal text-base"></i>
+                                        </div>
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">Post-Award
+                                                Information</span>
+                                            <span class="text-xs md:text-sm text-gray-500 font-medium">Awarded
+                                                Contracts</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                            1 Record
+                                        </span>
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="body-arch-pai" class="hidden" aria-labelledby="heading-arch-pai">
+                                <div class="p-4 border-t border-gray-100 bg-white">
+                                    <div class="content-table w-full">
+                                        <div
+                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                            <div class="col-title font-bold flex-1">LINKS</div>
+                                            <div class="col-date bac w-1/4 text-right pr-4">YEAR</div>
+                                        </div>
+                                        <div class="block max-h-80 overflow-y-auto divide-y divide-gray-100">
+                                            <div
+                                                class="data-row flex items-center p-3 text-sm transition-colors hover:bg-slate-50">
+                                                <a href="https://cwd.com.ph/post_award.html" target="_blank"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline transition-colors duration-150 flex-1">Post-Award
+                                                    Information</a>
+                                                <div class="col-date bac w-1/4 text-right pr-4 text-gray-500 font-mono">
+                                                    2025</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                            <h2 id="heading-arch-oldweb">
+                                <button type="button"
+                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                    data-accordion-target="#body-arch-oldweb" aria-expanded="false"
+                                    aria-controls="body-arch-oldweb">
+                                    <div class="flex items-center gap-3.5 text-left">
+                                        <div
+                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                            <i class="fa-solid fa-box-archive text-base"></i>
+                                        </div>
+                                        <div class="flex flex-col sm:gap-0.5">
+                                            <span
+                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">Old
+                                                Website Archive</span>
+                                            <span class="text-xs md:text-sm text-gray-500 font-medium">Historical Legacy
+                                                Data</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 ms-auto">
+                                        <div
+                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                            <svg data-accordion-icon
+                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 10 6">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="body-arch-oldweb" class="hidden" aria-labelledby="heading-arch-oldweb">
+                                <div class="p-6 border-t border-gray-100 bg-slate-50/50">
+                                    <div
+                                        class="max-w-md mx-auto bg-white rounded-2xl shadow-md overflow-hidden border-t-4 border-[#1a589e]">
+                                        <div class="p-6 text-center">
+                                            <div
+                                                class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                <i class="fas fa-archive text-[#1a589e] text-2xl"></i>
+                                            </div>
+                                            <h5 class="text-xl font-bold text-[#1a589e] mb-2">Visit Our Old Website</h5>
+                                            <p class="text-gray-600 text-xs mb-6 px-2">
+                                                Looking for older legacy documents? Access our previous portal
+                                                containing past bidding opportunities and historical summaries.
+                                            </p>
+                                            <a href="https://cwd.com.ph/bac_2026.html" target="_blank"
+                                                class="inline-flex items-center justify-center w-full px-5 py-2.5 text-white bg-[#1a589e] hover:bg-blue-800 rounded-lg text-sm font-semibold transition duration-200 shadow-md group">
+                                                Visit Portal Archive
+                                                <i
+                                                    class="fas fa-arrow-up-right-from-square ms-2 text-xs transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-
 
             <!-- Left Navigation -->
             <?php include 'includes/bacleftnav.php'; ?>
