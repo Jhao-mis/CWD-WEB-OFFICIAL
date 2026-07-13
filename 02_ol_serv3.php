@@ -175,7 +175,7 @@
                 <h4 class="mb-3 text-2xl font-bold tracking-tight text-center text-[#1a589e] text-heading leading-8">
                 </h4>
 
-                <?php include 'includes/calcu2.php'; ?>
+                <?php include 'includes/nocalcu2.php'; ?>
             </div>
 
 
