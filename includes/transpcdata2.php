@@ -25,6 +25,7 @@ $transparency_years = [
             'III. DBM Approved Budgets and Targets' => 'Not Applicable',
             'IV. Projects, Programs and Activities, Beneficiaries, and Status of Implementation' => 'No Available Data Yet',
             'V. Annual Procurement Plan (APP non-CSE), Indicative APP non-CSE; and APP for Common-Supplies and Equipment' => [
+                ['label' => 'Updated APP for the 1st Semester CY 2026', 'url' => 'assets\Files\transpc_data\2026\Updated APP for the 1st Semester CY 2026.pdf'],
                 ['label' => 'NGPA - Final APP Non-CSE & PS-DBM Supplies 2026', 'url' => 'assets\Files\transpc_data\2026\NGPA - Final APP Non-CSE & PS-DBM Supplies 2026.pdf'],
                 ['label' => 'Final APP Non-CSE 2026', 'url' => 'assets\Files\transpc_data\2026\Final APP Non-CSE 2026.pdf'],
                 ['label' => 'Final APP-CSE 2026', 'url' => 'assets\Files\transpc_data\2026\Final APP-CSE 2026.pdf'],
@@ -61,7 +62,7 @@ $transparency_years = [
                     ['label' => 'Not Available', 'url' => '#'],
                 ],
                 'C. Procurement Monitoring Report' => [
-                    ['label' => 'Not Available', 'url' => '#'],
+                    ['label' => 'Approved PMR for CY 2026 1st Semester', 'url' => 'assets\Files\transpc_data\2026\Approved PMR for CY 2026 1st Semester.pdf'],
                 ],
                 'D. Agency Procurement Compliance and Performance Indicator (APCPI)' => [
                     ['label' => 'Not Available', 'url' => '#'],
