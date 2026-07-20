@@ -501,6 +501,16 @@
                                                 <div class="col-date">July 7</div>
                                             </div>
 
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 38-2026).pdf"
+                                                    target="_blank"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    38-2026</a>
+                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 38-2026).pdf"
+                                                    target="_blank" class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Goods and Services for CWD's 50th  Founding Anniversary</a>
+                                                <div class="col-date">July 20</div>
+                                            </div>
+
                                             <div class="bg-slate-50 p-2">
                                                 <div class="header-month font-bold justify-center">
                                                     August</div>
