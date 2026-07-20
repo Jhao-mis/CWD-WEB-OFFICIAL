@@ -441,7 +441,7 @@
                                         <span
                                             class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
                                             <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            2 Postings
+                                            3 Postings
                                         </span>
 
                                         <!-- Chevron Icon Container -->
