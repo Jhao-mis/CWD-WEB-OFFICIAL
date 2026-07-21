@@ -143,7 +143,11 @@ $transparency_years = [
 
     '2024' => [
         'sections' => [
-            'II. Annual Financial Reports' => 'No Available Data',
+            'II. Annual Financial Reports' => [
+                ['label' => 'FY 2023 APP Non-CSE ', 'url' => 'assets\Files\transpc_data\2024\FY2023 APP Non CSE.pdf'],
+                ['label' => 'Indicative FY 2024 APP-non CSE ', 'url' => 'assets\Files\transpc_data\2024\Indicative FY 2024 APP-non CSE.pdf'],
+                ['label' => 'APP-CSE FY2023 ', 'url' => 'assets\Files\transpc_data\2024\APP-CSE FY2023.pdf'],
+            ],
             'III. DBM Approved Budgets and Targets' => 'Not Applicable',
             'IV. Projects, Programs and Activities, Beneficiaries, and Status of Implementation' => 'No Available Data',
             'V. Annual Procurement Plan (APP non-CSE), Indicative APP non-CSE; and APP for Common-Supplies and Equipment' => [
@@ -168,6 +172,10 @@ $transparency_years = [
                 [
                     'label' => 'SALN Certificate of Compliance for the Year 2023',
                     'url' => 'assets\Files\transpc_data\2024\saln2023_certificate of compliance_0001_0001.pdf'
+                ],
+                [
+                    'label' => 'CWD Guidelines in the Review and Compliance Procedure in Filing and Submission of SALN',
+                    'url' => 'assets\Files\transpc_data\2024\SALNGuidelines&Review.pdf'
                 ],
             ],
             'IX. Updated People\'s Freedom to Information (FOl) Manual, Agency Information Inventory, FOI Registry, and FOl Summary Report' => [
