@@ -222,55 +222,54 @@ $transparency_years = [
 // ARCHIVE SECTIONS DATA
 $archive_sections = 
 [
-
     'II. Annual Financial Reports' => 
     [
         [
             'title' => 'Financial Statements',
             'years' => [
-                ['year' => '2022', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\fs_2022.rar'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\fs_2021.pdf'],      
-                ['year' => '2020', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\fs_2020.pdf'],  
-                ['year' => '2019', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\fs_2019.pdf'],
-                ['year' => '2016', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\fs_2016.pdf'],
-                ['year' => '2015', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\fspre2016\fs_2015.pdf'],  
-                ['year' => 'Prior to 2015', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\fspre2016.zip'],
+                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2022.rar'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2021.pdf'],      
+                ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2020.pdf'],  
+                ['year' => '2019', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2019.pdf'],
+                ['year' => '2016', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2016.pdf'],
+                ['year' => '2015', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fspre2016/fs_2015.pdf'],  
+                ['year' => 'Prior to 2015', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fspre2016.zip'],
             ]
         ],
         [
             'title' => 'Approved Budget',
             'years' => [
-                ['year' => '2019', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Approved Budget 2019.zip'],
-                ['year' => '2018', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Approved Budget 2019.zip'],                 
+                ['year' => '2019', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Approved Budget 2019.zip'],
+                ['year' => '2018', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Approved Budget 2019.zip'],                 
             ]
         ],
         [
             'title' => 'Capital Expenditures',
             'years' => [
-                ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Capex 2023.pdf'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Capex 2021.pdf'],                 
+                ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Capex 2023.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Capex 2021.pdf'],                 
             ]
         ],
         [
             'title' => 'Cashflow Projections & Statements',
             'years' => [
-                ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Cashflow 2023.pdf'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Cashflow 2021.pdf'], 
-                ['year' => '2017', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Cashflow 2017.pdf'],                     
+                ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Cashflow 2023.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Cashflow 2021.pdf'], 
+                ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Cashflow 2017.pdf'],                     
             ]
         ],
         [
             'title' => 'Detailed Revenues and Expenses',
             'years' => [
-                ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Detailed Rev & Exp 2023.pdf'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Detailed Rev & Exp 2021.pdf'],                      
+                ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Detailed Rev & Exp 2023.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Detailed Rev & Exp 2021.pdf'],                      
             ]
         ],
         [
             'title' => 'Target',
             'years' => [
-                ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Target 2023.pdf'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\Target 2021.pdf'],                      
+                ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Target 2023.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/Target 2021.pdf'],                      
             ]
         ],
     ],
@@ -280,7 +279,7 @@ $archive_sections =
         [
             'title' => 'DBM Approved Budgets and Targets Documents',
             'years' => [
-                ['year' => '2017', 'url' => 'assets\Files\transpc_data\Archives\2_AFR\DBM Approved Budget and Targets 2017.zip'],        
+                ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/DBM Approved Budget and Targets 2017.zip'],        
             ]
         ],
     ],
@@ -290,17 +289,17 @@ $archive_sections =
         [
             'title' => 'Performance Targets and Accomplishments',
             'years' => [
-                ['year' => '2022', 'url' => 'assets\Files\transpc_data\Archives\4_PTA\PTA_2012.pdf'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\4_PTA\PTA_2021.pdf'],
-                ['year' => '2020', 'url' => 'assets\Files\transpc_data\Archives\4_PTA\PTA_2020.pdf'],
-                ['year' => '2017', 'url' => 'assets\Files\transpc_data\Archives\4_PTA\PTA_2017.pdf'],        
+                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2012.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2021.pdf'],
+                ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2020.pdf'],
+                ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2017.pdf'],        
             ]
         ],
         [
             'title' => 'Projects, Programs and Activities',
             'years' => [
-                ['year' => '2020', 'url' => 'assets\Files\transpc_data\Archives\4_PTA\PPA_2020.pdf'],
-                ['year' => '2017', 'url' => 'assets\Files\transpc_data\Archives\4_PTA\PPA_2017.pdf'],
+                ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PPA_2020.pdf'],
+                ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PPA_2017.pdf'],
                 
             ]
         ],
@@ -311,38 +310,38 @@ $archive_sections =
         [
             'title' => 'APP Common Supplies and Equipment',
             'years' => [
-                ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_CSE_2023.pdf'],
-                ['year' => 'Approved 2023', 'url' => 'assets\Files\transpc_data\Archives\5_APP\A_APP-CSE_2023.pdf'],
-                ['year' => '2022', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_CSE_2022.pdf'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_CSE_2021.pdf'],
-                ['year' => '2020', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_CSE_2020.pdf'],
-                ['year' => '2019', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_CSE_2019.pdf'],
-                ['year' => '2018', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_CSE_2018.pdf'],                
+                ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_CSE_2023.pdf'],
+                ['year' => 'Approved 2023', 'url' => 'assets/Files/transpc_data/Archives/5_APP/A_APP-CSE_2023.pdf'],
+                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_CSE_2022.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_CSE_2021.pdf'],
+                ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_CSE_2020.pdf'],
+                ['year' => '2019', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_CSE_2019.pdf'],
+                ['year' => '2018', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_CSE_2018.pdf'],                
             ]
         ],
 
         [
             'title' => 'APP Non-Common Supplies and Equipment',
             'years' => [
-                ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_NCSE_2023.pdf'],
-                ['year' => 'Indicative 2023', 'url' => 'assets\Files\transpc_data\Archives\5_APP\I_APP-NCSE_2023.pdf'],
-                ['year' => 'Approved 2023', 'url' => 'assets\Files\transpc_data\Archives\5_APP\A_APP-NCSE_2023.pdf'],
-                ['year' => 'Indicative 2022', 'url' => 'assets\Files\transpc_data\Archives\5_APP\I_APP-NCSE_2022.pdf'],
-                ['year' => '2022', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_NCSE_2022.pdf'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_NCSE_2021.pdf'],
-                ['year' => '2017', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_NCSE_2017.pdf'],                
+                ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_NCSE_2023.pdf'],
+                ['year' => 'Indicative 2023', 'url' => 'assets/Files/transpc_data/Archives/5_APP/I_APP-NCSE_2023.pdf'],
+                ['year' => 'Approved 2023', 'url' => 'assets/Files/transpc_data/Archives/5_APP/A_APP-NCSE_2023.pdf'],
+                ['year' => 'Indicative 2022', 'url' => 'assets/Files/transpc_data/Archives/5_APP/I_APP-NCSE_2022.pdf'],
+                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_NCSE_2022.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_NCSE_2021.pdf'],
+                ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_NCSE_2017.pdf'],                
             ]
         ],
 
         [
             'title' => 'Other APPs',
             'years' => [
-                ['year' => 'APP C&M 2023', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_C&M_2023.xlsx'],
-                ['year' => 'Supp. APP 2023-01', 'url' => 'assets\Files\transpc_data\Archives\5_APP\S_APP_2023-1.pdf'],
-                ['year' => 'Supp. APP 2022-01', 'url' => 'assets\Files\transpc_data\Archives\5_APP\S_APP_2022-1.pdf'],
-                ['year' => 'Rev. 2021', 'url' => 'assets\Files\transpc_data\Archives\5_APP\R_APP_2021.pdf'], 
-                ['year' => 'APP C&M 2020', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_C&M_2020.pdf'],
-                ['year' => 'APP C&M 2019', 'url' => 'assets\Files\transpc_data\Archives\5_APP\APP_C&M_2019.pdf'],
+                ['year' => 'APP C&M 2023', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_C&M_2023.xlsx'],
+                ['year' => 'Supp. APP 2023-01', 'url' => 'assets/Files/transpc_data/Archives/5_APP/S_APP_2023-1.pdf'],
+                ['year' => 'Supp. APP 2022-01', 'url' => 'assets/Files/transpc_data/Archives/5_APP/S_APP_2022-1.pdf'],
+                ['year' => 'Rev. 2021', 'url' => 'assets/Files/transpc_data/Archives/5_APP/R_APP_2021.pdf'], 
+                ['year' => 'APP C&M 2020', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_C&M_2020.pdf'],
+                ['year' => 'APP C&M 2019', 'url' => 'assets/Files/transpc_data/Archives/5_APP/APP_C&M_2019.pdf'],
             ]
         ],
     ],
@@ -352,31 +351,31 @@ $archive_sections =
         [
             'title' => 'ISO Certificate',
             'years' => [
-                ['year' => '2021-2024', 'url' => 'assets\Files\transpc_data\Archives\6_QMS\ISO Certificate 2021-2024.pdf'],
+                ['year' => '2021-2024', 'url' => 'assets/Files/transpc_data/Archives/6_QMS/ISO Certificate 2021-2024.pdf'],
             ]
         ],
         [
             'title' => 'Confirmation of ISO Certificate for the Production and Distribution of Potable Water Supply',
             'years' => [
-                ['year' => '2020', 'url' => 'assets\Files\transpc_data\Archives\6_QMS\ISO Certification Confirmation 2020 for PWS.pdf'],
+                ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/6_QMS/ISO Certification Confirmation 2020 for PWS.pdf'],
             ]
         ],
         [
             'title' => 'Certificate of Registration and Registration Schedule',
             'years' => [
-                ['year' => '2018', 'url' => 'assets\Files\transpc_data\Archives\6_QMS\ISO contract.pdf'],
+                ['year' => '2018', 'url' => 'assets/Files/transpc_data/Archives/6_QMS/ISO contract.pdf'],
             ]
         ],
         [
             'title' => 'CWD Operations Manual',
             'years' => [
-                ['year' => '2017', 'url' => 'assets\Files\transpc_data\Archives\6_QMS\CWD Operation Manual 2017.pdf'],
+                ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/6_QMS/CWD Operation Manual 2017.pdf'],
             ]
         ],
         [
             'title' => 'Quality Management System Manual',
             'years' => [
-                ['year' => '2017', 'url' => 'assets\Files\transpc_data\Archives\6_QMS\CWD QMS Manual 2017.pdf'],
+                ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/6_QMS/CWD QMS Manual 2017.pdf'],
             ]
         ],
     ],
@@ -386,9 +385,9 @@ $archive_sections =
         [
             'title' => 'Guidelines & Mechanics in Ranking for the Grant of Performance-Based Bonus (PBB)',
             'years' => [
-                ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\7_PBB\Systems Ranking 2023.pdf'],
-                ['year' => '2022', 'url' => 'assets\Files\transpc_data\Archives\7_PBB\Systems Ranking 2022.pdf'],
-                ['year' => 'Pre-2022', 'url' => 'assets\Files\transpc_data\Archives\7_PBB\pbb_pre2022.zip'],
+                ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/7_PBB/Systems Ranking 2023.pdf'],
+                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/7_PBB/Systems Ranking 2022.pdf'],
+                ['year' => 'Pre-2022', 'url' => 'assets/Files/transpc_data/Archives/7_PBB/pbb_pre2022.zip'],
             ]
         ]
     ],
@@ -398,26 +397,26 @@ $archive_sections =
         [
             'title' => 'SALN Certificate of Compliance',
             'years' => [
-                ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\8_SALN\SALN_2023.pdf'],
-                ['year' => '2022', 'url' => 'assets\Files\transpc_data\Archives\8_SALN\SALN_2022.pdf'],
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\8_SALN\SALN_2021.pdf'],
-                ['year' => '2020', 'url' => 'assets\Files\transpc_data\Archives\8_SALN\SALN_2020.pdf'],
-                ['year' => 'Pre-2023', 'url' => 'assets\Files\transpc_data\Archives\8_SALN\Pre-2020.zip'],
+                ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/8_SALN/SALN_2023.pdf'],
+                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/8_SALN/SALN_2022.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/8_SALN/SALN_2021.pdf'],
+                ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/8_SALN/SALN_2020.pdf'],
+                ['year' => 'Pre-2023', 'url' => 'assets/Files/transpc_data/Archives/8_SALN/Pre-2020.zip'],
                 
             ]
         ],
         [
             'title' => 'Review and Compliance Committee',
             'years' => [
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\8_SALN\RCC_2021.pdf'],
-                ['year' => '2020', 'url' => 'assets\Files\transpc_data\Archives\8_SALN\RCC_2020.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/8_SALN/RCC_2021.pdf'],
+                ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/8_SALN/RCC_2020.pdf'],
                 
             ]
         ],
         [
             'title' => 'Guidelines in the Review and Compliance Procedure in Filing and Submission of SALN',
             'years' => [
-                ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\8_SALN\SALN_Guidelines.pdf'],
+                ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/8_SALN/SALN_Guidelines.pdf'],
                 
             ]
         ],
@@ -428,14 +427,14 @@ $archive_sections =
         [
             'title' => 'Freedom of Information People\'s Manual',
             'years' => [
-                ['year' => 'Complete Document', 'url' => 'assets\Files\transpc_data\All\assets\Files\transpc_data\All\FOI Manual.pdf'],                        
+                ['year' => 'Complete Document', 'url' => 'assets/Files/transpc_data/All/assets/Files/transpc_data/All/FOI Manual.pdf'],                        
             ]
         ],
         [
             'title' => 'Freedom of Information One Page Manual',
             'years' => [
-                ['year' => 'English', 'url' => 'assets\Files\transpc_data\All\One Page Manual.pdf'],          
-                ['year' => 'Filipino - Tagalog', 'url' => 'assets\Files\transpc_data\All\One Page Manual (Tagalog).pdf'],                
+                ['year' => 'English', 'url' => 'assets/Files/transpc_data/All/One Page Manual.pdf'],          
+                ['year' => 'Filipino - Tagalog', 'url' => 'assets/Files/transpc_data/All/One Page Manual (Tagalog).pdf'],                
             ]
         ],
         [
@@ -454,18 +453,18 @@ $archive_sections =
             [
                 'title' => 'CWD Citizen\'s Charter',
                 'years' => [
-                    ['year' => '2023', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\2023_ARTACOC.pdf'],
-                    ['year' => '2022', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\2022_ARTACOC.pdf'],
-                    ['year' => '2021 New Format', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\2021_ARTACOCNF.pdf'],
-                    ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\2021_ARTACOC.pdf'],
-                    ['year' => '2020 Revised', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\2020_ARTACOCR.pdf'],
-                    ['year' => '2020', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\2020_ARTACOC.pdf'],
+                    ['year' => '2023', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/2023_ARTACOC.pdf'],
+                    ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/2022_ARTACOC.pdf'],
+                    ['year' => '2021 New Format', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/2021_ARTACOCNF.pdf'],
+                    ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/2021_ARTACOC.pdf'],
+                    ['year' => '2020 Revised', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/2020_ARTACOCR.pdf'],
+                    ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/2020_ARTACOC.pdf'],
                 ]
             ],
             [
                 'title' => 'CWD Citizen\'s Charter',
                 'years' => [
-                    ['year' => 'Document File', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\ARTA_CC.pdf'],
+                    ['year' => 'Document File', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/ARTA_CC.pdf'],
                 ]
             ],
         ],
@@ -477,7 +476,7 @@ $archive_sections =
             [
                 'title' => 'Procurement Monitoring Reports',
                 'years' => [
-                    ['year' => 'Available PMRs From 2023-2020', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\AvailablePMRs.zip'],
+                    ['year' => 'Available PMRs From 2023-2020', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/AvailablePMRs.zip'],
                 ]
             ]
         ],
@@ -487,7 +486,7 @@ $archive_sections =
             [
                 'title' => 'Document File',
                 'years' => [
-                    ['year' => '2021', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\2021_APCPI.pdf'],
+                    ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/2021_APCPI.pdf'],
                 ]
             ]
         ],
@@ -497,7 +496,7 @@ $archive_sections =
             [
                 'title' => 'Posting Certifications',
                 'years' => [
-                    ['year' => '2023-2021', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\AvailablePCs.zip'],
+                    ['year' => '2023-2021', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/AvailablePCs.zip'],
                 ]
             ]
         ],
@@ -507,9 +506,9 @@ $archive_sections =
             [
                 'title' => 'PHILGEPS Certificate of Compliance',
                 'years' => [
-                    ['year' => '2022', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\PGCOC_2022.pdf'],
-                    ['year' => '2018', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\PGCOC_2018.pdf'],
-                    ['year' => '2015', 'url' => 'assets\Files\transpc_data\Archives\10_Annex\PGCOC_2015.pdf'],
+                    ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/PGCOC_2022.pdf'],
+                    ['year' => '2018', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/PGCOC_2018.pdf'],
+                    ['year' => '2015', 'url' => 'assets/Files/transpc_data/Archives/10_Annex/PGCOC_2015.pdf'],
                 ]
             ]
         ],
