@@ -232,7 +232,7 @@ $archive_sections =
                 ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2020.pdf'],  
                 ['year' => '2019', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2019.pdf'],
                 ['year' => '2016', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2016.pdf'],
-                ['year' => '2015', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fspre2016/fs_2015.pdf'],  
+                ['year' => '2015', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fs_2015.pdf'],  
                 ['year' => 'Prior to 2015', 'url' => 'assets/Files/transpc_data/Archives/2_AFR/fspre2016.zip'],
             ]
         ],
@@ -289,7 +289,7 @@ $archive_sections =
         [
             'title' => 'Performance Targets and Accomplishments',
             'years' => [
-                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2012.pdf'],
+                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2022.pdf'],
                 ['year' => '2021', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2021.pdf'],
                 ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2020.pdf'],
                 ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PTA_2017.pdf'],        
@@ -298,7 +298,7 @@ $archive_sections =
         [
             'title' => 'Projects, Programs and Activities',
             'years' => [
-                ['year' => '2020', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PPA_2020.pdf'],
+                ['year' => '2022', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PPA_2022.pdf'],
                 ['year' => '2017', 'url' => 'assets/Files/transpc_data/Archives/4_PTA/PPA_2017.pdf'],
                 
             ]
@@ -427,7 +427,7 @@ $archive_sections =
         [
             'title' => 'Freedom of Information People\'s Manual',
             'years' => [
-                ['year' => 'Complete Document', 'url' => 'assets/Files/transpc_data/All/assets/Files/transpc_data/All/FOI Manual.pdf'],                        
+                ['year' => 'Complete Document', 'url' => 'assets/Files/transpc_data/Archives/9_FOI/FOI Manual.pdf'],                        
             ]
         ],
         [
