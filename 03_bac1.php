@@ -837,6 +837,33 @@
                                                     class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Labor and Materials for the Renovation of Office of the  General Manager (SVP)</a>
                                                 <div class="col-date">July 20</div>
                                             </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 43-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    43-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 43-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Denorado Rice (SVP)</a>
+                                                <div class="col-date">July 29</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 44-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    44-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 44-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Document Keeper (SVP)</a>
+                                                <div class="col-date">July 29</div>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 45-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    45-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\July\CWD 45-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Goods and Services for CWD's 50th  Founding Anniversary (Rebidding) (SVP)</a>
+                                                <div class="col-date">July 29</div>
+                                            </div>                                            
                                             
                                             <div class="bg-slate-50 p-2">
                                                 <div class="header-month font-bold justify-center">
