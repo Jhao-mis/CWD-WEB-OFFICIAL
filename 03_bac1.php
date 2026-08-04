@@ -816,7 +816,7 @@
                                                     class="col-date bac text-left text-decoration-none font-mono">CWD
                                                     40-2026</a>
                                                 <a href="assets\Files\bac\BidOpp\2026\July\CWD 40-2026.zip"
-                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (3rd Posting) (SVP) Supply and Delivery of Materials for the Installation of Fire Hydrants  at Different Service Areas (2nd Posting) (SVP)</a>
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Materials for the Installation of Fire Hydrants at Different Service Areas (2nd Posting) (SVP)</a>
                                                 <div class="col-date">July 13</div>
                                             </div>
 
@@ -870,11 +870,32 @@
                                                     August</div>
                                             </div>
 
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bidding
-                                                opportunities posted for this month yet.
-                                            </div>
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 46-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    46-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 46-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Handheld Computer and BT Printer for  Electronic Meter Reading Billing System (e-MRBS) (SVP)</a>
+                                                <div class="col-date">August 5</div>
+                                            </div>  
+                                            
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 47-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    47-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 47-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Traffic and Road Safety Equipment  and Accessories (2nd Posting) (SVP)</a>
+                                                <div class="col-date">August 5</div>
+                                            </div>  
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 48-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    48-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 48-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (4th Posting) (SVP)</a>
+                                                <div class="col-date">August 5</div>
+                                            </div>  
 
                                             <div class="bg-slate-50 p-2">
                                                 <div class="header-month font-bold justify-center">
