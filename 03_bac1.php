@@ -666,7 +666,7 @@
                                         <span
                                             class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
                                             <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            19 Postings
+                                            20 Postings
                                         </span>
 
                                         <!-- Chevron Icon Container -->
@@ -895,6 +895,15 @@
                                                 <a href="assets\Files\bac\BidOpp\2026\August\CWD 48-2026.zip"
                                                     class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Chemicals and Filtering Materials  (Lot 1) (4th Posting) (SVP)</a>
                                                 <div class="col-date">August 5</div>
+                                            </div>  
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 49-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    49-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 49-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Labor and Materials for the Expansion of Distribution and  Service Lines & Appurtenances at Different Service Areas</a>
+                                                <div class="col-date">August 10</div>
                                             </div>  
 
                                             <div class="bg-slate-50 p-2">
