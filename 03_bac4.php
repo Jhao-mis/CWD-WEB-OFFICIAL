@@ -407,7 +407,7 @@
                                         <span
                                             class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
                                             <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            2 Postings
+                                            9 Postings
                                         </span>
 
                                         <!-- Chevron Icon Container -->
@@ -461,10 +461,53 @@
                                                 <div class="header-month font-bold justify-center">August</div>
                                             </div>
 
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No post-award
-                                                information posted for this month yet.
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 8-2026.zip"
+                                                    class="col-bidcode p-2 font-mono">CWD 8-2026</a>
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 8-2026.zip"
+                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Services for the Preventive Maintenance of CWD's Septage Treatment Plant</a>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 15-2026.zip"
+                                                    class="col-bidcode p-2 font-mono">CWD 15-2026</a>
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 15-2026.zip"
+                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Sodium Hypochlorite (SVP)</a>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 16-2026.zip"
+                                                    class="col-bidcode p-2 font-mono">CWD 16-2026</a>
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 16-2026.zip"
+                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Materials for Restoration Works</a>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 17-2026.zip"
+                                                    class="col-bidcode p-2 font-mono">CWD 17-2026</a>
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 17-2026.zip"
+                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of HDPE and PVC Pipes C-150 (SVP)</a>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 18-2026.zip"
+                                                    class="col-bidcode p-2 font-mono">CWD 18-2026</a>
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 18-2026.zip"
+                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Galvanized Iron Pipes, Brass Valves and Accessories (SVP)</a>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 19-2026.zip"
+                                                    class="col-bidcode p-2 font-mono">CWD 19-2026</a>
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 19-2026.zip"
+                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Manual Rotary Pipe Cutter and Concrete/Asphalt Cutter (SVP) (2nd Posting)</a>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 21-2026.zip"
+                                                    class="col-bidcode p-2 font-mono">CWD 21-2026</a>
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 21-2026.zip"
+                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Materials and Services for the Change of Cowl, Body Repair & Under Coating of Various Service Vehicles (SVP)</a>
                                             </div>
 
                                             <div class="bg-slate-50 p-2">
