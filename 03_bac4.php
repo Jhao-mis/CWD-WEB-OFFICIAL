@@ -407,7 +407,7 @@
                                         <span
                                             class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
                                             <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            9 Postings
+                                            10 Postings
                                         </span>
 
                                         <!-- Chevron Icon Container -->
@@ -508,6 +508,13 @@
                                                     class="col-bidcode p-2 font-mono">CWD 21-2026</a>
                                                 <a href="assets\Files\bac\PostAward\2026\CWD 21-2026.zip"
                                                     class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Materials and Services for the Change of Cowl, Body Repair & Under Coating of Various Service Vehicles (SVP)</a>
+                                            </div>
+
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 33-2026.zip"
+                                                    class="col-bidcode p-2 font-mono">CWD 33-2026</a>
+                                                <a href="assets\Files\bac\PostAward\2026\CWD 33-2026.zip"
+                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Installation of Operable Wall (SVP)</a>
                                             </div>
 
                                             <div class="bg-slate-50 p-2">
