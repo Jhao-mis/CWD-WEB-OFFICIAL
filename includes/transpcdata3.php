@@ -24,6 +24,7 @@ $transparency_years = [
             'III. DBM Approved Budgets and Targets' => 'Not Applicable',
             'IV. Projects, Programs and Activities, Beneficiaries, and Status of Implementation' => 'No Available Data Yet',
             'V. Annual Procurement Plan (APP non-CSE), Indicative APP non-CSE; and APP for Common-Supplies and Equipment' => [
+                ['label' => 'Indicative APP Non-CSE CY 2027', 'url' => 'assets\Files\transpc_data\2026\Indicative APP Non-CSE CY2027.pdf'],
                 ['label' => 'Updated APP for the 1st Semester CY 2026', 'url' => 'assets\Files\transpc_data\2026\Updated APP for the 1st Semester CY 2026.pdf'],
                 ['label' => 'NGPA - Final APP Non-CSE & PS-DBM Supplies 2026', 'url' => 'assets\Files\transpc_data\2026\NGPA - Final APP Non-CSE & PS-DBM Supplies 2026.pdf'],
                 ['label' => 'Final APP Non-CSE 2026', 'url' => 'assets\Files\transpc_data\2026\Final APP Non-CSE 2026.pdf'],
