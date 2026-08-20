@@ -907,13 +907,22 @@
                                             </div>  
 
                                             <div class="data-row">
-                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 50-2026.zip"
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 51-2026.zip"
                                                     class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    50-2026</a>
-                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 50-2026.zip"
-                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Submersible Pumps and Motors</a>
-                                                <div class="col-date">August 11</div>
-                                            </div>  
+                                                    51-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 51-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply, Delivery, Installation, Retrofitting and Commissioning of Horizontal Split Case Pump and Motor</a>
+                                                <div class="col-date">August 19</div>
+                                            </div>
+                                            
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 53-2026.zip"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    53-2026</a>
+                                                <a href="assets\Files\bac\BidOpp\2026\August\CWD 53-2026.zip"
+                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Labor & Materials for the Installation of Transmission Lines from New Pump to Sirang Lupa to Majada Road Intersection</a>
+                                                <div class="col-date">August 19</div>
+                                            </div>
 
                                             <div class="bg-slate-50 p-2">
                                                 <div class="header-month font-bold justify-center">
