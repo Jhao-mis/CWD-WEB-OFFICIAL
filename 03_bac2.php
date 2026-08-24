@@ -441,7 +441,7 @@
                                         <span
                                             class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
                                             <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            3 Postings
+                                            4 Postings
                                         </span>
 
                                         <!-- Chevron Icon Container -->
@@ -516,9 +516,14 @@
                                                     August</div>
                                             </div>
 
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bid bulletin/addendum posted for this month yet.
+                                            <div class="data-row">
+                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 50-2026).pdf"
+                                                    target="_blank"
+                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
+                                                    50-2026</a>
+                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 50-2026).pdf"
+                                                    target="_blank" class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Submersible Pumps and Motors</a>
+                                                <div class="col-date">August 24</div>
                                             </div>
 
                                             <div class="bg-slate-50 p-2">
