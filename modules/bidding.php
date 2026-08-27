@@ -450,13 +450,18 @@ function fileIconColor(string $ext): string
 
 function categoryBadgeClass(string $category): string
 {
-    return match ($category) {
-        'Bidding Opportunities'  => 'bg-blue-100 text-blue-700',
-        'Bid Bulletin/Addendum'  => 'bg-purple-100 text-purple-700',
-        'Notice of Postponement' => 'bg-amber-100 text-amber-700',
-        'Post Award Information' => 'bg-green-100 text-green-700',
-        default                  => 'bg-gray-100 text-gray-700',
-    };
+    switch ($category) {
+        case 'Bidding Opportunities':
+            return 'bg-blue-100 text-blue-700';
+        case 'Bid Bulletin/Addendum':
+            return 'bg-purple-100 text-purple-700';
+        case 'Notice of Postponement':
+            return 'bg-amber-100 text-amber-700';
+        case 'Post Award Information':
+            return 'bg-green-100 text-green-700';
+        default:
+            return 'bg-gray-100 text-gray-700';
+    }
 }
 
 function initials(string $first, string $last): string
