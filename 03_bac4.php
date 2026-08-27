@@ -1,3 +1,13 @@
+<?php
+include 'db.php';
+include 'includes/bac-helpers.php';
+
+$bacCategory = 'Post Award Information';
+// Post Award Information has no upload_date (locked/blank by design), so we
+// group by created_at instead (falls back automatically in the helper).
+$bacDocs = bacFetchDocuments($conn, $bacCategory);
+$bacQuarters = bacGroupByQuarterAndMonthFallback($bacDocs);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,494 +138,117 @@
                         data-active-classes="bg-blue-50 text-[#1a589e]" data-inactive-classes="text-gray-700 bg-gray-50"
                         class="space-y-3">
 
-                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                        <?php
+                        $bacQuarterMeta = [
+                            'Q1' => ['icon' => 'fa-1', 'label' => '1st', 'range' => 'January - March'],
+                            'Q2' => ['icon' => 'fa-2', 'label' => '2nd', 'range' => 'April - June'],
+                            'Q3' => ['icon' => 'fa-3', 'label' => '3rd', 'range' => 'July - September'],
+                            'Q4' => ['icon' => 'fa-4', 'label' => '4th', 'range' => 'October - December'],
+                        ];
+                        ?>
 
-                            <h2 id="heading-q1">
+                        <?php foreach ($bacQuarterMeta as $qKey => $qInfo): ?>
+                            <?php
+                            $qId = strtolower($qKey);
+                            $qMonths = $bacQuarters[$qKey];
+                            $qCount = bacQuarterCount($qMonths);
+                            ?>
+                            <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
 
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
-                                    data-accordion-target="#body-q1" aria-expanded="false" aria-controls="body-q1">
+                                <h2 id="heading-<?= $qId ?>">
 
-                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
-                                    <div class="flex items-center gap-3.5 text-left">
-                                        <!-- Visual Calendar Icon Accent -->
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
-                                            <i class="fa-sharp fa-regular fa-1 text-base"></i>
-                                        </div>
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                        data-accordion-target="#body-<?= $qId ?>" aria-expanded="false" aria-controls="body-<?= $qId ?>">
 
-                                        <div class="flex flex-col sm:gap-0.5">
-                                            <span
-                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">1st
-                                                Quarter</span>
-                                            <span
-                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
-                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
-                                                January - March
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
-                                    <div class="flex items-center gap-3 ms-auto">
-                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
-                                        <span
-                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
-                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            0 Postings
-                                        </span>
-
-                                        <!-- Chevron Icon Container -->
-                                        <div
-                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
-                                            <svg data-accordion-icon
-                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
-
-                            </h2>
-
-                            <div id="body-q1" class="hidden" aria-labelledby="heading-q1">
-                                <div class="p-4 border-t border-gray-100 bg-white">
-
-                                    <div class="content-table post-award w-full">
-                                        <div
-                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
-                                            <div class="col-bidcode w-1/4">Bid Code</div>
-                                            <div class="col-title text-center font-bold flex-1">Award Details</div>
-                                        </div>
-
-                                        <div class="scrollableTableBody divide-y divide-gray-100">
-
+                                        <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
+                                        <div class="flex items-center gap-3.5 text-left">
+                                            <!-- Visual Calendar Icon Accent -->
                                             <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No post-award
-                                                information posted for this quarter.
+                                                class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                                <i class="fa-sharp fa-regular <?= $qInfo['icon'] ?> text-base"></i>
                                             </div>
 
+                                            <div class="flex flex-col sm:gap-0.5">
+                                                <span
+                                                    class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase"><?= $qInfo['label'] ?>
+                                                    Quarter</span>
+                                                <span
+                                                    class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
+                                                    <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
+                                                    <?= $qInfo['range'] ?>
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
 
+                                        <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
+                                        <div class="flex items-center gap-3 ms-auto">
+                                            <!-- Transparent / Minimalist Pill Badge para sa Postings -->
+                                            <span
+                                                class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                                <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                                <?= $qCount ?> Posting<?= $qCount === 1 ? '' : 's' ?>
+                                            </span>
+
+                                            <!-- Chevron Icon Container -->
+                                            <div
+                                                class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                                <svg data-accordion-icon
+                                                    class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </button>
+
+                                </h2>
+
+                                <div id="body-<?= $qId ?>" class="hidden" aria-labelledby="heading-<?= $qId ?>">
+                                    <div class="p-4 border-t border-gray-100 bg-white">
+
+                                        <div class="content-table post-award w-full">
+                                            <div
+                                                class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                                <div class="col-bidcode w-1/4">Bid Code</div>
+                                                <div class="col-title text-center font-bold flex-1">Award Details</div>
+                                            </div>
+
+                                            <div class="scrollableTableBody divide-y divide-gray-100">
+
+                                                <?php if ($qCount === 0): ?>
+                                                    <div
+                                                        class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
+                                                        <i class="fa-regular fa-folder-open me-2 text-base"></i>No post-award
+                                                        information posted for this quarter.
+                                                    </div>
+                                                <?php else: ?>
+                                                    <?php foreach ($qMonths as $monthName => $rows): ?>
+                                                        <div class="bg-slate-50 p-2">
+                                                            <div class="header-month font-bold justify-center">
+                                                                <?= bacH($monthName) ?></div>
+                                                        </div>
+
+                                                        <?php foreach ($rows as $doc): ?>
+                                                            <div class="data-row">
+                                                                <a href="<?= bacH($doc['file_path']) ?>" target="_blank" rel="noopener"
+                                                                    class="col-bidcode p-2 font-mono"><?= bacH($doc['bid_code']) ?></a>
+                                                                <a href="<?= bacH($doc['file_path']) ?>" target="_blank" rel="noopener"
+                                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline"><?= bacH($doc['bidding_title']) ?></a>
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
-
-                        </div>
-
-                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-
-                            <h2 id="heading-q2">
-
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
-                                    data-accordion-target="#body-q2" aria-expanded="false" aria-controls="body-q1">
-
-                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
-                                    <div class="flex items-center gap-3.5 text-left">
-                                        <!-- Visual Calendar Icon Accent -->
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
-                                            <i class="fa-sharp fa-regular fa-2 text-base"></i>
-                                        </div>
-
-                                        <div class="flex flex-col sm:gap-0.5">
-                                            <span
-                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">2nd
-                                                Quarter</span>
-                                            <span
-                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
-                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
-                                                April - June
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
-                                    <div class="flex items-center gap-3 ms-auto">
-                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
-                                        <span
-                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
-                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            8 Postings
-                                        </span>
-
-                                        <!-- Chevron Icon Container -->
-                                        <div
-                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
-                                            <svg data-accordion-icon
-                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
-
-                            </h2>
-
-                            <div id="body-q2" class="hidden" aria-labelledby="heading-q2">
-                                <div class="p-4 border-t border-gray-100 bg-white">
-
-                                    <div class="content-table post-award w-full">
-                                        <div
-                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
-                                            <div class="col-bidcode w-1/4">Bid Code</div>
-                                            <div class="col-title text-center font-bold flex-1">Award Details</div>
-                                        </div>
-
-                                        <div class="scrollableTableBody divide-y divide-gray-100">
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">April</div>
-                                            </div>
-
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No post-award
-                                                information posted for this month yet.
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">May</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 84-2025.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 84-2025</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 84-2025.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and Delivery of Various Office Equipment, Furniture and Fixtures of
-                                                    Different Departments (Rebidding)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 01-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 01-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and Delivery of Various I.T Equipment and Accessories of Different
-                                                    Departments (Rebidding)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 02-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 02-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 02-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    of Janitorial Services for CY 2026</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 03-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 03-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    of Services for the Operations and Maintenance of CWD Septage
-                                                    Treatment Plant (SpTP) (Renewal of Contract for Three (3)
-                                                    Months)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 04-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 04-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 04-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    of Materials and Services for the Installation of Canopy at CWD
-                                                    Extension Office-Canlubang (SVP) (2nd Posting) (CWD 04-2026)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 06-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 06-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 06-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and Delivery of Tokens (Chicken with Assorted Muffins) (SVP)</a>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">June</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 05-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 05-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 05-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    of Services for the Conduct of Microbiological, Physical & Chemical,
-                                                    and Arsenic Testing (SVP)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 10-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 05-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 10-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and Delivery of Consumable Pack for Water Purifier (SVP)</a>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-
-                            <h2 id="heading-q3">
-
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
-                                    data-accordion-target="#body-q3" aria-expanded="false" aria-controls="body-q1">
-
-                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
-                                    <div class="flex items-center gap-3.5 text-left">
-                                        <!-- Visual Calendar Icon Accent -->
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
-                                            <i class="fa-sharp fa-regular fa-3 text-base"></i>
-                                        </div>
-
-                                        <div class="flex flex-col sm:gap-0.5">
-                                            <span
-                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">3rd
-                                                Quarter</span>
-
-                                            <span
-                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
-                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
-                                                July - September
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
-                                    <div class="flex items-center gap-3 ms-auto">
-                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
-                                        <span
-                                            class="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Current
-                                        </span>
-                                        <span
-                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
-                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            10 Postings
-                                        </span>
-
-                                        <!-- Chevron Icon Container -->
-                                        <div
-                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
-                                            <svg data-accordion-icon
-                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
-
-                            </h2>
-
-                            <div id="body-q3" class="hidden" aria-labelledby="heading-q3">
-                                <div class="p-4 border-t border-gray-100 bg-white">
-
-                                    <div class="content-table post-award w-full">
-                                        <div
-                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
-                                            <div class="col-bidcode w-1/4">Bid Code</div>
-                                            <div class="col-title text-center font-bold flex-1">Award Details</div>
-                                        </div>
-
-                                        <div class="scrollableTableBody divide-y divide-gray-100">
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">July</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 07-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 07-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 07-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and Delivery of Denorado Rice</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 20-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 20-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 20-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Chemicals and Filtering Materials (SVP) (2nd Posting)</a>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">August</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 8-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 8-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 8-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Services for the Preventive Maintenance of CWD's Septage Treatment Plant</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 15-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 15-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 15-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Sodium Hypochlorite (SVP)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 16-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 16-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 16-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Various Materials for Restoration Works</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 17-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 17-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 17-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of HDPE and PVC Pipes C-150 (SVP)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 18-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 18-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 18-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Galvanized Iron Pipes, Brass Valves and Accessories (SVP)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 19-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 19-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 19-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Manual Rotary Pipe Cutter and Concrete/Asphalt Cutter (SVP) (2nd Posting)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 21-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 21-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 21-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply of Materials and Services for the Change of Cowl, Body Repair & Under Coating of Various Service Vehicles (SVP)</a>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 33-2026.zip"
-                                                    class="col-bidcode p-2 font-mono">CWD 33-2026</a>
-                                                <a href="assets\Files\bac\PostAward\2026\CWD 33-2026.zip"
-                                                    class="col-title text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Installation of Operable Wall (SVP)</a>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">September</div>
-                                            </div>
-
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No post-award
-                                                information posted for this month yet.
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-
-                            <h2 id="heading-q4">
-
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
-                                    data-accordion-target="#body-q4" aria-expanded="false" aria-controls="body-q1">
-
-                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
-                                    <div class="flex items-center gap-3.5 text-left">
-                                        <!-- Visual Calendar Icon Accent -->
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
-                                            <i class="fa-sharp fa-regular fa-4 text-base"></i>
-                                        </div>
-
-                                        <div class="flex flex-col sm:gap-0.5">
-                                            <span
-                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">4th
-                                                Quarter</span>
-                                            <span
-                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
-                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
-                                                October - December
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
-                                    <div class="flex items-center gap-3 ms-auto">
-                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
-                                        <span
-                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
-                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            0 Postings
-                                        </span>
-
-                                        <!-- Chevron Icon Container -->
-                                        <div
-                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
-                                            <svg data-accordion-icon
-                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
-
-                            </h2>
-
-                            <div id="body-q4" class="hidden" aria-labelledby="heading-q4">
-
-                                <div class="p-4 border-t border-gray-100 bg-white">
-
-                                    <div class="content-table post-award w-full">
-                                        <div
-                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
-                                            <div class="col-bidcode w-1/4">Bid Code</div>
-                                            <div class="col-title text-center font-bold flex-1">Award Details</div>
-                                        </div>
-
-                                        <div class="scrollableTableBody divide-y divide-gray-100">
-
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No post-award
-                                                information posted for this quarter.
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
+                        <?php endforeach; ?>
 
                     </div>
 

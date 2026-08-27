@@ -48,15 +48,22 @@ const BIDDING_CATEGORIES = [
 ];
 const BIDDING_EDITOR_ROLES = ['superadmin', 'bidding'];
 const MAX_UPLOAD_BYTES = 25 * 1024 * 1024; // 25 MB
-const BIDDING_UPLOAD_DIR = __DIR__ . '/uploads/bidding'; // filesystem path next to this file
+const BIDDING_UPLOAD_DIR = 'uploads/bidding'; // relative to the project root (parent of modules/), not modules/ itself
+const PROJECT_ROOT = __DIR__ . '/..'; // modules/bidding.php -> project root is one level up
+
+function biddingUploadRoot(): string
+{
+    return realpath(PROJECT_ROOT) . '/' . BIDDING_UPLOAD_DIR;
+}
 
 $canEdit = in_array($userInfo['role'], BIDDING_EDITOR_ROLES, true);
 
 /* =====================
    HELPERS
 ===================== */
-function quarterFromDate(string $ymd): string
+function quarterFromDate(?string $ymd): string
 {
+    if (!$ymd) return '—';
     $month = (int) substr($ymd, 5, 2);
     if ($month <= 3) return 'Q1';
     if ($month <= 6) return 'Q2';
@@ -96,8 +103,9 @@ function validateUploadedFile(array $file): array
 function storeUploadedFile(array $file, string $ext, string $uploadDate): array
 {
     // Returns [relativePath, error]
-    $year = substr($uploadDate, 0, 4);
-    $destDir = BIDDING_UPLOAD_DIR . '/' . $year;
+    // Post Award Information uploads may have a blank upload_date; fall back to the current year for the folder.
+    $year = $uploadDate !== '' ? substr($uploadDate, 0, 4) : date('Y');
+    $destDir = biddingUploadRoot() . '/' . $year;
     if (!is_dir($destDir) && !mkdir($destDir, 0755, true) && !is_dir($destDir)) {
         return [null, 'Could not create upload directory.'];
     }
@@ -161,7 +169,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 setFlash('error', 'Bidding title is required (max 255 characters).');
                 redirectBackToList();
             }
-            if (!validateDate($upload_date)) {
+            // Post Award Information has no upload date; every other category requires one.
+            if ($category === 'Post Award Information') {
+                $upload_date = '';
+            } elseif (!validateDate($upload_date)) {
                 setFlash('error', 'Invalid upload date.');
                 redirectBackToList();
             }
@@ -190,12 +201,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
                 );
                 $stmt->execute([
-                    $category, $bid_code, $bidding_title, $upload_date,
+                    $category, $bid_code, $bidding_title, ($upload_date !== '' ? $upload_date : null),
                     $file['name'], $relativePath, $ext, $file['size'], $userInfo['id'],
                 ]);
                 setFlash('success', 'Bidding document uploaded successfully.');
             } catch (PDOException $e) {
-                @unlink(__DIR__ . '/' . $relativePath);
+                @unlink(realpath(PROJECT_ROOT) . '/' . $relativePath);
                 setFlash('error', 'Database error while saving document.');
             }
 
@@ -210,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $bidding_title = trim($_POST['bidding_title'] ?? '');
             $upload_date   = trim($_POST['upload_date'] ?? '');
 
-            if ($id <= 0 || $bid_code === '' || $bidding_title === '' || !validateDate($upload_date)) {
+            if ($id <= 0 || $bid_code === '' || $bidding_title === '') {
                 setFlash('error', 'Please fill in all fields correctly.');
                 redirectBackToList();
             }
@@ -220,6 +231,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $existing = $stmt->fetch(PDO::FETCH_ASSOC);
             if (!$existing) {
                 setFlash('error', 'Document not found.');
+                redirectBackToList();
+            }
+
+            // Post Award Information has no upload date; every other category requires one.
+            if ($existing['category'] === 'Post Award Information') {
+                $upload_date = '';
+            } elseif (!validateDate($upload_date)) {
+                setFlash('error', 'Invalid upload date.');
                 redirectBackToList();
             }
 
@@ -241,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     setFlash('error', $error);
                     redirectBackToList();
                 }
-                $oldAbsPathToDelete = __DIR__ . '/' . $existing['file_path'];
+                $oldAbsPathToDelete = realpath(PROJECT_ROOT) . '/' . $existing['file_path'];
                 $newRelativePath = $relativePath;
                 $newFileName     = $file['name'];
                 $newFileType     = $ext;
@@ -256,7 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                      WHERE id = ?"
                 );
                 $stmt->execute([
-                    $bid_code, $bidding_title, $upload_date,
+                    $bid_code, $bidding_title, ($upload_date !== '' ? $upload_date : null),
                     $newFileName, $newRelativePath, $newFileType, $newFileSize,
                     $id,
                 ]);
@@ -320,6 +339,14 @@ $filterYear    = $_GET['year'] ?? date('Y');
 if (!ctype_digit((string) $filterYear) || strlen((string) $filterYear) !== 4) {
     $filterYear = date('Y');
 }
+$searchTerm = trim($_GET['search'] ?? '');
+if (strlen($searchTerm) > 100) {
+    $searchTerm = substr($searchTerm, 0, 100);
+}
+
+$perPage = 10;
+$page = (int) ($_GET['page'] ?? 1);
+if ($page < 1) $page = 1;
 
 /* =====================
    FETCH DOCUMENTS FOR TABLE
@@ -334,16 +361,39 @@ $sql = "SELECT
         JOIN users u ON u.id = d.created_by
         WHERE d.is_deleted = 0
           AND d.category = ?
-          AND YEAR(d.upload_date) = ?";
+          AND (d.upload_date IS NULL OR YEAR(d.upload_date) = ?)";
 $params = [$filterCategory, $filterYear];
 
 if ($filterQuarter && isset($quarterMonths[$filterQuarter])) {
     [$mStart, $mEnd] = $quarterMonths[$filterQuarter];
-    $sql .= " AND MONTH(d.upload_date) BETWEEN ? AND ?";
+    $sql .= " AND (d.upload_date IS NULL OR MONTH(d.upload_date) BETWEEN ? AND ?)";
     $params[] = $mStart;
     $params[] = $mEnd;
 }
-$sql .= " ORDER BY d.upload_date DESC, d.id DESC";
+if ($searchTerm !== '') {
+    $sql .= " AND (d.bid_code LIKE ? OR d.bidding_title LIKE ?)";
+    $like = '%' . str_replace(['%', '_'], ['\%', '\_'], $searchTerm) . '%';
+    $params[] = $like;
+    $params[] = $like;
+}
+
+// Total count for pagination (same filters, no LIMIT).
+$countStmt = $conn->prepare(str_replace(
+    'SELECT
+            d.id, d.category, d.bid_code, d.bidding_title, d.upload_date,
+            d.file_name, d.file_path, d.file_type, d.file_size,
+            u.firstname, u.lastname',
+    'SELECT COUNT(*)',
+    $sql
+));
+$countStmt->execute($params);
+$totalDocuments = (int) $countStmt->fetchColumn();
+$totalPages = max(1, (int) ceil($totalDocuments / $perPage));
+if ($page > $totalPages) $page = $totalPages;
+$offset = ($page - 1) * $perPage;
+
+$sql .= " ORDER BY d.upload_date IS NULL DESC, d.upload_date DESC, d.id DESC";
+$sql .= " LIMIT " . $perPage . " OFFSET " . $offset;
 
 $stmt = $conn->prepare($sql);
 $stmt->execute($params);
@@ -379,6 +429,56 @@ function formatBytes(int $bytes): string
 function h(?string $s): string
 {
     return htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8');
+}
+
+function friendlyDate(?string $ymd): string
+{
+    if (!$ymd) return '';
+    $d = DateTime::createFromFormat('Y-m-d', $ymd);
+    return $d ? $d->format('M j, Y') : $ymd;
+}
+
+function fileIconClass(string $ext): string
+{
+    return $ext === 'pdf' ? 'fa-file-pdf' : 'fa-file-zipper';
+}
+
+function fileIconColor(string $ext): string
+{
+    return $ext === 'pdf' ? 'text-red-500' : 'text-amber-500';
+}
+
+function categoryBadgeClass(string $category): string
+{
+    return match ($category) {
+        'Bidding Opportunities'  => 'bg-blue-100 text-blue-700',
+        'Bid Bulletin/Addendum'  => 'bg-purple-100 text-purple-700',
+        'Notice of Postponement' => 'bg-amber-100 text-amber-700',
+        'Post Award Information' => 'bg-green-100 text-green-700',
+        default                  => 'bg-gray-100 text-gray-700',
+    };
+}
+
+function initials(string $first, string $last): string
+{
+    $a = $first !== '' ? mb_substr($first, 0, 1) : '';
+    $b = $last !== '' ? mb_substr($last, 0, 1) : '';
+    return mb_strtoupper($a . $b) ?: '?';
+}
+
+/** Builds a querystring for the list view, overriding only the given keys. */
+function listUrl(array $overrides = []): string
+{
+    global $filterCategory, $filterQuarter, $filterYear, $searchTerm, $page;
+    $base = [
+        'category' => $filterCategory,
+        'quarter'  => $filterQuarter,
+        'year'     => $filterYear,
+        'search'   => $searchTerm,
+        'page'     => $page,
+    ];
+    $merged = array_merge($base, $overrides);
+    return '?' . http_build_query(array_filter($merged, fn($v) => $v !== '' && $v !== null));
 }
 ?>
 <!DOCTYPE html>
@@ -492,9 +592,14 @@ function h(?string $s): string
 
                                 <div>
                                     <label for="upload_date" class="block text-sm font-medium text-gray-700 mb-1">Upload Date</label>
-                                    <input type="date" id="upload_date" name="upload_date" required
-                                        value="<?= h($editDoc['upload_date']) ?>"
-                                        class="block w-full p-2.5 border border-gray-300 rounded-lg text-sm shadow-sm focus:ring-[#1a589e] focus:border-[#1a589e]">
+                                    <?php $editIsPostAward = $editDoc['category'] === 'Post Award Information'; ?>
+                                    <input type="date" id="upload_date" name="upload_date"
+                                        <?= $editIsPostAward ? 'readonly' : 'required' ?>
+                                        value="<?= h($editIsPostAward ? '' : $editDoc['upload_date']) ?>"
+                                        class="block w-full p-2.5 border border-gray-300 rounded-lg text-sm shadow-sm focus:ring-[#1a589e] focus:border-[#1a589e] <?= $editIsPostAward ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : '' ?>">
+                                    <?php if ($editIsPostAward): ?>
+                                        <p class="text-xs text-gray-500 mt-1">No date is needed for Post Award Information documents.</p>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="border-t pt-4 border-gray-200">
@@ -564,6 +669,7 @@ function h(?string $s): string
                                     <label for="upload_date" class="block text-sm font-medium text-gray-700 mb-1">Upload Date</label>
                                     <input type="date" id="upload_date" name="upload_date" required
                                         class="block w-full p-2.5 border border-gray-300 rounded-lg text-sm shadow-sm focus:ring-[#1a589e] focus:border-[#1a589e]">
+                                    <p id="upload_date_hint" class="text-xs text-gray-500 mt-1 hidden">No date is needed for Post Award Information documents.</p>
                                 </div>
 
                                 <div>
@@ -581,6 +687,48 @@ function h(?string $s): string
 
                             </div>
                         </form>
+
+                        <script>
+                        (function () {
+                            var categorySelect = document.getElementById('category');
+                            var uploadDateInput = document.getElementById('upload_date');
+                            var hint = document.getElementById('upload_date_hint');
+                            if (!categorySelect || !uploadDateInput) return;
+
+                            var LOCK_CATEGORY = 'Post Award Information';
+                            var lockedClasses = ['bg-gray-100', 'text-gray-500', 'cursor-not-allowed'];
+                            var userEnteredDate = ''; // remembers what the user typed before locking
+
+                            function applyLockState() {
+                                var isPostAward = categorySelect.value === LOCK_CATEGORY;
+
+                                if (isPostAward) {
+                                    // Remember whatever the user had typed, then blank the field.
+                                    if (!uploadDateInput.readOnly) {
+                                        userEnteredDate = uploadDateInput.value;
+                                    }
+                                    uploadDateInput.value = '';
+                                    uploadDateInput.readOnly = true; // stays readonly, NOT disabled, so it still submits (as blank)
+                                    uploadDateInput.required = false;
+                                    uploadDateInput.classList.add.apply(uploadDateInput.classList, lockedClasses);
+                                    if (hint) hint.classList.remove('hidden');
+                                } else {
+                                    uploadDateInput.readOnly = false;
+                                    uploadDateInput.required = true;
+                                    uploadDateInput.classList.remove.apply(uploadDateInput.classList, lockedClasses);
+                                    if (hint) hint.classList.add('hidden');
+                                    // Restore what the user had typed before, if anything.
+                                    if (userEnteredDate) {
+                                        uploadDateInput.value = userEnteredDate;
+                                        userEnteredDate = '';
+                                    }
+                                }
+                            }
+
+                            categorySelect.addEventListener('change', applyLockState);
+                            applyLockState(); // run once in case of pre-selected value (e.g. browser autofill)
+                        })();
+                        </script>
                     <?php endif; ?>
 
                 </div>
@@ -620,7 +768,7 @@ function h(?string $s): string
                 <h1 class="text-3xl font-extrabold text-gray-900 mb-8 border-b-2 border-[#1a589e]">Bidding Opportunities</h1>
 
                 <!-- ===== FILTER FORM (GET, submits on select change via native form, no JS) ===== -->
-                <form method="GET" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <form method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
 
                     <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
                         <label for="category" class="block text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wider">Document Category</label>
@@ -644,11 +792,21 @@ function h(?string $s): string
                         </select>
                     </div>
 
+                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                        <label for="year" class="block text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wider">Year</label>
+                        <input type="number" id="year" name="year" min="2000" max="2100" value="<?= h((string) $filterYear) ?>"
+                            class="block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#1a589e] focus:border-[#1a589e] sm:text-sm">
+                    </div>
+
                     <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 flex flex-col justify-between">
                         <div>
-                            <label for="year" class="block text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wider">Year</label>
-                            <input type="number" id="year" name="year" min="2000" max="2100" value="<?= h((string) $filterYear) ?>"
-                                class="block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#1a589e] focus:border-[#1a589e] sm:text-sm mb-3">
+                            <label for="search" class="block text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wider">Search</label>
+                            <div class="relative mb-3">
+                                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                                <input type="text" id="search" name="search" value="<?= h($searchTerm) ?>"
+                                    placeholder="Bid code or title…"
+                                    class="block w-full pl-9 pr-3 py-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#1a589e] focus:border-[#1a589e] sm:text-sm">
+                            </div>
                         </div>
                         <button type="submit"
                             class="w-full px-4 py-2.5 bg-[#1a589e] text-white font-semibold rounded-lg shadow hover:bg-[#15467e] transition duration-300">
@@ -658,20 +816,96 @@ function h(?string $s): string
 
                 </form>
 
+                <?php if ($searchTerm !== '' || $filterQuarter !== ''): ?>
+                    <div class="flex flex-wrap items-center gap-2 mb-6 -mt-2">
+                        <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Active:</span>
+                        <?php if ($searchTerm !== ''): ?>
+                            <a href="<?= h(listUrl(['search' => null, 'page' => 1])) ?>"
+                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#1a589e]/10 text-[#1a589e] hover:bg-[#1a589e]/20 transition">
+                                “<?= h($searchTerm) ?>” <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        <?php endif; ?>
+                        <?php if ($filterQuarter !== ''): ?>
+                            <a href="<?= h(listUrl(['quarter' => null, 'page' => 1])) ?>"
+                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#1a589e]/10 text-[#1a589e] hover:bg-[#1a589e]/20 transition">
+                                <?= h($filterQuarter) ?> <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+
                 <div>
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
                         <h2 class="text-2xl font-bold text-gray-800">Existing <?= h($filterCategory) ?> Documents</h2>
+                        <?php if ($totalDocuments > 0): ?>
+                            <span class="text-sm text-gray-500">
+                                Showing <?= (int) (($page - 1) * $perPage + 1) ?>–<?= (int) min($page * $perPage, $totalDocuments) ?>
+                                of <?= (int) $totalDocuments ?> document<?= $totalDocuments === 1 ? '' : 's' ?>
+                            </span>
+                        <?php endif; ?>
                     </div>
 
-                    <div class="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200">
-                        <?php if (empty($documents)): ?>
-                            <div class="text-center text-gray-500 py-20">No documents found for this filter.</div>
-                        <?php else: ?>
+                    <?php if (empty($documents)): ?>
+                        <div class="bg-white rounded-xl shadow-xl border border-gray-200 text-center py-20 px-6">
+                            <i class="fa-regular fa-folder-open text-5xl text-gray-300 mb-4"></i>
+                            <p class="text-gray-500 font-medium">
+                                <?= $searchTerm !== '' ? 'No documents match “' . h($searchTerm) . '”.' : 'No documents found for this filter.' ?>
+                            </p>
+                            <?php if ($searchTerm !== '' || $filterQuarter !== ''): ?>
+                                <a href="<?= h(listUrl(['search' => null, 'quarter' => null, 'page' => 1])) ?>"
+                                    class="inline-block mt-3 text-[#1a589e] hover:underline text-sm font-semibold">Clear filters</a>
+                            <?php endif; ?>
+                        </div>
+                    <?php else: ?>
+
+                        <!-- ===== MOBILE: card list ===== -->
+                        <div class="md:hidden space-y-3">
+                            <?php foreach ($documents as $doc): ?>
+                                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-4">
+                                    <div class="flex items-start justify-between gap-3 mb-2">
+                                        <div class="min-w-0">
+                                            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider"><?= h($doc['bid_code']) ?></p>
+                                            <p class="text-base font-bold text-gray-900 leading-snug"><?= h($doc['bidding_title']) ?></p>
+                                        </div>
+                                        <i class="fa-solid <?= fileIconClass($doc['file_type']) ?> <?= fileIconColor($doc['file_type']) ?> text-2xl shrink-0"></i>
+                                    </div>
+                                    <div class="flex flex-wrap items-center gap-2 mb-3 text-xs">
+                                        <?php if ($doc['upload_date']): ?>
+                                            <span class="inline-flex items-center gap-1 text-gray-500">
+                                                <i class="fa-regular fa-calendar"></i> <?= h(friendlyDate($doc['upload_date'])) ?>
+                                            </span>
+                                            <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 font-semibold"><?= quarterFromDate($doc['upload_date']) ?></span>
+                                        <?php else: ?>
+                                            <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-semibold">No date required</span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="flex items-center justify-between border-t border-gray-100 pt-3">
+                                        <a href="<?= h('../' . $doc['file_path']) ?>" target="_blank" rel="noopener"
+                                            class="inline-flex items-center gap-1.5 text-[#1a589e] hover:underline font-semibold text-sm">
+                                            <i class="fa-solid fa-download"></i>
+                                            <?= h(strtoupper($doc['file_type'])) ?> · <?= formatBytes((int) $doc['file_size']) ?>
+                                        </a>
+                                        <div class="flex items-center gap-2">
+                                            <span class="w-6 h-6 rounded-full bg-[#1a589e]/10 text-[#1a589e] text-[10px] font-bold flex items-center justify-center"
+                                                title="<?= h(trim($doc['firstname'] . ' ' . $doc['lastname'])) ?>">
+                                                <?= h(initials($doc['firstname'], $doc['lastname'])) ?>
+                                            </span>
+                                            <?php if ($canEdit): ?>
+                                                <a href="<?= h(listUrl(['edit_id' => (int) $doc['id']])) ?>" class="text-[#1a589e] hover:underline text-sm">Edit</a>
+                                                <a href="<?= h(listUrl(['confirm_delete' => (int) $doc['id']])) ?>" class="text-red-600 hover:underline text-sm">Delete</a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <!-- ===== DESKTOP: table ===== -->
+                        <div class="hidden md:block bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Bid Code</th>
-                                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Title</th>
+                                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Document</th>
                                         <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Date</th>
                                         <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Quarter</th>
                                         <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">File</th>
@@ -683,23 +917,41 @@ function h(?string $s): string
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-100">
                                     <?php foreach ($documents as $doc): ?>
-                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
-                                            <td class="px-4 py-3 text-sm font-medium text-gray-900"><?= h($doc['bid_code']) ?></td>
-                                            <td class="px-4 py-3 text-sm text-gray-700"><?= h($doc['bidding_title']) ?></td>
-                                            <td class="px-4 py-3 text-sm text-gray-500"><?= h($doc['upload_date']) ?></td>
-                                            <td class="px-4 py-3 text-sm text-gray-500"><?= quarterFromDate($doc['upload_date']) ?></td>
+                                        <tr class="hover:bg-gray-50 transition">
+                                            <td class="px-4 py-3 max-w-xs">
+                                                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide"><?= h($doc['bid_code']) ?></p>
+                                                <p class="text-sm font-medium text-gray-900 truncate" title="<?= h($doc['bidding_title']) ?>"><?= h($doc['bidding_title']) ?></p>
+                                            </td>
+                                            <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">
+                                                <?= $doc['upload_date'] ? h(friendlyDate($doc['upload_date'])) : '<span class="text-amber-600 font-medium">Not required</span>' ?>
+                                            </td>
                                             <td class="px-4 py-3 text-sm">
-                                                <a href="<?= h($doc['file_path']) ?>" target="_blank" rel="noopener"
-                                                    class="text-[#1a589e] hover:underline font-semibold">
-                                                    <?= h(strtoupper($doc['file_type'])) ?> (<?= formatBytes((int) $doc['file_size']) ?>)
+                                                <?php if ($doc['upload_date']): ?>
+                                                    <span class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 text-xs font-semibold"><?= quarterFromDate($doc['upload_date']) ?></span>
+                                                <?php else: ?>
+                                                    <span class="text-gray-300">—</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                <a href="<?= h('../' . $doc['file_path']) ?>" target="_blank" rel="noopener"
+                                                    class="inline-flex items-center gap-2 text-[#1a589e] hover:underline font-semibold">
+                                                    <i class="fa-solid <?= fileIconClass($doc['file_type']) ?> <?= fileIconColor($doc['file_type']) ?>"></i>
+                                                    <?= h(strtoupper($doc['file_type'])) ?> <span class="text-gray-400 font-normal">(<?= formatBytes((int) $doc['file_size']) ?>)</span>
                                                 </a>
                                             </td>
-                                            <td class="px-4 py-3 text-sm text-gray-500"><?= h(trim($doc['firstname'] . ' ' . $doc['lastname'])) ?></td>
+                                            <td class="px-4 py-3 text-sm text-gray-500">
+                                                <span class="inline-flex items-center gap-2">
+                                                    <span class="w-6 h-6 rounded-full bg-[#1a589e]/10 text-[#1a589e] text-[10px] font-bold flex items-center justify-center">
+                                                        <?= h(initials($doc['firstname'], $doc['lastname'])) ?>
+                                                    </span>
+                                                    <?= h(trim($doc['firstname'] . ' ' . $doc['lastname'])) ?>
+                                                </span>
+                                            </td>
                                             <?php if ($canEdit): ?>
                                                 <td class="px-4 py-3 text-sm text-right whitespace-nowrap">
-                                                    <a href="?edit_id=<?= (int) $doc['id'] ?>&category=<?= urlencode($filterCategory) ?>&quarter=<?= urlencode($filterQuarter) ?>&year=<?= urlencode((string) $filterYear) ?>"
+                                                    <a href="<?= h(listUrl(['edit_id' => (int) $doc['id']])) ?>"
                                                         class="text-[#1a589e] hover:underline mr-3">Edit</a>
-                                                    <a href="?confirm_delete=<?= (int) $doc['id'] ?>&category=<?= urlencode($filterCategory) ?>&quarter=<?= urlencode($filterQuarter) ?>&year=<?= urlencode((string) $filterYear) ?>"
+                                                    <a href="<?= h(listUrl(['confirm_delete' => (int) $doc['id']])) ?>"
                                                         class="text-red-600 hover:underline">Delete</a>
                                                 </td>
                                             <?php endif; ?>
@@ -707,8 +959,33 @@ function h(?string $s): string
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                        </div>
+
+                        <!-- ===== PAGINATION ===== -->
+                        <?php if ($totalPages > 1): ?>
+                            <div class="flex items-center justify-center gap-1 mt-6">
+                                <a href="<?= h(listUrl(['page' => max(1, $page - 1)])) ?>"
+                                    class="px-3 py-2 rounded-lg text-sm font-semibold <?= $page <= 1 ? 'text-gray-300 pointer-events-none' : 'text-[#1a589e] hover:bg-[#1a589e]/10' ?>">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </a>
+                                <?php for ($p = 1; $p <= $totalPages; $p++): ?>
+                                    <?php if ($p === 1 || $p === $totalPages || abs($p - $page) <= 1): ?>
+                                        <a href="<?= h(listUrl(['page' => $p])) ?>"
+                                            class="w-9 h-9 flex items-center justify-center rounded-lg text-sm font-semibold <?= $p === $page ? 'bg-[#1a589e] text-white' : 'text-gray-600 hover:bg-gray-100' ?>">
+                                            <?= $p ?>
+                                        </a>
+                                    <?php elseif (abs($p - $page) === 2): ?>
+                                        <span class="px-1 text-gray-300">…</span>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
+                                <a href="<?= h(listUrl(['page' => min($totalPages, $page + 1)])) ?>"
+                                    class="px-3 py-2 rounded-lg text-sm font-semibold <?= $page >= $totalPages ? 'text-gray-300 pointer-events-none' : 'text-[#1a589e] hover:bg-[#1a589e]/10' ?>">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </a>
+                            </div>
                         <?php endif; ?>
-                    </div>
+
+                    <?php endif; ?>
                 </div>
 
             </div>

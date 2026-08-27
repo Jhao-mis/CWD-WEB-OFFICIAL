@@ -1,3 +1,11 @@
+<?php
+include 'db.php';
+include 'includes/bac-helpers.php';
+
+$bacCategory = 'Bid Bulletin/Addendum';
+$bacDocs = bacFetchDocuments($conn, $bacCategory);
+$bacQuarters = bacGroupByQuarterAndMonth($bacDocs);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -127,500 +135,120 @@
                         data-active-classes="bg-blue-50 text-[#1a589e]" data-inactive-classes="text-gray-700 bg-gray-50"
                         class="space-y-3">
 
-                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                        <?php
+                        $bacQuarterMeta = [
+                            'Q1' => ['icon' => 'fa-1', 'label' => '1st', 'range' => 'January - March'],
+                            'Q2' => ['icon' => 'fa-2', 'label' => '2nd', 'range' => 'April - June'],
+                            'Q3' => ['icon' => 'fa-3', 'label' => '3rd', 'range' => 'July - September'],
+                            'Q4' => ['icon' => 'fa-4', 'label' => '4th', 'range' => 'October - December'],
+                        ];
+                        ?>
 
-                            <h2 id="heading-q1">
+                        <?php foreach ($bacQuarterMeta as $qKey => $qInfo): ?>
+                            <?php
+                            $qId = strtolower($qKey);
+                            $qMonths = $bacQuarters[$qKey];
+                            $qCount = bacQuarterCount($qMonths);
+                            ?>
+                            <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
 
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
-                                    data-accordion-target="#body-q1" aria-expanded="false" aria-controls="body-q1">
+                                <h2 id="heading-<?= $qId ?>">
 
-                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
-                                    <div class="flex items-center gap-3.5 text-left">
-                                        <!-- Visual Calendar Icon Accent -->
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
-                                            <i class="fa-sharp fa-regular fa-1 text-base"></i>
+                                    <button type="button"
+                                        class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
+                                        data-accordion-target="#body-<?= $qId ?>" aria-expanded="false" aria-controls="body-<?= $qId ?>">
+
+                                        <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
+                                        <div class="flex items-center gap-3.5 text-left">
+                                            <!-- Visual Calendar Icon Accent -->
+                                            <div
+                                                class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
+                                                <i class="fa-sharp fa-regular <?= $qInfo['icon'] ?> text-base"></i>
+                                            </div>
+
+                                            <div class="flex flex-col sm:gap-0.5">
+                                                <span
+                                                    class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase"><?= $qInfo['label'] ?>
+                                                    Quarter</span>
+                                                <span
+                                                    class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
+                                                    <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
+                                                    <?= $qInfo['range'] ?>
+                                                </span>
+                                            </div>
                                         </div>
 
-                                        <div class="flex flex-col sm:gap-0.5">
+                                        <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
+                                        <div class="flex items-center gap-3 ms-auto">
+                                            <!-- Transparent / Minimalist Pill Badge para sa Postings -->
                                             <span
-                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">1st
-                                                Quarter</span>
-                                            <span
-                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
-                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
-                                                January - March
+                                                class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
+                                                <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
+                                                <?= $qCount ?> Posting<?= $qCount === 1 ? '' : 's' ?>
                                             </span>
+
+                                            <!-- Chevron Icon Container -->
+                                            <div
+                                                class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
+                                                <svg data-accordion-icon
+                                                    class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 10 6">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
+                                                </svg>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </button>
 
-                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
-                                    <div class="flex items-center gap-3 ms-auto">
-                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
-                                        <span
-                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
-                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            4 Postings
-                                        </span>
+                                </h2>
 
-                                        <!-- Chevron Icon Container -->
-                                        <div
-                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
-                                            <svg data-accordion-icon
-                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
+                                <div id="body-<?= $qId ?>" class="hidden" aria-labelledby="heading-<?= $qId ?>">
+                                    <div class="p-4 border-t border-gray-100 bg-white">
 
-                            </h2>
-
-                            <div id="body-q1" class="hidden" aria-labelledby="heading-q1">
-
-                                <div class="p-4 border-t border-gray-100 bg-white">
-                                    <div class="content-table">
-                                        <div
-                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
-                                            <div class="col-bidcode w-1/4">Reference No.</div>
-                                            <div class="col-title text-center font-bold flex-1">Title / Particulars
-                                            </div>
-                                            <div class="col-date bac w-1/4 text-right">Date Issued</div>
-                                        </div>
-
-                                        <div class="scrollableTableBody divide-y divide-gray-100">
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    January</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q1\CWD 84-2025 Addendum No. 1.pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    84-2025</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q1\CWD 84-2025 Addendum No. 1.pdf"
-                                                    target="_blank"
-                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and
-                                                    Delivery Various Office Equipment, Furniture and Fixtures of
-                                                    Different
-                                                    Departments (Rebidding)</a>
-                                                <div class="col-date">January 8</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q1\CWD 83-2025 Addendum No.1.pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    83-2025</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q1\CWD 83-2025 Addendum No.1.pdf"
-                                                    target="_blank"
-                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and
-                                                    Delivery Various I.T Equipment and Accessories of Different
-                                                    Departments</a>
-                                                <div class="col-date">January 9</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q1\Addendum No. 1 (CWD 01-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    01-2026</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q1\Addendum No. 1 (CWD 01-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and
-                                                    Delivery Various I.T. Equipment and Accessories of Different
-                                                    Departments
-                                                    (Rebidding)</a>
-                                                <div class="col-date">January 30</div>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    February</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q1\Addendum No. 2 (CWD 01-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    01-2026</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q1\Addendum No. 2 (CWD 01-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and
-                                                    Delivery Various I.T. Equipment and Accessories of Different
-                                                    Departments
-                                                    (Rebidding)</a>
-                                                <div class="col-date">February 9</div>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    March</div>
+                                        <div class="content-table w-full">
+                                            <div
+                                                class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
+                                                <div class="col-bidcode w-1/4">Reference No.</div>
+                                                <div class="col-title text-center font-bold flex-1">Title / Particulars
+                                                </div>
+                                                <div class="col-date bac w-1/4 text-right">Date Issued</div>
                                             </div>
 
                                             <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bid bulletin/addendum posted for this month.
-                                            </div>
+                                                class="scrollableTableBody block max-h-80 overflow-y-auto divide-y divide-gray-100">
 
+                                                <?php if ($qCount === 0): ?>
+                                                    <div
+                                                        class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
+                                                        <i class="fa-regular fa-folder-open me-2 text-base"></i>No bid bulletin/addendum posted for this quarter yet.
+                                                    </div>
+                                                <?php else: ?>
+                                                    <?php foreach ($qMonths as $monthName => $rows): ?>
+                                                        <div class="bg-slate-50 p-2">
+                                                            <div class="header-month font-bold justify-center">
+                                                                <?= bacH($monthName) ?></div>
+                                                        </div>
+
+                                                        <?php foreach ($rows as $doc): ?>
+                                                            <div class="data-row">
+                                                                <a href="<?= bacH($doc['file_path']) ?>" target="_blank" rel="noopener"
+                                                                    class="col-date bac text-left text-decoration-none font-mono"><?= bacH($doc['bid_code']) ?></a>
+                                                                <a href="<?= bacH($doc['file_path']) ?>" target="_blank" rel="noopener"
+                                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline"><?= bacH($doc['bidding_title']) ?></a>
+                                                                <div class="col-date"><?= bacFriendlyDate($doc['upload_date']) ?></div>
+                                                            </div>
+                                                        <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+                                                <?php endif; ?>
+
+                                            </div>
                                         </div>
+
                                     </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-
-                            <h2 id="heading-q2">
-
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
-                                    data-accordion-target="#body-q2" aria-expanded="false" aria-controls="body-q1">
-
-                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
-                                    <div class="flex items-center gap-3.5 text-left">
-                                        <!-- Visual Calendar Icon Accent -->
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
-                                            <i class="fa-sharp fa-regular fa-2 text-base"></i>
-                                        </div>
-
-                                        <div class="flex flex-col sm:gap-0.5">
-                                            <span
-                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">2nd
-                                                Quarter</span>
-                                            <span
-                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
-                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
-                                                April - June
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
-                                    <div class="flex items-center gap-3 ms-auto">
-                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
-                                        <span
-                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
-                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            2 Postings
-                                        </span>
-
-                                        <!-- Chevron Icon Container -->
-                                        <div
-                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
-                                            <svg data-accordion-icon
-                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
-
-                            </h2>
-
-                            <div id="body-q2" class="hidden" aria-labelledby="heading-q2">
-                                <div class="p-4 border-t border-gray-100 bg-white">
-
-                                    <div class="content-table">
-                                        <div
-                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
-                                            <div class="col-bidcode w-1/4">Reference No.</div>
-                                            <div class="col-title text-center font-bold flex-1">Title / Particulars
-                                            </div>
-                                            <div class="col-date bac w-1/4 text-right">Date Issued</div>
-                                        </div>
-                                        <div class="scrollableTableBody">
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    April</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q2\Addendum No. 1 (CWD 07-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    07-2026</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q2\Addendum No. 1 (CWD 07-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and
-                                                    Supply and Delivery of Denorado Rice</a>
-                                                <div class="col-date">April 27</div>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    May</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q2\Addendum No. 1 (CWD 08-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    08-2026</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q2\Addendum No. 1 (CWD 08-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and
-                                                    Supply of Services for the Preventive Maintenance of CWD's Septage
-                                                    Treatment Plant</a>
-                                                <div class="col-date">May 5</div>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    June</div>
-                                            </div>
-
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bid bulletin/addendum posted for this month.
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
-
-                        </div>
-
-                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-
-                            <h2 id="heading-q3">
-
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
-                                    data-accordion-target="#body-q3" aria-expanded="false" aria-controls="body-q1">
-
-                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
-                                    <div class="flex items-center gap-3.5 text-left">
-                                        <!-- Visual Calendar Icon Accent -->
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
-                                            <i class="fa-sharp fa-regular fa-3 text-base"></i>
-                                        </div>
-
-                                        <div class="flex flex-col sm:gap-0.5">
-                                            <span
-                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">3rd
-                                                Quarter</span>
-
-                                            <span
-                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
-                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
-                                                July - September
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
-                                    <div class="flex items-center gap-3 ms-auto">
-                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
-                                        <span
-                                            class="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Current
-                                        </span>
-                                        <span
-                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
-                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            4 Postings
-                                        </span>
-
-                                        <!-- Chevron Icon Container -->
-                                        <div
-                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
-                                            <svg data-accordion-icon
-                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
-
-                            </h2>
-
-                            <div id="body-q3" class="hidden" aria-labelledby="heading-q3">
-                                <div class="p-4 border-t border-gray-100 bg-white">
-
-                                    <div class="content-table">
-                                        <div
-                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
-                                            <div class="col-bidcode w-1/4">Reference No.</div>
-                                            <div class="col-title text-center font-bold flex-1">Title / Particulars
-                                            </div>
-                                            <div class="col-date bac w-1/4 text-right">Date Issued</div>
-                                        </div>
-                                        <div class="scrollableTableBody">
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    July</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 2 (CWD 27-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    27-2026</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 2 (CWD 27-2026).pdf"
-                                                    target="_blank" class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and Delivery of Submersible Cable, Manual Transfer Switch and
-                                                    Accessories (Rebidding)</a>
-                                                <div class="col-date">July 7</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 26-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    26-2026</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 26-2026).pdf"
-                                                    target="_blank" class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply
-                                                    and Delivery of Submersible Pumps and Motors (Rebidding)</a>
-                                                <div class="col-date">July 7</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 38-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    38-2026</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 38-2026).pdf"
-                                                    target="_blank" class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Goods and Services for CWD's 50th  Founding Anniversary</a>
-                                                <div class="col-date">July 20</div>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    August</div>
-                                            </div>
-
-                                            <div class="data-row">
-                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 50-2026).pdf"
-                                                    target="_blank"
-                                                    class="col-date bac text-left text-decoration-none font-mono">CWD
-                                                    50-2026</a>
-                                                <a href="assets\Files\bac\BidBull\2026\Q3\Addendum No. 1 (CWD 50-2026).pdf"
-                                                    target="_blank" class="col-title bac text-decoration-none hover:text-[#1a589e] hover:underline">Supply and Delivery of Submersible Pumps and Motors</a>
-                                                <div class="col-date">August 24</div>
-                                            </div>
-
-                                            <div class="bg-slate-50 p-2">
-                                                <div class="header-month font-bold justify-center">
-                                                    September</div>
-                                            </div>
-
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bid bulletin/addendum posted for this month yet.
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-
-                            <h2 id="heading-q4">
-
-                                <button type="button"
-                                    class="flex items-center justify-between w-full p-4 md:p-5 font-semibold text-gray-700 bg-gray-50/70 hover:bg-blue-50/50 transition-all duration-200 gap-3 border-l-4 border-transparent hover:border-[#1a589e] group"
-                                    data-accordion-target="#body-q4" aria-expanded="false" aria-controls="body-q1">
-
-                                    <!-- Kaliwang Bahagi: Icon + Quarter at Buwan -->
-                                    <div class="flex items-center gap-3.5 text-left">
-                                        <!-- Visual Calendar Icon Accent -->
-                                        <div
-                                            class="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-50 text-[#1a589e] group-hover:bg-[#1a589e] group-hover:text-white transition-colors duration-200 hidden sm:flex">
-                                            <i class="fa-sharp fa-regular fa-4 text-base"></i>
-                                        </div>
-
-                                        <div class="flex flex-col sm:gap-0.5">
-                                            <span
-                                                class="font-black text-base md:text-lg text-[#1a589e] tracking-wide uppercase">4th
-                                                Quarter</span>
-                                            <span
-                                                class="text-xs md:text-sm text-gray-500 font-medium flex items-center gap-1">
-                                                <i class="fa-regular fa-clock text-[11px] sm:hidden text-gray-400"></i>
-                                                October - December
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <!-- Kanang Bahagi: Styled Badge + Arrow Icon -->
-                                    <div class="flex items-center gap-3 ms-auto">
-                                        <!-- Transparent / Minimalist Pill Badge para sa Postings -->
-                                        <span
-                                            class="inline-flex items-center gap-1.5 bg-gray-200/60 text-gray-700 group-hover:bg-blue-100 group-hover:text-[#1a589e] text-xs font-bold px-3 py-1.5 rounded-full transition-colors duration-200">
-                                            <i class="fa-solid fa-file-invoice text-[10px] opacity-70"></i>
-                                            0 Postings
-                                        </span>
-
-                                        <!-- Chevron Icon Container -->
-                                        <div
-                                            class="p-1 rounded-full bg-gray-100 text-gray-400 group-hover:bg-blue-50 group-hover:text-[#1a589e] transition-colors duration-200">
-                                            <svg data-accordion-icon
-                                                class="w-3.5 h-3.5 shrink-0 transition-transform duration-200 text-current"
-                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 10 6">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2.5" d="M9 5 5 1 1 5" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </button>
-
-                            </h2>
-
-                            <div id="body-q4" class="hidden" aria-labelledby="heading-q4">
-                                <div class="p-4 border-t border-gray-100 bg-white">
-
-                                    <div class="content-table">
-                                        <div
-                                            class="header-row bg-[#1a589e] flex text-white font-bold p-3 text-xs md:text-sm uppercase rounded-t-lg">
-                                            <div class="col-bidcode w-1/4">Reference No.</div>
-                                            <div class="col-title text-center font-bold flex-1">Title / Particulars
-                                            </div>
-                                            <div class="col-date bac w-1/4 text-right">Date Issued</div>
-                                        </div>
-                                        <div class="scrollableTableBody">
-
-                                            <div
-                                                class="data-row justify-content-center text-center text-slate-400 italic py-6 text-sm flex items-center justify-center">
-                                                <i class="fa-regular fa-folder-open me-2 text-base"></i>No bid bulletin/addendum posted for this quarter yet.
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
+                        <?php endforeach; ?>
 
                     </div>
                 </div>
