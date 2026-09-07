@@ -1,3 +1,57 @@
+<?php
+require 'db.php';
+
+/* ===============================
+   COMPUTE CURRENT QUARTER
+=================================*/
+$currentMonth = (int) date('n');
+$currentYear = date('Y');
+
+if ($currentMonth >= 1 && $currentMonth <= 3) {
+    $quarterName = "1st Quarter";
+    $quarterMonths = "January - March";
+    $quarterColor = "from-blue-600 to-indigo-700";
+    $qStart = "$currentYear-01-01";
+    $qEnd = "$currentYear-03-31";
+} elseif ($currentMonth >= 4 && $currentMonth <= 6) {
+    $quarterName = "2nd Quarter";
+    $quarterMonths = "April - June";
+    $quarterColor = "from-blue-600 to-sky-700";
+    $qStart = "$currentYear-04-01";
+    $qEnd = "$currentYear-06-30";
+} elseif ($currentMonth >= 7 && $currentMonth <= 9) {
+    $quarterName = "3rd Quarter";
+    $quarterMonths = "July - September";
+    $quarterColor = "from-teal-600 to-emerald-700";
+    $qStart = "$currentYear-07-01";
+    $qEnd = "$currentYear-09-30";
+} else {
+    $quarterName = "4th Quarter";
+    $quarterMonths = "October - December";
+    $quarterColor = "from-slate-700 to-slate-900";
+    $qStart = "$currentYear-10-01";
+    $qEnd = "$currentYear-12-31";
+}
+
+/* ===============================
+   FETCH ALL ADVISORIES PER CATEGORY
+=================================*/
+function getAllAdvisories(PDO $conn, string $type): array
+{
+    $stmt = $conn->prepare("
+        SELECT id, advisory_type, advisory_date, advisory_title, notice_image
+        FROM advisories
+        WHERE advisory_type = ?
+        ORDER BY advisory_date DESC
+    ");
+    $stmt->execute([$type]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+$emergencyAdvisories = getAllAdvisories($conn, 'Emergency');
+$scheduledAdvisories = getAllAdvisories($conn, 'Scheduled');
+$generalAdvisories = getAllAdvisories($conn, 'General');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,30 +168,6 @@
 
                     <div class="space-y-8 max-w-4xl mx-auto p-4">
 
-                        <?php
-                        // Kukunin natin ang kasalukuyang buwan at taon para i-compute ang Quarter
-                        $currentMonth = (int) date('n');
-                        $currentYear = date('Y');
-
-                        if ($currentMonth >= 1 && $currentMonth <= 3) {
-                            $quarterName = "1st Quarter";
-                            $quarterMonths = "January - March";
-                            $quarterColor = "from-blue-600 to-indigo-700";
-                        } elseif ($currentMonth >= 4 && $currentMonth <= 6) {
-                            $quarterName = "2nd Quarter";
-                            $quarterMonths = "April - June";
-                            $quarterColor = "from-blue-600 to-sky-700";
-                        } elseif ($currentMonth >= 7 && $currentMonth <= 9) {
-                            $quarterName = "3rd Quarter";
-                            $quarterMonths = "July - September";
-                            $quarterColor = "from-teal-600 to-emerald-700";
-                        } else {
-                            $quarterName = "4th Quarter";
-                            $quarterMonths = "October - December";
-                            $quarterColor = "from-slate-700 to-slate-900";
-                        }
-                        ?>
-                        
                         <!-- Section Header -->
                         <div class="col-12 px-4 mb-4">
                             <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r <?= $quarterColor ?> p-5 sm:p-6 text-white shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
@@ -161,15 +191,14 @@
                                         </span>
                                         <h2
                                             class="text-base sm:text-lg font-black tracking-wide leading-snug sm:leading-tight text-white break-words">
-                                            Water Advisories & Announcements for <?= $quarterName ?>
-                                            (<?= $currentYear ?>)
+                                            Water Advisories & Announcements
                                         </h2>
                                         <p
                                             class="text-[11px] sm:text-xs font-medium text-white/80 leading-normal mt-0.5">
-                                            Currently displaying advisories and announcements from
+                                            Showing all published advisories and announcements
                                             <span
                                                 class="underline decoration-white/40 decoration-2 font-bold whitespace-nowrap">
-                                                <?= $quarterMonths ?>
+                                                to date
                                             </span>
                                         </p>
                                     </div>
@@ -185,144 +214,35 @@
                             </h2>
 
                             <div class="space-y-3">
-                                
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-red-50/50 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Emergency Water Service Interruption on April 17, 2026"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e6.jpg' alt='Emergency Water Interruption Map'>">
 
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-red-700 leading-snug">
-                                            Emergency Maintenance
-                                        </span>
-                                        <span
-                                            class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 mt-0.5">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> June 21, 2026
-                                        </span>
-                                    </div>
+                                <?php if (empty($emergencyAdvisories)): ?>
+                                    <p class="text-sm text-slate-400 italic">No emergency advisories at this time.</p>
+                                <?php endif; ?>
 
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
+                                <?php foreach ($emergencyAdvisories as $adv): ?>
+                                    <button type="button"
+                                        class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-red-50/50 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
+                                        data-title="<?= htmlspecialchars($adv['advisory_title']) ?>"
+                                        data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='uploads/advisory/<?= htmlspecialchars($adv['notice_image']) ?>' alt='Emergency Water Interruption Notice'>">
 
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-red-50/50 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Emergency Water Service Interruption on April 17, 2026"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e5.jpg' alt='Emergency Water Interruption Map'>">
+                                        <div class="flex flex-col items-start gap-1.5">
+                                            <span
+                                                class="text-sm font-bold text-slate-800 group-hover:text-red-700 leading-snug">
+                                                <?= htmlspecialchars($adv['advisory_title']) ?>
+                                            </span>
+                                            <span
+                                                class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 mt-0.5">
+                                                <i class="fa-regular fa-calendar text-[11px]"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                            </span>
+                                        </div>
 
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-red-700 leading-snug">
-                                            Emergency Maintenance
-                                        </span>
-                                        <span
-                                            class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 mt-0.5">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> June 20, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
-                                
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-red-50/50 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Emergency Water Service Interruption on April 17, 2026"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e4.jpg' alt='Emergency Water Interruption Map'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-red-700 leading-snug">
-                                            Emergency Maintenance
-                                        </span>
-                                        <span
-                                            class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 mt-0.5">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> June 18, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
-
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-red-50/50 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Emergency Water Service Interruption on April 17, 2026"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e3.jpg' alt='Emergency Water Interruption Map'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-red-700 leading-snug">
-                                            Emergency Maintenance
-                                        </span>
-                                        <span
-                                            class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 mt-0.5">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> June 17, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
-
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-red-50/50 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Emergency Water Service Interruption on April 17, 2026"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e2.jpg' alt='Emergency Water Interruption Map'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-red-700 leading-snug">
-                                            Emergency Maintenance
-                                        </span>
-                                        <span
-                                            class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 mt-0.5">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> June 16-17, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
-
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-red-50/50 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Emergency Water Service Interruption on April 17, 2026"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e1.jpg' alt='Emergency Water Interruption Map'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-red-700 leading-snug">
-                                            Emergency Maintenance
-                                        </span>
-                                        <span
-                                            class="text-xs font-semibold text-slate-400 flex items-center gap-1.5 mt-0.5">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> April 17-18, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
+                                        <!-- Eye with Rounded Square Wrapper Icon -->
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
+                                            <i class="fa-regular fa-eye text-sm"></i>
+                                        </div>
+                                    </button>
+                                <?php endforeach; ?>
 
                             </div>
 
@@ -337,52 +257,36 @@
 
                             <div class="space-y-3">
 
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50/50 hover:border-blue-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Scheduled Maintenance Interruption on May 02, 2026"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='./assets/Files/advs/s2.jpg' alt='Scheduled Interruption Notice'>">
+                                <?php if (empty($scheduledAdvisories)): ?>
+                                    <p class="text-sm text-slate-400 italic">No scheduled advisories at this time.</p>
+                                <?php endif; ?>
 
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-blue-700">Scheduled
-                                            Maintenance</span>
-                                        <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> June 5, 2026
-                                        </span>
-                                    </div>
+                                <?php foreach ($scheduledAdvisories as $adv): ?>
+                                    <button type="button"
+                                        class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50/50 hover:border-blue-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
+                                        data-title="<?= htmlspecialchars($adv['advisory_title']) ?>"
+                                        data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='uploads/advisory/<?= htmlspecialchars($adv['notice_image']) ?>' alt='Scheduled Interruption Notice'>">
 
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
+                                        <div class="flex flex-col items-start gap-1.5">
+                                            <span
+                                                class="text-sm font-bold text-slate-800 group-hover:text-blue-700"><?= htmlspecialchars($adv['advisory_title']) ?></span>
+                                            <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
+                                                <i class="fa-regular fa-calendar text-[11px]"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                            </span>
+                                        </div>
 
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50/50 hover:border-blue-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Scheduled Maintenance Interruption on May 02, 2026"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='./assets/Files/advs/s1.jpg' alt='Scheduled Interruption Notice'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-blue-700">Scheduled
-                                            Maintenance</span>
-                                        <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> May 21-22, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
+                                        <!-- Eye with Rounded Square Wrapper Icon -->
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
+                                            <i class="fa-regular fa-eye text-sm"></i>
+                                        </div>
+                                    </button>
+                                <?php endforeach; ?>
 
                             </div>
                         </div>
 
-                        <!-- 3. GENERAL ANNOUNCEMENTS / OTHERS (AMBER) [Editable Title] -->
+                        <!-- 3. GENERAL ANNOUNCEMENTS / OTHERS (AMBER) -->
                         <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
 
                             <h2
@@ -392,113 +296,35 @@
 
                             <div class="space-y-3">
 
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-amber-50/50 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='./assets/Files/advs/ga5.jpg' alt='Holiday Notice'>">
+                                <?php if (empty($generalAdvisories)): ?>
+                                    <p class="text-sm text-slate-400 italic">No general announcements at this time.</p>
+                                <?php endif; ?>
 
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-amber-700">Holiday
-                                            Advisory: No Office Operations</span>
-                                        <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> June 19, 2026
-                                        </span>
-                                    </div>
+                                <?php foreach ($generalAdvisories as $adv): ?>
+                                    <button type="button"
+                                        class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-amber-50/50 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
+                                        data-title="<?= htmlspecialchars($adv['advisory_title']) ?>"
+                                        data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='uploads/advisory/<?= htmlspecialchars($adv['notice_image']) ?>' alt='General Announcement Notice'>">
 
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
+                                        <div class="flex flex-col items-start gap-1.5">
+                                            <span
+                                                class="text-sm font-bold text-slate-800 group-hover:text-amber-700"><?= htmlspecialchars($adv['advisory_title']) ?></span>
+                                            <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
+                                                <i class="fa-regular fa-calendar text-[11px]"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                            </span>
+                                        </div>
 
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-amber-50/50 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='./assets/Files/advs/ga4.jpg' alt='Holiday Notice'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-amber-700">Public
-                                            Advisory: Cessation of CSM Office Operations</span>
-                                        <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> July 1, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
-
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-amber-50/50 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='./assets/Files/advs/ga3.jpg' alt='Holiday Notice'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-amber-700">Holiday
-                                            Advisory: No Office Operations</span>
-                                        <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> June 12, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
-
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-amber-50/50 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='./assets/Files/advs/ga2.jpg' alt='Holiday Notice'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-amber-700">Holiday
-                                            Advisory: No Office Operations</span>
-                                        <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> May 1, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
-
-                                <button type="button"
-                                    class="advisory-trigger w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-amber-50/50 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-sm"
-                                    data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                                    data-content="<img class='w-full h-auto object-cover rounded-lg mb-2 shadow-sm' src='./assets/Files/advs/ga1.jpg' alt='Holiday Notice'>">
-
-                                    <div class="flex flex-col items-start gap-1.5">
-                                        <span
-                                            class="text-sm font-bold text-slate-800 group-hover:text-amber-700">Holiday
-                                            Advisory: No Office Operations</span>
-                                        <span class="text-xs font-semibold text-slate-400 flex items-center gap-1">
-                                            <i class="fa-regular fa-calendar text-[11px]"></i> April 21, 2026
-                                        </span>
-                                    </div>
-
-                                    <!-- Eye with Rounded Square Wrapper Icon -->
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
-                                        <i class="fa-regular fa-eye text-sm"></i>
-                                    </div>
-                                </button>
+                                        <!-- Eye with Rounded Square Wrapper Icon -->
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-4 shadow-sm">
+                                            <i class="fa-regular fa-eye text-sm"></i>
+                                        </div>
+                                    </button>
+                                <?php endforeach; ?>
 
                             </div>
                         </div>
+
 
                     </div>
 

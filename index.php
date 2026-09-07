@@ -804,7 +804,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
             </div>
 
             <div class="border-t border-slate-100 mt-6 pt-4 text-center">
-                <a href="/02_ol_serv2.php"
+                <a href="02_ol_serv2.php"
                     class="inline-flex items-center gap-1.5 text-xs font-black text-blue-600 hover:text-blue-700 uppercase tracking-wider transition-colors group">
                     View More Advisory
                     <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
