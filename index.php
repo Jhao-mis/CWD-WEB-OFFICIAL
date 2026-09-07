@@ -25,6 +25,28 @@ $recentStmt = $conn->prepare("
 ");
 $recentStmt->execute();
 $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+/* ===============================
+   FETCH SERVICE ADVISORIES
+   (latest 3 per category)
+=================================*/
+function getLatestAdvisories(PDO $conn, string $type, int $limit = 3): array
+{
+    $stmt = $conn->prepare("
+        SELECT id, advisory_type, advisory_date, advisory_title, notice_image
+        FROM advisories
+        WHERE advisory_type = ?
+        ORDER BY advisory_date DESC
+        LIMIT $limit
+    ");
+    $stmt->execute([$type]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+$emergencyAdvisories = getLatestAdvisories($conn, 'Emergency');
+$scheduledAdvisories = getLatestAdvisories($conn, 'Scheduled');
+$generalAdvisories = getLatestAdvisories($conn, 'General');
 ?>
 
 <!DOCTYPE html>
@@ -670,6 +692,7 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
+
                 <div class="space-y-3">
                     <div class="bg-red-50/50 px-3 py-2 rounded-xl border border-red-100/70 flex items-center gap-2">
                         <i class="fa-solid fa-triangle-exclamation text-red-600 text-sm"></i>
@@ -679,62 +702,29 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="space-y-2">
 
-                        <button type="button"
-                            class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-red-50/30 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
-                            data-title="Emergency Water Service Interruption on April 17, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e6.jpg' alt='Emergency Notice'>">
+                        <?php if (empty($emergencyAdvisories)): ?>
+                            <p class="text-xs text-slate-400 italic px-1">No emergency advisories at this time.</p>
+                        <?php endif; ?>
 
-                            <div class="flex flex-col items-start gap-1">
-                                <span
-                                    class="text-xs font-bold text-slate-700 group-hover:text-red-700 leading-snug line-clamp-2">Emergency
-                                    Maintenance</span>
-                                <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                    <i class="fa-regular fa-calendar"></i> June 21, 2026
-                                </span>
-                            </div>
-                            <div
-                                class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                            </div>
-                        </button>
+                        <?php foreach ($emergencyAdvisories as $adv): ?>
+                            <button type="button"
+                                class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-red-50/30 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
+                                data-title="<?= htmlspecialchars($adv['advisory_title']) ?>"
+                                data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='uploads/advisory/<?= htmlspecialchars($adv['notice_image']) ?>' alt='Emergency Notice'>">
 
-                        <button type="button"
-                            class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-red-50/30 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
-                            data-title="Emergency Water Service Interruption on April 17, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e5.jpg' alt='Emergency Notice'>">
-
-                            <div class="flex flex-col items-start gap-1">
-                                <span
-                                    class="text-xs font-bold text-slate-700 group-hover:text-red-700 leading-snug line-clamp-2">Emergency
-                                    Maintenance</span>
-                                <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                    <i class="fa-regular fa-calendar"></i> June 20, 2026
-                                </span>
-                            </div>
-                            <div
-                                class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                            </div>
-                        </button>
-
-                        <button type="button"
-                            class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-red-50/30 hover:border-red-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
-                            data-title="Emergency Water Service Interruption on April 17, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/e4.jpg' alt='Emergency Notice'>">
-
-                            <div class="flex flex-col items-start gap-1">
-                                <span
-                                    class="text-xs font-bold text-slate-700 group-hover:text-red-700 leading-snug line-clamp-2">Emergency
-                                    Maintenance</span>
-                                <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                    <i class="fa-regular fa-calendar"></i> June 18, 2026
-                                </span>
-                            </div>
-                            <div
-                                class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                            </div>
-                        </button>
+                                <div class="flex flex-col items-start gap-1">
+                                    <span
+                                        class="text-xs font-bold text-slate-700 group-hover:text-red-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
+                                    <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
+                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                    </span>
+                                </div>
+                                <div
+                                    class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-red-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
+                                    <i class="fa-regular fa-eye text-xs"></i>
+                                </div>
+                            </button>
+                        <?php endforeach; ?>
 
                     </div>
                 </div>
@@ -747,43 +737,29 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="space-y-2">
 
-                        <button type="button"
-                            class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-blue-50/30 hover:border-blue-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
-                            data-title="Scheduled Water Service Interruption on July 01, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/s2.jpg' alt='Scheduled Notice'>">
+                        <?php if (empty($scheduledAdvisories)): ?>
+                            <p class="text-xs text-slate-400 italic px-1">No scheduled advisories at this time.</p>
+                        <?php endif; ?>
 
-                            <div class="flex flex-col items-start gap-1">
-                                <span
-                                    class="text-xs font-bold text-slate-700 group-hover:text-blue-700 leading-snug line-clamp-2">Scheduled
-                                    Maintenance </span>
-                                <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                    <i class="fa-regular fa-calendar"></i> June 5, 2026
-                                </span>
-                            </div>
-                            <div
-                                class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                            </div>
-                        </button>
+                        <?php foreach ($scheduledAdvisories as $adv): ?>
+                            <button type="button"
+                                class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-blue-50/30 hover:border-blue-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
+                                data-title="<?= htmlspecialchars($adv['advisory_title']) ?>"
+                                data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='uploads/advisory/<?= htmlspecialchars($adv['notice_image']) ?>' alt='Scheduled Notice'>">
 
-                        <button type="button"
-                            class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-blue-50/30 hover:border-blue-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
-                            data-title="Scheduled Water Service Interruption on July 01, 2026"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/s1.jpg' alt='Scheduled Notice'>">
-
-                            <div class="flex flex-col items-start gap-1">
-                                <span
-                                    class="text-xs font-bold text-slate-700 group-hover:text-blue-700 leading-snug line-clamp-2">Scheduled
-                                    Maintenance </span>
-                                <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                    <i class="fa-regular fa-calendar"></i> May 21-22, 2026
-                                </span>
-                            </div>
-                            <div
-                                class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                            </div>
-                        </button>
+                                <div class="flex flex-col items-start gap-1">
+                                    <span
+                                        class="text-xs font-bold text-slate-700 group-hover:text-blue-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
+                                    <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
+                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                    </span>
+                                </div>
+                                <div
+                                    class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
+                                    <i class="fa-regular fa-eye text-xs"></i>
+                                </div>
+                            </button>
+                        <?php endforeach; ?>
 
                     </div>
                 </div>
@@ -797,65 +773,33 @@ $recentNews = $recentStmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="space-y-2">
 
-                        <button type="button"
-                            class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-amber-50/30 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
-                            data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/ga5.jpg' alt='Holiday Notice'>">
+                        <?php if (empty($generalAdvisories)): ?>
+                            <p class="text-xs text-slate-400 italic px-1">No general announcements at this time.</p>
+                        <?php endif; ?>
 
-                            <div class="flex flex-col items-start gap-1">
-                                <span
-                                    class="text-xs font-bold text-slate-700 group-hover:text-amber-700 leading-snug line-clamp-2">Holiday
-                                    advisory: No Office Operations</span>
-                                <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                    <i class="fa-regular fa-calendar"></i> June 19, 2026
-                                </span>
-                            </div>
-                            <div
-                                class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                            </div>
-                        </button>
+                        <?php foreach ($generalAdvisories as $adv): ?>
+                            <button type="button"
+                                class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-amber-50/30 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
+                                data-title="<?= htmlspecialchars($adv['advisory_title']) ?>"
+                                data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='uploads/advisory/<?= htmlspecialchars($adv['notice_image']) ?>' alt='Announcement Notice'>">
 
-                        <button type="button"
-                            class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-amber-50/30 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
-                            data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/ga4.jpg' alt='Holiday Notice'>">
-
-                            <div class="flex flex-col items-start gap-1">
-                                <span
-                                    class="text-xs font-bold text-slate-700 group-hover:text-amber-700 leading-snug line-clamp-2">Public
-                                    advisory: Cessation of CSM Office Operations</span>
-                                <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                    <i class="fa-regular fa-calendar"></i> July 1, 2026
-                                </span>
-                            </div>
-                            <div
-                                class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                            </div>
-                        </button>
-
-                        <button type="button"
-                            class="advisory-trigger w-full text-left p-3.5 rounded-xl border border-slate-100 bg-white hover:bg-amber-50/30 hover:border-amber-200 transition-all duration-200 flex items-center justify-between group shadow-2xs"
-                            data-title="Holiday Notice: June 12, 2026 (No Office Operations)"
-                            data-content="<img class='w-full h-auto object-cover rounded-lg mb-4 shadow-md' src='./assets/Files/advs/ga3.jpg' alt='Holiday Notice'>">
-
-                            <div class="flex flex-col items-start gap-1">
-                                <span
-                                    class="text-xs font-bold text-slate-700 group-hover:text-amber-700 leading-snug line-clamp-2">Holiday
-                                    advisory: No Office Operations</span>
-                                <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                    <i class="fa-regular fa-calendar"></i> June 12, 2026
-                                </span>
-                            </div>
-                            <div
-                                class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                            </div>
-                        </button>
+                                <div class="flex flex-col items-start gap-1">
+                                    <span
+                                        class="text-xs font-bold text-slate-700 group-hover:text-amber-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
+                                    <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
+                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                    </span>
+                                </div>
+                                <div
+                                    class="w-7 h-7 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-200 shrink-0 ml-3 shadow-3xs">
+                                    <i class="fa-regular fa-eye text-xs"></i>
+                                </div>
+                            </button>
+                        <?php endforeach; ?>
 
                     </div>
                 </div>
+
 
             </div>
 

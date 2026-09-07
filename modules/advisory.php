@@ -45,7 +45,12 @@ if (isset($_POST['action']) && $_POST['action'] === 'add') {
     $date = $_POST['advisory_date'];
 
     $formattedDate = date("F d, Y", strtotime($date));
-    $title = "$type Water Service Interruption on $formattedDate";
+
+    if ($type === 'General') {
+        $title = "General Announcement on $formattedDate";
+    } else {
+        $title = "$type Water Service Interruption on $formattedDate";
+    }
 
     $uploadDir = "../uploads/advisory/";
     if (!is_dir($uploadDir)) {
@@ -114,6 +119,23 @@ $scheduledStmt = $conn->prepare("
 ");
 $scheduledStmt->execute();
 $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
+
+/* GENERAL ANNOUNCEMENT */
+$generalPage = isset($_GET['g_page']) ? (int) $_GET['g_page'] : 1;
+$generalOffset = ($generalPage - 1) * $limit;
+
+$totalGeneral = $conn->query("SELECT COUNT(*) FROM advisories WHERE advisory_type='General'")
+    ->fetchColumn();
+$totalGeneralPages = ceil($totalGeneral / $limit);
+
+$generalStmt = $conn->prepare("
+    SELECT * FROM advisories
+    WHERE advisory_type='General'
+    ORDER BY advisory_date DESC
+    LIMIT $limit OFFSET $generalOffset
+");
+$generalStmt->execute();
+$general = $generalStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -176,6 +198,7 @@ $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
                 <select name="advisory_type" required class="border p-2 rounded col-span-1">
                     <option value="Emergency">Emergency</option>
                     <option value="Scheduled">Scheduled</option>
+                    <option value="General">General Announcement</option>
                 </select>
 
                 <input type="date" name="advisory_date" required class="border p-2 rounded col-span-1">
@@ -226,7 +249,7 @@ $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
             <?php if ($totalEmergencyPages > 1): ?>
                 <div class="flex justify-center mt-6 space-x-2">
                     <?php for ($i = 1; $i <= $totalEmergencyPages; $i++): ?>
-                        <a href="?e_page=<?= $i ?>&s_page=<?= $scheduledPage ?>"
+                        <a href="?e_page=<?= $i ?>&s_page=<?= $scheduledPage ?>&g_page=<?= $generalPage ?>"
                             class="px-3 py-1 border rounded <?= $i == $emergencyPage ? 'bg-red-600 text-white' : 'bg-white' ?>">
                             <?= $i ?>
                         </a>
@@ -272,8 +295,54 @@ $scheduled = $scheduledStmt->fetchAll(PDO::FETCH_ASSOC);
             <?php if ($totalScheduledPages > 1): ?>
                 <div class="flex justify-center mt-6 space-x-2">
                     <?php for ($i = 1; $i <= $totalScheduledPages; $i++): ?>
-                        <a href="?e_page=<?= $emergencyPage ?>&s_page=<?= $i ?>"
+                        <a href="?e_page=<?= $emergencyPage ?>&s_page=<?= $i ?>&g_page=<?= $generalPage ?>"
                             class="px-3 py-1 border rounded <?= $i == $scheduledPage ? 'bg-blue-600 text-white' : 'bg-white' ?>">
+                            <?= $i ?>
+                        </a>
+                    <?php endfor; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <!-- GENERAL ANNOUNCEMENT -->
+        <div class="bg-white p-6 rounded shadow max-w-4xl mx-auto mt-8">
+            <h2 class="text-xl font-bold text-amber-600 mb-6">General Announcements</h2>
+
+            <?php if (empty($general)): ?>
+                <p class="text-gray-500">No general announcements.</p>
+            <?php endif; ?>
+
+            <?php foreach ($general as $row): ?>
+                <div class="border rounded-xl mb-4 p-4 shadow-sm hover:shadow-md transition">
+                    <div class="flex flex-col md:flex-row gap-4">
+
+                        <img src="../uploads/advisory/<?= $row['notice_image'] ?>"
+                            class="w-full md:w-48 h-40 object-cover rounded-lg border">
+
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-lg mb-2">
+                                <?= htmlspecialchars($row['advisory_title']) ?>
+                            </h3>
+                            <p class="text-sm text-gray-500">
+                                Date: <?= date("F d, Y", strtotime($row['advisory_date'])) ?>
+                            </p>
+
+                            <?php if ($userInfo['role'] === 'superadmin' || $userInfo['role'] === 'news'): ?>
+                                <button onclick="confirmDelete(<?= $row['id'] ?>)"
+                                    class="mt-3 bg-red-600 text-white px-4 py-1.5 rounded text-sm hover:bg-red-700">
+                                    Delete
+                                </button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <?php if ($totalGeneralPages > 1): ?>
+                <div class="flex justify-center mt-6 space-x-2">
+                    <?php for ($i = 1; $i <= $totalGeneralPages; $i++): ?>
+                        <a href="?e_page=<?= $emergencyPage ?>&s_page=<?= $scheduledPage ?>&g_page=<?= $i ?>"
+                            class="px-3 py-1 border rounded <?= $i == $generalPage ? 'bg-amber-600 text-white' : 'bg-white' ?>">
                             <?= $i ?>
                         </a>
                     <?php endfor; ?>
