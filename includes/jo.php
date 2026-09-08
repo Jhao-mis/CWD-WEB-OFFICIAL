@@ -43,7 +43,52 @@
         <!-- 3-Column Responsive Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- Card 1 (June 1) -->
+            <!-- Card 1 (September 8) -->
+            <div
+                class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <!-- Badge and Date Row -->
+                    <div class="flex justify-between items-center mb-4">
+                        <span
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-50 text-[#1a589e] border border-blue-100/50 uppercase tracking-wider">
+                            <i class="fa-solid fa-briefcase text-[10px] text-[#1a589e]"></i>
+                            Plantilla
+                        </span>
+                        <span class="text-sm text-slate-500 font-semibold flex items-center gap-1.5">
+                            <i class="fa-regular fa-calendar text-slate-400"></i> Posted on September 8
+                        </span>
+                    </div>
+
+                    <!-- Title & Deadline -->
+                    <h4
+                        class="text-base font-bold text-slate-800 group-hover:text-[#1a589e] transition-colors duration-200 leading-snug">
+                        List of 11 Plantilla Positions
+                    </h4>
+                    <p class="text-xs text-slate-500 font-medium mt-3 flex items-center gap-1.5">
+                        <i class="fa-solid fa-clock text-sm text-rose-600"></i>
+                        <span><strong class="text-rose-600 font-bold">Deadline:</strong> <span
+                                class="text-slate-600 font-semibold">September 18th</span></span>
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="grid grid-cols-2 gap-3 mt-6 pt-4 border-t border-slate-100">
+                    <a href=".\assets\Files\jobs\2026\List of Plantilla Positions for Publication 09-08-26.pdf"
+                        target="_blank"
+                        class="inline-flex items-center justify-center gap-1.5 bg-slate-50 hover:bg-slate-100 text-[#1a589e] text-xs font-bold uppercase py-2.5 rounded-xl border border-slate-200/60 transition-all duration-200 text-center"
+                        title="View PDF">
+                        <i class="fa-regular fa-eye"></i> View
+                    </a>
+                    <a href=".\assets\Files\jobs\2026\List of Plantilla Positions for Publication 09-08-26.pdf"
+                        download="List of Plantilla Positions for Publication 09-08-26.pdf"
+                        class="inline-flex items-center justify-center gap-1.5 bg-[#1a589e] hover:bg-blue-700 text-white text-xs font-bold uppercase py-2.5 rounded-xl transition-all duration-200 shadow-sm text-center"
+                        title="Download PDF">
+                        <i class="fa-solid fa-cloud-arrow-down"></i> Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2 (June 1) -->
             <div
                 class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex flex-col justify-between group">
                 <div>
@@ -88,7 +133,7 @@
                 </div>
             </div>
 
-            <!-- Card 2 (April 6) -->
+            <!-- Card 3 (April 6) -->
             <div
                 class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex flex-col justify-between group">
                 <div>
@@ -130,7 +175,7 @@
                 </div>
             </div>
 
-            <!-- Card 3 (February 4) -->
+            <!-- Card 4 (February 4) -->
             <div
                 class="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-md hover:border-blue-200 transition-all duration-300 flex flex-col justify-between group">
                 <div>
