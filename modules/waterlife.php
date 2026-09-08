@@ -42,6 +42,244 @@ if (!$userInfo || empty($userInfo['role'])) {
     header("Location: login.php");
     exit;
 }
+
+$userId    = (int) $userInfo['id'];
+$canManage = in_array($userInfo['role'], ['superadmin', 'news'], true);
+
+/* =====================================================
+   UPLOAD DIRECTORIES
+===================================================== */
+$uploadDirImages = "../uploads/waterlife/covers/";
+$uploadDirPdfs   = "../uploads/waterlife/pdf/";
+
+foreach ([$uploadDirImages, $uploadDirPdfs] as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+    }
+}
+
+/* =====================================================
+   HELPERS
+===================================================== */
+function failBack(string $message): void
+{
+    $_SESSION['wl_error'] = $message;
+    header("Location: waterlife.php?error=1");
+    exit;
+}
+
+function handleUpload(string $fieldName, string $destDir, array $allowedExt, bool $required = true): ?string
+{
+    if (!isset($_FILES[$fieldName]) || $_FILES[$fieldName]['error'] === UPLOAD_ERR_NO_FILE) {
+        if ($required) {
+            failBack("Missing required file: $fieldName");
+        }
+        return null;
+    }
+
+    $file = $_FILES[$fieldName];
+
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        failBack("There was a problem uploading: $fieldName");
+    }
+
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    if (!in_array($ext, $allowedExt, true)) {
+        failBack("Invalid file type for $fieldName");
+    }
+
+    $storedName = time() . '_' . bin2hex(random_bytes(4)) . '_' . preg_replace('/[^A-Za-z0-9._-]/', '_', basename($file['name']));
+    $destPath   = $destDir . $storedName;
+
+    if (!move_uploaded_file($file['tmp_name'], $destPath)) {
+        failBack("Failed to save uploaded file: $fieldName");
+    }
+
+    return $storedName;
+}
+
+function deleteFileIfExists(string $dir, ?string $filename): void
+{
+    if ($filename && is_file($dir . $filename)) {
+        @unlink($dir . $filename);
+    }
+}
+
+/* =====================================================
+   HANDLE: UPLOAD NEW FEATURED ISSUE (carousel)
+   Form: #magazine-issue-form
+===================================================== */
+if (isset($_POST['action']) && $_POST['action'] === 'upload') {
+
+    if (!$canManage) {
+        failBack("You do not have permission to upload issues.");
+    }
+
+    $volumeIssue = trim($_POST['volume_issue'] ?? '');
+    $issueTitle  = trim($_POST['issue_title'] ?? '');
+    $description = trim($_POST['cover_description'] ?? '');
+    $issueYear   = (int) ($_POST['issue_year'] ?? 0);
+
+    if ($volumeIssue === '' || $issueTitle === '' || $description === '' || $issueYear <= 0) {
+        failBack("Please fill in all required fields.");
+    }
+
+    $coverImage = handleUpload('cover_image', $uploadDirImages, ['jpg', 'jpeg', 'png', 'webp']);
+    $pdfFile    = handleUpload('pdf_file', $uploadDirPdfs, ['pdf']);
+
+    $stmt = $conn->prepare("
+        INSERT INTO waterlife_issues
+            (volume_issue, issue_title, cover_description, cover_image, pdf_file, issue_year, is_featured, created_by)
+        VALUES (?, ?, ?, ?, ?, ?, 1, ?)
+    ");
+    $stmt->execute([$volumeIssue, $issueTitle, $description, $coverImage, $pdfFile, $issueYear, $userId]);
+
+    header("Location: waterlife.php?added=1");
+    exit;
+}
+
+/* =====================================================
+   HANDLE: EDIT EXISTING FEATURED ISSUE
+   Form: #edit-magazine-issue-form
+===================================================== */
+if (isset($_POST['action']) && $_POST['action'] === 'edit') {
+
+    if (!$canManage) {
+        failBack("You do not have permission to edit issues.");
+    }
+
+    $id = (int) ($_POST['id'] ?? 0);
+    if ($id <= 0) {
+        failBack("Missing issue id.");
+    }
+
+    $stmt = $conn->prepare("SELECT * FROM waterlife_issues WHERE id = ? LIMIT 1");
+    $stmt->execute([$id]);
+    $existing = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$existing) {
+        failBack("Issue not found.");
+    }
+
+    $volumeIssue = trim($_POST['volume_issue'] ?? $existing['volume_issue']);
+    $issueTitle  = trim($_POST['issue_title'] ?? $existing['issue_title']);
+    $description = trim($_POST['cover_description'] ?? $existing['cover_description']);
+    $issueYear   = (int) ($_POST['issue_year'] ?? $existing['issue_year']);
+
+    // Files are optional on edit — only replace if a new one was chosen
+    $coverImage = handleUpload('cover_image', $uploadDirImages, ['jpg', 'jpeg', 'png', 'webp'], false) ?? $existing['cover_image'];
+    $pdfFile    = handleUpload('pdf_file', $uploadDirPdfs, ['pdf'], false) ?? $existing['pdf_file'];
+
+    if ($coverImage !== $existing['cover_image']) {
+        deleteFileIfExists($uploadDirImages, $existing['cover_image']);
+    }
+    if ($pdfFile !== $existing['pdf_file']) {
+        deleteFileIfExists($uploadDirPdfs, $existing['pdf_file']);
+    }
+
+    $stmt = $conn->prepare("
+        UPDATE waterlife_issues
+        SET volume_issue = ?, issue_title = ?, cover_description = ?,
+            cover_image = ?, pdf_file = ?, issue_year = ?
+        WHERE id = ?
+    ");
+    $stmt->execute([$volumeIssue, $issueTitle, $description, $coverImage, $pdfFile, $issueYear, $id]);
+
+    header("Location: waterlife.php?updated=1");
+    exit;
+}
+
+/* =====================================================
+   HANDLE: ADD ARCHIVE-ONLY ISSUE
+   Form: #add-issue-form
+===================================================== */
+if (isset($_POST['action']) && $_POST['action'] === 'add_archive') {
+
+    if (!$canManage) {
+        failBack("You do not have permission to add archive issues.");
+    }
+
+    $title = trim($_POST['new_title'] ?? '');
+    $year  = (int) ($_POST['new_year'] ?? 0);
+
+    if ($title === '' || $year <= 0) {
+        failBack("Please fill in all required fields.");
+    }
+
+    $pdfFile = handleUpload('new_pdf_file', $uploadDirPdfs, ['pdf']);
+
+    $stmt = $conn->prepare("
+        INSERT INTO waterlife_issues
+            (volume_issue, issue_title, cover_description, cover_image, pdf_file, issue_year, is_featured, created_by)
+        VALUES (?, ?, NULL, NULL, ?, ?, 0, ?)
+    ");
+    $stmt->execute([$title, $title, $pdfFile, $year, $userId]);
+
+    header("Location: waterlife.php?archived=1");
+    exit;
+}
+
+/* =====================================================
+   HANDLE: DELETE (carousel or archive issue)
+===================================================== */
+if (isset($_GET['delete'])) {
+
+    if (!$canManage) {
+        failBack("You do not have permission to delete issues.");
+    }
+
+    $id = (int) $_GET['delete'];
+
+    $stmt = $conn->prepare("SELECT cover_image, pdf_file FROM waterlife_issues WHERE id = ? LIMIT 1");
+    $stmt->execute([$id]);
+    $existing = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($existing) {
+        $del = $conn->prepare("DELETE FROM waterlife_issues WHERE id = ?");
+        $del->execute([$id]);
+
+        deleteFileIfExists($uploadDirImages, $existing['cover_image']);
+        deleteFileIfExists($uploadDirPdfs, $existing['pdf_file']);
+    }
+
+    header("Location: waterlife.php?deleted=1");
+    exit;
+}
+
+/* =====================================================
+   FETCH: CAROUSEL (FEATURED) ISSUES
+===================================================== */
+$carouselStmt = $conn->prepare("
+    SELECT id, volume_issue, issue_title, cover_description, cover_image, pdf_file, issue_year
+    FROM waterlife_issues
+    WHERE is_featured = 1
+    ORDER BY issue_year DESC, created_at DESC
+");
+$carouselStmt->execute();
+$carouselIssues = $carouselStmt->fetchAll(PDO::FETCH_ASSOC);
+
+/* =====================================================
+   FETCH: ARCHIVE ISSUES (paginated)
+===================================================== */
+$limit       = 5;
+$archivePage = isset($_GET['a_page']) ? max(1, (int) $_GET['a_page']) : 1;
+$archiveOffset = ($archivePage - 1) * $limit;
+
+$totalArchive = (int) $conn->query("SELECT COUNT(*) FROM waterlife_issues WHERE is_featured = 0")->fetchColumn();
+$totalArchivePages = (int) ceil($totalArchive / $limit);
+
+$archiveStmt = $conn->prepare("
+    SELECT id, volume_issue, issue_title, pdf_file, issue_year
+    FROM waterlife_issues
+    WHERE is_featured = 0
+    ORDER BY issue_year DESC, created_at DESC
+    LIMIT $limit OFFSET $archiveOffset
+");
+$archiveStmt->execute();
+$archiveIssues = $archiveStmt->fetchAll(PDO::FETCH_ASSOC);
+
+$wlError = $_SESSION['wl_error'] ?? null;
+unset($_SESSION['wl_error']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +345,6 @@ if (!$userInfo || empty($userInfo['role'])) {
     <!-- Main Content Area -->
     <div class="sm:ml-64 p-4 mt-16 sm:mt-4 my-auto">
 
-        <!-- Content Placeholder: Using the previous card component structure for demonstration -->
         <div class="bg-white p-6 mb-8">
 
             <div class="container mx-auto max-w-4xl py-6">
@@ -117,8 +354,11 @@ if (!$userInfo || empty($userInfo['role'])) {
 
                     <div class="container mx-auto max-w-4xl py-6">
 
-                        <form id="magazine-issue-form"
+                        <?php if ($canManage): ?>
+                        <form id="magazine-issue-form" method="POST" enctype="multipart/form-data"
                             class="bg-white p-6 md:p-10 rounded-xl shadow-2xl border-t-4 border-[#1a589e]">
+
+                            <input type="hidden" name="action" value="upload">
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 
@@ -138,6 +378,17 @@ if (!$userInfo || empty($userInfo['role'])) {
                                     <input type="text" id="issue_title" name="issue_title" required
                                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150"
                                         placeholder="e.g., Renewing Commitment & Strengthening Service">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                                <div class="md:col-span-1">
+                                    <label for="issue_year"
+                                        class="block text-lg font-semibold text-gray-700 mb-2">Year</label>
+                                    <input type="number" id="issue_year" name="issue_year" required min="2000"
+                                        max="2100"
+                                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150"
+                                        placeholder="e.g., 2025" value="<?= date('Y') ?>">
                                 </div>
                             </div>
 
@@ -162,7 +413,7 @@ if (!$userInfo || empty($userInfo['role'])) {
                                 <div>
                                     <label for="pdf_link" class="block text-lg font-semibold text-gray-700 mb-2">
                                         Upload Issue (PDF)</label>
-                                    <input type="file" id="pdf_file" name="pdf_file" accept="pdf_file" required
+                                    <input type="file" id="pdf_file" name="pdf_file" accept="application/pdf" required
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2.5">
                                 </div>
                             </div>
@@ -175,6 +426,9 @@ if (!$userInfo || empty($userInfo['role'])) {
                             </div>
 
                         </form>
+                        <?php else: ?>
+                            <p class="text-center text-gray-500">You do not have permission to upload issues.</p>
+                        <?php endif; ?>
                     </div>
 
                 </div>
@@ -188,97 +442,113 @@ if (!$userInfo || empty($userInfo['role'])) {
 
                 <div id="waterlifeCarousel" class="relative w-full mx-auto max-w-7xl mt-12 p-4" data-carousel="static">
 
-                    <!-- Carousel Wrapper - Explicit minimum height added here -->
+                    <!-- Carousel Wrapper -->
                     <div class="relative overflow-hidden rounded-lg  min-h-[800px] sm:min-h-[400px]">
 
-                        <div class="duration-700 ease-in-out" data-carousel-item="active">
-                            <div class="w-full h-full p-6 flex justify-center items-center">
-                                
-                                <div class="max-w-3xl h-full bg-white rounded-xl shadow-sm border-t-4 border-[#15467e] 
-                                            flex flex-col md:flex-row md:items-center w-full relative">
-
-                                    <div class="absolute top-0 right-0 p-3 z-10">
-                                        <button id="dropdownIssueButton" data-dropdown-toggle="issueDropdown"
-                                            class="p-4 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-full"
-                                            type="button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                                viewBox="0 0 24 24" fill="none" stroke="#1a589e" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="lucide lucide-circle-ellipsis-icon lucide-circle-ellipsis">
-                                                <circle cx="12" cy="12" r="10" />
-                                                <path d="M17 12h.01" />
-                                                <path d="M12 12h.01" />
-                                                <path d="M7 12h.01" />
-                                            </svg>
-                                        </button>
-
-                                        <div id="issueDropdown"
-                                            class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40">
-                                            <ul class="py-2 text-sm text-gray-700"
-                                                aria-labelledby="dropdownIssueButton">
-                                                <li>
-                                                    <a href="#" id="editIssueButton"
-                                                        class="block px-4 py-2 hover:bg-gray-100"
-                                                        data-modal-target="editIssueModal" data-modal-toggle="editIssueModal">
-                                                        Edit Issue
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" id="deleteIssueButton"
-                                                        class="block px-4 py-2 text-red-600 hover:bg-red-50">
-                                                        Delete Issue
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="w-full md:w-5/12 p-4 flex justify-center md:block ">
-                                        <img class="object-contain w-full rounded-xl bg-[#15467e] max-h-56 md:w-full md:h-auto shadow-lg"
-                                            src="./img/wl25.png" alt="Waterlife Magazine 2025 Issue">
-                                    </div>
-                                    <div
-                                        class="w-full md:w-7/12 p-4 md:p-8 max-h-61 overflow-y-auto md:max-h-full md:overflow-y-visible">
-                                        <h5 class="mb text-2xl font-bold tracking-tight text-gray-900">Volume 11 Issue 1
-                                        </h5>
-                                        <h5 class="mb-2 text-sm font-bold tracking-tight text-gray-900">Renewing
-                                            Commitment &
-                                            Strengthening Service</h5>
-                                        <p class="mb-6 font-normal text-gray-700">The cover features "Peter the
-                                            Plumber,"
-                                            symbolizing CWD's dedication and technical expertise. It is surrounded by
-                                            real-life
-                                            images highlighting CWD's infrastructure and operations, reflecting its
-                                            continuous
-                                            effort to deliver clean, safe water through innovation and sustainability.
-                                        </p>
-                                        <a href="./pdf/CWD WL, Vol 11, Issue 1 (2025) [Compressed Ver].pdf"
-                                            target="_blank"
-                                            class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-center text-white bg-[#1a589e] rounded-lg
-                    hover:bg-[#15467e] focus:ring-4 focus:outline-none focus:ring-blue-300 transition duration-200 shadow-md">
-                                            Read Issue
-                                            <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" fill="none"
-                                                viewBox="0 0 14 10" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                            </svg>
-                                        </a>
+                        <?php if (empty($carouselIssues)): ?>
+                            <div class="duration-700 ease-in-out" data-carousel-item="active">
+                                <div class="w-full h-full p-6 flex justify-center items-center">
+                                    <div class="max-w-3xl h-full bg-white rounded-xl shadow-sm border-t-4 border-[#15467e]
+                                                flex flex-col md:flex-row md:items-center w-full p-8 text-center">
+                                        <p class="w-full text-gray-500 text-lg">No issues have been uploaded yet.</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
 
+                        <?php foreach ($carouselIssues as $index => $issue): ?>
+                            <div class="duration-700 ease-in-out"
+                                data-carousel-item="<?= $index === 0 ? 'active' : '' ?>">
+                                <div class="w-full h-full p-6 flex justify-center items-center">
+
+                                    <div class="max-w-3xl h-full bg-white rounded-xl shadow-sm border-t-4 border-[#15467e] 
+                                                flex flex-col md:flex-row md:items-center w-full relative">
+
+                                        <?php if ($canManage): ?>
+                                        <div class="absolute top-0 right-0 p-3 z-10">
+                                            <button id="dropdownIssueButton-<?= $issue['id'] ?>"
+                                                data-dropdown-toggle="issueDropdown-<?= $issue['id'] ?>"
+                                                class="p-4 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-full"
+                                                type="button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                    viewBox="0 0 24 24" fill="none" stroke="#1a589e" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-circle-ellipsis-icon lucide-circle-ellipsis">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M17 12h.01" />
+                                                    <path d="M12 12h.01" />
+                                                    <path d="M7 12h.01" />
+                                                </svg>
+                                            </button>
+
+                                            <div id="issueDropdown-<?= $issue['id'] ?>"
+                                                class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40">
+                                                <ul class="py-2 text-sm text-gray-700"
+                                                    aria-labelledby="dropdownIssueButton-<?= $issue['id'] ?>">
+                                                    <li>
+                                                        <a href="#" class="editIssueButton block px-4 py-2 hover:bg-gray-100"
+                                                            data-modal-target="editIssueModal" data-modal-toggle="editIssueModal"
+                                                            data-id="<?= $issue['id'] ?>"
+                                                            data-volume="<?= htmlspecialchars($issue['volume_issue']) ?>"
+                                                            data-title="<?= htmlspecialchars($issue['issue_title']) ?>"
+                                                            data-description="<?= htmlspecialchars($issue['cover_description']) ?>"
+                                                            data-year="<?= htmlspecialchars($issue['issue_year']) ?>">
+                                                            Edit Issue
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="waterlife.php?delete=<?= $issue['id'] ?>"
+                                                            class="deleteIssueButton block px-4 py-2 text-red-600 hover:bg-red-50">
+                                                            Delete Issue
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <?php endif; ?>
+
+                                        <div class="w-full md:w-5/12 p-4 flex justify-center md:block ">
+                                            <img class="object-contain w-full rounded-xl bg-[#15467e] max-h-56 md:w-full md:h-auto shadow-lg"
+                                                src="../uploads/waterlife/covers/<?= htmlspecialchars($issue['cover_image']) ?>"
+                                                alt="<?= htmlspecialchars($issue['volume_issue']) ?>">
+                                        </div>
+                                        <div
+                                            class="w-full md:w-7/12 p-4 md:p-8 max-h-61 overflow-y-auto md:max-h-full md:overflow-y-visible">
+                                            <h5 class="mb text-2xl font-bold tracking-tight text-gray-900">
+                                                <?= htmlspecialchars($issue['volume_issue']) ?>
+                                            </h5>
+                                            <h5 class="mb-2 text-sm font-bold tracking-tight text-gray-900">
+                                                <?= htmlspecialchars($issue['issue_title']) ?>
+                                            </h5>
+                                            <p class="mb-6 font-normal text-gray-700">
+                                                <?= nl2br(htmlspecialchars($issue['cover_description'])) ?>
+                                            </p>
+                                            <a href="../uploads/waterlife/pdf/<?= htmlspecialchars($issue['pdf_file']) ?>"
+                                                target="_blank"
+                                                class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-center text-white bg-[#1a589e] rounded-lg
+                                hover:bg-[#15467e] focus:ring-4 focus:outline-none focus:ring-blue-300 transition duration-200 shadow-md">
+                                                Read Issue
+                                                <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" fill="none"
+                                                    viewBox="0 0 14 10" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+
+                        <!-- Fixed CTA slide: link to the Archive modal -->
                         <div class="duration-700 ease-in-out" data-carousel-item="">
                             <div class="w-full h-full p-6 flex justify-center items-center">
-                                <!-- Card structure with new accent border -->
                                 <div class="max-w-3xl h-full bg-white rounded-xl shadow-sm border-t-4 border-[#15467e]
-                    flex flex-col md:flex-row md:items-center w-full">
+                                            flex flex-col md:flex-row md:items-center w-full">
                                     <div class="w-full md:w-5/12 p-4 flex justify-center md:block ">
-                                        <!-- Placeholder image URL used, added bg-gray-100 to differentiate from card background -->
                                         <img class="object-contain w-full rounded-xl bg-[#15467e] max-h-56 md:w-full md:h-auto shadow-lg"
-                                            src="./img/wl25.png" alt="Waterlife Magazine 2025 Issue">
+                                            src="./img/wl25.png" alt="Waterlife Magazine Archives">
                                     </div>
-                                    <!-- SCROLLING ADDED HERE: max-h-48 (sets max height on mobile) and overflow-y-auto (enables scrolling) -->
                                     <div
                                         class="w-full md:w-7/12 p-4 md:p-8 max-h-61 overflow-y-auto md:max-h-full md:overflow-y-visible">
                                         <h5 class="mb text-2xl font-bold tracking-tight text-gray-900">Archives</h5>
@@ -292,7 +562,7 @@ if (!$userInfo || empty($userInfo['role'])) {
                                         </p>
                                         <button type="button"
                                             class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-center text-white bg-[#1a589e] rounded-lg
-                    hover:bg-[#15467e] focus:ring-4 focus:outline-none focus:ring-blue-300 transition duration-200 shadow-md"
+                                hover:bg-[#15467e] focus:ring-4 focus:outline-none focus:ring-blue-300 transition duration-200 shadow-md"
                                             data-modal-target="archive-modal" data-modal-toggle="archive-modal">
                                             View Archive
                                             <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" viewBox="0 0 14 10"
@@ -304,7 +574,6 @@ if (!$userInfo || empty($userInfo['role'])) {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                     </div>
@@ -340,7 +609,7 @@ if (!$userInfo || empty($userInfo['role'])) {
                     </button>
                 </div>
 
-                <!-- WL ARCHIVE MODAL (Light Theme Enforced) -->
+                <!-- WL ARCHIVE MODAL -->
                 <div id="archive-modal" tabindex="-1" aria-hidden="true"
                     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative w-full max-w-4xl max-h-full">
@@ -381,53 +650,66 @@ if (!$userInfo || empty($userInfo['role'])) {
                                                     <th scope="col" class="px-6 py-3 text-center w-28">
                                                         Action
                                                     </th>
+                                                    <?php if ($canManage): ?>
                                                     <th scope="col" class="px-6 py-3 text-center w-28">
                                                         Manage
                                                     </th>
+                                                    <?php endif; ?>
                                                 </tr>
                                             </thead>
                                             <tbody id="archive-table-body">
-                                                <tr class="bg-white border-b hover:bg-blue-50">
-                                                    <th scope="row"
-                                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                        Volume 10 Issue 4: Water Sustainability Focus
-                                                    </th>
-                                                    <td class="px-6 py-4 text-center">
-                                                        2024
-                                                    </td>
-                                                    <td class="px-6 py-4 text-center">
-                                                        <a href="#" target="_blank"
-                                                            class="font-medium text-[#1a589e] hover:underline">View</a>
-                                                    </td>
-                                                    <td class="px-6 py-4 text-center">
-                                                        <button
-                                                            class="text-red-500 hover:text-red-700 font-medium text-xs">Delete</button>
-                                                    </td>
-                                                </tr>
-                                                <tr class="bg-white border-b hover:bg-blue-50">
-                                                    <th scope="row"
-                                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                        Volume 10 Issue 3: Infrastructure Upgrades
-                                                    </th>
-                                                    <td class="px-6 py-4 text-center">
-                                                        2024
-                                                    </td>
-                                                    <td class="px-6 py-4 text-center">
-                                                        <a href="#" target="_blank"
-                                                            class="font-medium text-[#1a589e] hover:underline">View</a>
-                                                    </td>
-                                                    <td class="px-6 py-4 text-center">
-                                                        <button
-                                                            class="text-red-500 hover:text-red-700 font-medium text-xs">Delete</button>
-                                                    </td>
-                                                </tr>
+                                                <?php if (empty($archiveIssues)): ?>
+                                                    <tr>
+                                                        <td colspan="4" class="px-6 py-4 text-center text-gray-500">
+                                                            No archived issues yet.
+                                                        </td>
+                                                    </tr>
+                                                <?php endif; ?>
+
+                                                <?php foreach ($archiveIssues as $row): ?>
+                                                    <tr class="bg-white border-b hover:bg-blue-50">
+                                                        <th scope="row"
+                                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                            <?= htmlspecialchars($row['issue_title']) ?>
+                                                        </th>
+                                                        <td class="px-6 py-4 text-center">
+                                                            <?= htmlspecialchars($row['issue_year']) ?>
+                                                        </td>
+                                                        <td class="px-6 py-4 text-center">
+                                                            <a href="../uploads/waterlife/pdf/<?= htmlspecialchars($row['pdf_file']) ?>"
+                                                                target="_blank"
+                                                                class="font-medium text-[#1a589e] hover:underline">View</a>
+                                                        </td>
+                                                        <?php if ($canManage): ?>
+                                                        <td class="px-6 py-4 text-center">
+                                                            <button type="button"
+                                                                class="deleteIssueButton text-red-500 hover:text-red-700 font-medium text-xs"
+                                                                data-id="<?= $row['id'] ?>">Delete</button>
+                                                        </td>
+                                                        <?php endif; ?>
+                                                    </tr>
+                                                <?php endforeach; ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
+
+                                <?php if ($totalArchivePages > 1): ?>
+                                    <div class="flex justify-center mt-4 space-x-2">
+                                        <?php for ($i = 1; $i <= $totalArchivePages; $i++): ?>
+                                            <a href="waterlife.php?a_page=<?= $i ?>#archive-modal"
+                                                class="px-3 py-1 border rounded text-sm <?= $i == $archivePage ? 'bg-[#1a589e] text-white' : 'bg-white' ?>">
+                                                <?= $i ?>
+                                            </a>
+                                        <?php endfor; ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
 
-                            <form id="add-issue-form" class="p-6 border-t border-gray-200 rounded-b bg-gray-50">
+                            <?php if ($canManage): ?>
+                            <form id="add-issue-form" method="POST" enctype="multipart/form-data"
+                                class="p-6 border-t border-gray-200 rounded-b bg-gray-50">
+                                <input type="hidden" name="action" value="add_archive">
                                 <h4 class="text-lg font-bold text-gray-800 mb-4">Add New Issue</h4>
                                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
 
@@ -467,6 +749,7 @@ if (!$userInfo || empty($userInfo['role'])) {
                                     </button>
                                 </div>
                             </form>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -488,7 +771,7 @@ if (!$userInfo || empty($userInfo['role'])) {
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-5 border-b rounded-t bg-gray-50 border-gray-200">
                     <h3 class="text-xl font-semibold text-gray-900">
-                        Edit Advisory
+                        Edit Issue
                     </h3>
                     <button type="button" id="closeModalHeaderButton"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
@@ -502,53 +785,67 @@ if (!$userInfo || empty($userInfo['role'])) {
                     </button>
                 </div>
 
-                <!-- Modal body (Contains the user's form content) -->
+                <!-- Modal body -->
                 <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
                     
-                    <form id="edit-magazine-issue-form" enctype="multipart/form-data">
+                    <form id="edit-magazine-issue-form" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="action" value="edit">
+                            <input type="hidden" name="id" id="edit_id" value="">
+
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 
                                 <div>
-                                    <label for="volume_issue"
+                                    <label for="edit_volume_issue"
                                         class="block text-lg font-semibold text-gray-700 mb-2">Volume & Issue
                                         Number</label>
-                                    <input type="text" id="volume_issue" name="volume_issue" required
+                                    <input type="text" id="edit_volume_issue" name="volume_issue" required
                                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150"
                                         placeholder="e.g., Volume 11 Issue 1">
                                 </div>
 
                                 <div>
-                                    <label for="issue_title"
+                                    <label for="edit_issue_title"
                                         class="block text-lg font-semibold text-gray-700 mb-2">Issue Title
                                         (Subtitle)</label>
-                                    <input type="text" id="issue_title" name="issue_title" required
+                                    <input type="text" id="edit_issue_title" name="issue_title" required
                                         class="w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150"
                                         placeholder="e.g., Renewing Commitment & Strengthening Service">
                                 </div>
                             </div>
 
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                                <div class="md:col-span-1">
+                                    <label for="edit_issue_year"
+                                        class="block text-lg font-semibold text-gray-700 mb-2">Year</label>
+                                    <input type="number" id="edit_issue_year" name="issue_year" required min="2000"
+                                        max="2100"
+                                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150">
+                                </div>
+                            </div>
+
                             <div class="mb-6">
-                                <label for="cover_description"
+                                <label for="edit_cover_description"
                                     class="block text-lg font-semibold text-gray-700 mb-2">About the Cover (Description
                                     Text)</label>
-                                <textarea id="cover_description" name="cover_description" rows="5" required
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150 resize-y"
-                                    placeholder="Enter the full description text for the magazine cover..."></textarea>
+                                <textarea id="edit_cover_description" name="cover_description" rows="5" required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-pink-500 focus:border-pink-500 transition duration-150 resize-y"></textarea>
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 
                                 <div>
-                                    <label for="cover_image"
-                                        class="block text-lg font-semibold text-gray-700 mb-2">Cover Image File</label>
-                                    <input type="file" id="cover_image" name="cover_image" accept="image/*" required
+                                    <label for="edit_cover_image"
+                                        class="block text-lg font-semibold text-gray-700 mb-2">Cover Image File
+                                        <span class="text-xs font-normal text-gray-500">(leave blank to keep current)</span></label>
+                                    <input type="file" id="edit_cover_image" name="cover_image" accept="image/*"
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2.5">
                                 </div>
 
                                 <div>
-                                    <label for="pdf_link" class="block text-lg font-semibold text-gray-700 mb-2">
-                                        Upload Issue (PDF)</label>
-                                    <input type="file" id="pdf_file" name="pdf_file" accept="pdf_file" required
+                                    <label for="edit_pdf_file" class="block text-lg font-semibold text-gray-700 mb-2">
+                                        Upload Issue (PDF)
+                                        <span class="text-xs font-normal text-gray-500">(leave blank to keep current)</span></label>
+                                    <input type="file" id="edit_pdf_file" name="pdf_file" accept="application/pdf"
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2.5">
                                 </div>
                             </div>
@@ -559,12 +856,10 @@ if (!$userInfo || empty($userInfo['role'])) {
 
                 <!-- Modal footer -->
                 <div class="flex items-center p-6 space-x-3 border-t border-gray-200 rounded-b">
-                    <!-- Save Changes button (linked to the form) -->
-                    <button type="submit" form="editIssueModal"
+                    <button type="submit" form="edit-magazine-issue-form"
                         class="px-5 py-2.5 bg-[#1a589e] text-white font-bold rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out">
                         Save Changes
                     </button>
-                    <!-- Cancel button -->
                     <button id="cancelModalButton" data-modal-hide="editIssueModal" type="button"
                         class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-full hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 transition duration-300 ease-in-out">
                         Cancel
@@ -579,9 +874,65 @@ if (!$userInfo || empty($userInfo['role'])) {
         xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="../js/sidenav.js"></script>
     <script src="../js/db_wl.js"></script>
+
+    <script>
+        // Populate the Edit modal with the clicked issue's data
+        document.addEventListener('click', function (e) {
+            const trigger = e.target.closest('.editIssueButton');
+            if (!trigger) return;
+
+            document.getElementById('edit_id').value = trigger.dataset.id || '';
+            document.getElementById('edit_volume_issue').value = trigger.dataset.volume || '';
+            document.getElementById('edit_issue_title').value = trigger.dataset.title || '';
+            document.getElementById('edit_cover_description').value = trigger.dataset.description || '';
+            document.getElementById('edit_issue_year').value = trigger.dataset.year || '';
+        });
+
+        // Confirm before deleting (carousel dropdown links + archive table buttons)
+        document.addEventListener('click', function (e) {
+            const del = e.target.closest('.deleteIssueButton');
+            if (!del) return;
+
+            e.preventDefault();
+            const href = del.tagName === 'A' ? del.getAttribute('href') : ('waterlife.php?delete=' + del.dataset.id);
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This issue will be permanently deleted.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = href;
+                }
+            });
+        });
+
+        <?php if (isset($_GET['added'])): ?>
+            Swal.fire({ icon: 'success', title: 'Issue Uploaded!', timer: 1500, showConfirmButton: false });
+        <?php endif; ?>
+
+        <?php if (isset($_GET['updated'])): ?>
+            Swal.fire({ icon: 'success', title: 'Issue Updated!', timer: 1500, showConfirmButton: false });
+        <?php endif; ?>
+
+        <?php if (isset($_GET['archived'])): ?>
+            Swal.fire({ icon: 'success', title: 'Issue Added to Archive!', timer: 1500, showConfirmButton: false });
+        <?php endif; ?>
+
+        <?php if (isset($_GET['deleted'])): ?>
+            Swal.fire({ icon: 'success', title: 'Issue Deleted!', timer: 1500, showConfirmButton: false });
+        <?php endif; ?>
+
+        <?php if ($wlError): ?>
+            Swal.fire({ icon: 'error', title: 'Something went wrong', text: <?= json_encode($wlError) ?> });
+        <?php endif; ?>
+    </script>
 
 </body>
 

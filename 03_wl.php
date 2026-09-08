@@ -1,3 +1,30 @@
+<?php
+require 'db.php';
+
+/* =====================================================
+   FETCH: CAROUSEL (FEATURED) ISSUES
+===================================================== */
+$carouselStmt = $conn->prepare("
+    SELECT id, volume_issue, issue_title, cover_description, cover_image, pdf_file, issue_year
+    FROM waterlife_issues
+    WHERE is_featured = 1
+    ORDER BY issue_year DESC, created_at DESC
+");
+$carouselStmt->execute();
+$carouselIssues = $carouselStmt->fetchAll(PDO::FETCH_ASSOC);
+
+/* =====================================================
+   FETCH: ARCHIVE ISSUES
+===================================================== */
+$archiveStmt = $conn->prepare("
+    SELECT id, issue_title, pdf_file, issue_year
+    FROM waterlife_issues
+    WHERE is_featured = 0
+    ORDER BY issue_year DESC, created_at DESC
+");
+$archiveStmt->execute();
+$archiveIssues = $archiveStmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,41 +133,56 @@
         <!-- Carousel Wrapper - Explicit minimum height added here -->
         <div class="relative overflow-hidden rounded-lg  min-h-[800px] sm:min-h-[400px]">
 
-            <!-- Item 1: 2025 Issue -->
-            <div class="duration-700 ease-in-out" data-carousel-item="active">
-                <div class="w-full h-full p-6 flex justify-center items-center">
-                    <!-- Card structure with new accent border -->
-                    <div class="max-w-3xl h-full bg-white rounded-xl shadow-sm border-t-8 border-[#15467e]
-                    flex flex-col md:flex-row md:items-center w-full">
-                        <div class="w-full md:w-5/12 p-4 flex justify-center md:block ">
-                            <!-- Placeholder image URL used, added bg-gray-100 to differentiate from card background -->
-                            <img class="object-contain w-full rounded-xl bg-[#15467e] max-h-56 md:w-full md:h-auto shadow-lg"
-                                src="./img/wl25.png" alt="Waterlife Magazine 2025 Issue">
-                        </div>
-                        <!-- SCROLLING ADDED HERE: max-h-48 (sets max height on mobile) and overflow-y-auto (enables scrolling) -->
-                        <div
-                            class="w-full md:w-7/12 p-4 md:p-8 max-h-61 overflow-y-auto md:max-h-full md:overflow-y-visible">
-                            <h5 class="mb text-2xl font-bold tracking-tight text-gray-900">Volume 11 Issue 1</h5>
-                            <h5 class="mb-2 text-sm font-bold tracking-tight text-gray-900">Renewing Commitment &
-                                Strengthening Service</h5>
-                            <p class="mb-6 font-normal text-gray-700">The cover features "Peter the Plumber,"
-                                symbolizing CWD's dedication and technical expertise. It is surrounded by real-life
-                                images highlighting CWD's infrastructure and operations, reflecting its continuous
-                                effort to deliver clean, safe water through innovation and sustainability.</p>
-                            <a href="./pdf/CWD WL, Vol 11, Issue 1 (2025) [Compressed Ver].pdf" target="_blank"
-                                class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-center text-white bg-[#1a589e] rounded-lg
-                    hover:bg-[#15467e] focus:ring-4 focus:outline-none focus:ring-blue-300 transition duration-200 shadow-md">
-                                Read Issue
-                                <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" fill="none" viewBox="0 0 14 10"
-                                    stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
+            <?php if (empty($carouselIssues)): ?>
+                <div class="duration-700 ease-in-out" data-carousel-item="active">
+                    <div class="w-full h-full p-6 flex justify-center items-center">
+                        <div class="max-w-3xl h-full bg-white rounded-xl shadow-sm border-t-8 border-[#15467e]
+                                    flex flex-col md:flex-row md:items-center w-full p-8 text-center">
+                            <p class="w-full text-gray-500 text-lg">No issues have been published yet. Check back soon!</p>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
+            <?php foreach ($carouselIssues as $index => $issue): ?>
+                <!-- Item: <?= htmlspecialchars($issue['volume_issue']) ?> -->
+                <div class="duration-700 ease-in-out" data-carousel-item="<?= $index === 0 ? 'active' : '' ?>">
+                    <div class="w-full h-full p-6 flex justify-center items-center">
+                        <!-- Card structure with new accent border -->
+                        <div class="max-w-3xl h-full bg-white rounded-xl shadow-sm border-t-8 border-[#15467e]
+                        flex flex-col md:flex-row md:items-center w-full">
+                            <div class="w-full md:w-5/12 p-4 flex justify-center md:block ">
+                                <img class="object-contain w-full rounded-xl bg-[#15467e] max-h-56 md:w-full md:h-auto shadow-lg"
+                                    src="uploads/waterlife/covers/<?= htmlspecialchars($issue['cover_image']) ?>"
+                                    alt="<?= htmlspecialchars($issue['volume_issue']) ?>">
+                            </div>
+                            <div
+                                class="w-full md:w-7/12 p-4 md:p-8 max-h-61 overflow-y-auto md:max-h-full md:overflow-y-visible">
+                                <h5 class="mb text-2xl font-bold tracking-tight text-gray-900">
+                                    <?= htmlspecialchars($issue['volume_issue']) ?>
+                                </h5>
+                                <h5 class="mb-2 text-sm font-bold tracking-tight text-gray-900">
+                                    <?= htmlspecialchars($issue['issue_title']) ?>
+                                </h5>
+                                <p class="mb-6 font-normal text-gray-700">
+                                    <?= nl2br(htmlspecialchars($issue['cover_description'])) ?>
+                                </p>
+                                <a href="uploads/waterlife/pdf/<?= htmlspecialchars($issue['pdf_file']) ?>" target="_blank"
+                                    class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-center text-white bg-[#1a589e] rounded-lg
+                    hover:bg-[#15467e] focus:ring-4 focus:outline-none focus:ring-blue-300 transition duration-200 shadow-md">
+                                    Read Issue
+                                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" fill="none" viewBox="0 0 14 10"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <!-- Fixed CTA slide: link to the Archive modal -->
             <div class="duration-700 ease-in-out" data-carousel-item="">
                 <div class="w-full h-full p-6 flex justify-center items-center">
                     <!-- Card structure with new accent border -->
@@ -253,55 +295,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Sample Data Row 1 -->
-                                <tr class="bg-white border-b hover:bg-blue-50">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        Volume 9 Issue 1: Septage Treatment Plant 
-                                    </th>
-                                    <td class="px-6 py-4 text-center">
-                                        2023
-                                    </td>
-                                    <td class="px-6 py-4 text-center">
-                                        <a href="assets\Files\Waterlife\CWD WL, Vol 9, Issue 1 (2023).pdf" target="_blank"
-                                            class="font-medium text-[#1a589e]"><i class="fa-solid fa-eye"></i> View</a>
-                                    </td>
-                                </tr>
-                                <!-- Sample Data Row 2 -->
-                                <tr class="bg-white border-b hover:bg-blue-50">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        Volume 5 Issue 2: Clean Water For All
-                                    </th>
-                                    <td class="px-6 py-4 text-center">
-                                        2014
-                                    </td>
-                                    <td class="px-6 py-4 text-center">
-                                        <a href="assets\Files\Waterlife\CWD WL, Vol 5, Issue 2 (2014).pdf" target="_blank"
-                                            class="font-medium text-[#1a589e]"><i class="fa-solid fa-eye"></i> View</a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white border-b hover:bg-blue-50">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        Volume 5 Issue 1: Lingkod Bayani
-                                    </th>
-                                    <td class="px-6 py-4 text-center">
-                                        2014
-                                    </td>
-                                    <td class="px-6 py-4 text-center">
-                                        <a href="assets\Files\Waterlife\CWD WL, Vol 5, Issue 1 (2014).pdf" target="_blank"
-                                            class="font-medium text-[#1a589e]"><i class="fa-solid fa-eye"></i> View</a>
-                                    </td>
-                                </tr>
+                                <?php if (empty($archiveIssues)): ?>
+                                    <tr>
+                                        <td colspan="3" class="px-6 py-4 text-center text-gray-500">
+                                            No archived issues yet.
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+
+                                <?php foreach ($archiveIssues as $row): ?>
+                                    <tr class="bg-white border-b hover:bg-blue-50">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            <?= htmlspecialchars($row['issue_title']) ?>
+                                        </th>
+                                        <td class="px-6 py-4 text-center">
+                                            <?= htmlspecialchars($row['issue_year']) ?>
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            <a href="uploads/waterlife/pdf/<?= htmlspecialchars($row['pdf_file']) ?>" target="_blank"
+                                                class="font-medium text-[#1a589e]"><i class="fa-solid fa-eye"></i> View</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+
+                                <!-- Fixed reference row for issues predating the database records -->
                                 <tr class="bg-white border-b hover:bg-blue-50">
                                     <th scope="row" colspan="2" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                         <i class="fa-solid fa-box-archive text-[#1a589e] mr-2"></i> Waterlife Issues Before 2014
                                     </th>
-                                    
+
                                     <td class="px-6 py-4 text-center">
                                         <a href="https://cwd.com.ph/events_past1.html" target="_blank"
                                             class="font-medium text-[#1a589e]"><i class="fa-solid fa-arrow-up-right-from-square mr-2"></i> Visit</a>
                                     </td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
