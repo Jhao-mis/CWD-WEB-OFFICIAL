@@ -211,6 +211,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'updat
                 <hr class="my-2">
 
                 <div>
+                    <label class="block text-sm font-medium mb-1">Current Password</label>
+                    <input type="password" name="current_password" required
+                        class="w-full border rounded-lg px-3 py-2 text-sm"
+                        placeholder="Required to save any changes">
+                    <p class="text-xs text-gray-500 mt-1">Enter your current password to confirm these changes.</p>
+                </div>
+
+                
+
+                <hr class="my-2">
+
+                <div>
                     <label class="block text-sm font-medium mb-1">New Password</label>
                     <input type="password" name="new_password" minlength="8"
                         class="w-full border rounded-lg px-3 py-2 text-sm" placeholder="Leave blank to keep current">
@@ -220,16 +232,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'updat
                     <label class="block text-sm font-medium mb-1">Confirm New Password</label>
                     <input type="password" name="confirm_password" minlength="8"
                         class="w-full border rounded-lg px-3 py-2 text-sm" placeholder="Repeat new password">
-                </div>
-
-                <hr class="my-2">
-
-                <div>
-                    <label class="block text-sm font-medium mb-1">Current Password</label>
-                    <input type="password" name="current_password" required
-                        class="w-full border rounded-lg px-3 py-2 text-sm"
-                        placeholder="Required to save any changes">
-                    <p class="text-xs text-gray-500 mt-1">Enter your current password to confirm these changes.</p>
                 </div>
 
                 <div class="flex justify-end pt-2">
