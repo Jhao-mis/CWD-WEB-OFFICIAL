@@ -88,6 +88,26 @@ function handleUpload(string $fieldName, string $destDir, array $allowedExt, boo
         failBack("Invalid file type for $fieldName");
     }
 
+    // Verify the actual file content matches the claimed extension (don't trust the name alone)
+    $mimeByExt = [
+        'jpg'  => ['image/jpeg'],
+        'jpeg' => ['image/jpeg'],
+        'png'  => ['image/png'],
+        'webp' => ['image/webp'],
+        'pdf'  => ['application/pdf'],
+        'zip'  => ['application/zip', 'application/x-zip-compressed', 'application/octet-stream'],
+    ];
+
+    if (isset($mimeByExt[$ext]) && function_exists('finfo_open')) {
+        $finfo    = finfo_open(FILEINFO_MIME_TYPE);
+        $realMime = finfo_file($finfo, $file['tmp_name']);
+        finfo_close($finfo);
+
+        if (!in_array($realMime, $mimeByExt[$ext], true)) {
+            failBack("File content does not match its extension for $fieldName");
+        }
+    }
+
     $storedName = time() . '_' . bin2hex(random_bytes(4)) . '_' . preg_replace('/[^A-Za-z0-9._-]/', '_', basename($file['name']));
     $destPath   = $destDir . $storedName;
 
@@ -125,7 +145,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'upload') {
     }
 
     $coverImage = handleUpload('cover_image', $uploadDirImages, ['jpg', 'jpeg', 'png', 'webp']);
-    $pdfFile    = handleUpload('pdf_file', $uploadDirPdfs, ['pdf']);
+    $pdfFile    = handleUpload('pdf_file', $uploadDirPdfs, ['pdf', 'zip']);
 
     $stmt = $conn->prepare("
         INSERT INTO waterlife_issues
@@ -168,7 +188,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
 
     // Files are optional on edit — only replace if a new one was chosen
     $coverImage = handleUpload('cover_image', $uploadDirImages, ['jpg', 'jpeg', 'png', 'webp'], false) ?? $existing['cover_image'];
-    $pdfFile    = handleUpload('pdf_file', $uploadDirPdfs, ['pdf'], false) ?? $existing['pdf_file'];
+    $pdfFile    = handleUpload('pdf_file', $uploadDirPdfs, ['pdf', 'zip'], false) ?? $existing['pdf_file'];
 
     if ($coverImage !== $existing['cover_image']) {
         deleteFileIfExists($uploadDirImages, $existing['cover_image']);
@@ -206,7 +226,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_archive') {
         failBack("Please fill in all required fields.");
     }
 
-    $pdfFile = handleUpload('new_pdf_file', $uploadDirPdfs, ['pdf']);
+    $pdfFile = handleUpload('new_pdf_file', $uploadDirPdfs, ['pdf', 'zip']);
 
     $stmt = $conn->prepare("
         INSERT INTO waterlife_issues
@@ -412,8 +432,10 @@ unset($_SESSION['wl_error']);
 
                                 <div>
                                     <label for="pdf_link" class="block text-lg font-semibold text-gray-700 mb-2">
-                                        Upload Issue (PDF)</label>
-                                    <input type="file" id="pdf_file" name="pdf_file" accept="application/pdf" required
+                                        Upload Issue (PDF or ZIP)</label>
+                                    <input type="file" id="pdf_file" name="pdf_file"
+                                        accept=".pdf,.zip,application/pdf,application/zip,application/x-zip-compressed"
+                                        required
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2.5">
                                 </div>
                             </div>
@@ -731,9 +753,11 @@ unset($_SESSION['wl_error']);
                                     </div>
 
                                     <div>
-                                        <label for="new_pdf_file" class="block text-sm font-medium text-gray-700">PDF
+                                        <label for="new_pdf_file" class="block text-sm font-medium text-gray-700">PDF or ZIP
                                             File Upload</label>
-                                        <input type="file" id="new_pdf_file" name="new_pdf_file" accept=".pdf" required
+                                        <input type="file" id="new_pdf_file" name="new_pdf_file"
+                                            accept=".pdf,.zip,application/pdf,application/zip,application/x-zip-compressed"
+                                            required
                                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-1.5 focus:ring-pink-500 focus:border-pink-500">
                                     </div>
                                 </div>
@@ -843,9 +867,10 @@ unset($_SESSION['wl_error']);
 
                                 <div>
                                     <label for="edit_pdf_file" class="block text-lg font-semibold text-gray-700 mb-2">
-                                        Upload Issue (PDF)
+                                        Upload Issue (PDF or ZIP)
                                         <span class="text-xs font-normal text-gray-500">(leave blank to keep current)</span></label>
-                                    <input type="file" id="edit_pdf_file" name="pdf_file" accept="application/pdf"
+                                    <input type="file" id="edit_pdf_file" name="pdf_file"
+                                        accept=".pdf,.zip,application/pdf,application/zip,application/x-zip-compressed"
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2.5">
                                 </div>
                             </div>
