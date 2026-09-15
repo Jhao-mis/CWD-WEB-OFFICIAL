@@ -479,7 +479,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <form method="POST" id="loginForm">
 
                     <div class="field">
-                        <label for="login">Username or email</label>
+                        <label for="login">Username</label>
                         <input
                             type="text"
                             id="login"
