@@ -326,7 +326,7 @@ $archiveIssues = $archiveStmt->fetchAll(PDO::FETCH_ASSOC);
 
                                     <td class="px-6 py-4 text-center">
                                         <a href="https://cwd.com.ph/events_past1.html" target="_blank"
-                                            class="font-medium text-[#1a589e]"><i class="fa-solid fa-arrow-up-right-from-square mr-2"></i> Visit</a>
+                                            class="font-medium text-[#1a589e]"><i class="fa-solid fa-folder-arrow-down mr-2"></i> Download</a>
                                     </td>
                                 </tr>
 

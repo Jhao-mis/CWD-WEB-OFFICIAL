@@ -498,77 +498,128 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
         </div>
     </section>
 
+
+    <!-- Anniversary Highlight Section -->
     <div class="max-w-5xl mx-auto relative z-10 mt-8 px-4">
 
-        <!-- Header Section -->
-        <div class="text-center mb-10 flex flex-col items-center">
-
-            <!-- 50th Anniversary Logo Placeholder -->
-            <div class="mb-4 transition-transform duration-300 hover:scale-105">
-                <img src="./img/CWD50th.png" alt="CWD 50th Anniversary Logo"
-                    class="h-36 md:h-42 w-auto object-contain drop-shadow-md">
-            </div>
-
+        <!-- Header & Badge Tag (Fixed sa Taas) -->
+        <div class="text-center mb-8 flex flex-col items-center">
             <!-- Badge Tag -->
             <span
-                class="inline-flex items-center px-4 py-1.5 mb-5 text-xs md:text-[13px] font-black uppercase tracking-[0.2em] text-[#1a589e] bg-blue-50/80 backdrop-blur-sm rounded-full border border-blue-200/60 shadow-sm">
+                class="inline-flex items-center px-4 py-1.5 mb-2 text-xs md:text-[13px] font-black uppercase tracking-[0.2em] text-[#1a589e] bg-blue-50/80 backdrop-blur-sm rounded-full border border-blue-200/60 shadow-sm">
                 <i class="fa-solid fa-clapperboard mr-2 text-blue-600"></i>50th Anniversary Highlight
             </span>
-
-            <!-- Main Title -->
-            <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-                Water Districts Congratulate CWD for its <span class="text-[#1a589e] relative inline-block">50th
-                    Year!</span>
-            </h2>
-
-            <!-- Description Text -->
-            <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                Through the Philippine Association of Water Districts (PAWD), fellow water districts show their
-                heartfelt support and congratulates Calamba Water District for 50 years of dedicated service to the
-                community.
-            </p>
         </div>
 
-        <!-- Modern Video Player Container -->
-        <div
-            class="glass-container p-3 md:p-5 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10">
+        <!-- CAROUSEL WRAPPER -->
+        <div class="relative group">
 
-            <!-- Video Wrapper -->
-            <div
-                class="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-950 group shadow-inner ring-1 ring-slate-900/10">
-                <video controls preload="metadata" poster="./img/video-poster-placeholder.jpg"
-                    class="w-full aspect-video object-cover">
-                    <source src="./img/PAWDGreetsCWD@50th.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
 
-            <!-- Info Bar Below Video -->
-            <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-6 px-2 md:px-4 pb-2">
-                <div class="flex items-center gap-4 md:gap-5 w-full md:w-auto">
-
-                    <!-- Icon Box -->
-                    <div
-                        class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-[#1a589e] to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
-                        <i class="fa-solid fa-gift text-lg md:text-xl"></i>
-                    </div>
-
-                    <!-- Video Title & Description -->
-                    <div>
-                        <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">PAWD Video Greetings
-                            for CWD @ 50</h4>
-                        <p class="text-xs md:text-sm text-slate-500 font-medium">50 Years of Service – Securing Life
-                            and Progress for our Community</p>
-                    </div>
-
+            <!-- SLIDE 1: Same Day Edit (SDE) -->
+            <div class="anniversary-slide transition-all duration-500 hidden">
+                <div class="text-center mb-8 flex flex-col items-center">
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+                        50th Anniversary Celebration <span class="text-[#1a589e] relative inline-block">Same Day
+                            Edit</span>
+                    </h2>
+                    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        Relive the highlights, joy, and memorable moments of Calamba Water District's golden anniversary
+                        celebration.
+                    </p>
                 </div>
 
-                <!-- Optional Quick Action / Badge Tag on the Right -->
+                <div
+                    class="glass-container p-3 md:p-5 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10">
+                    <div
+                        class="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-950 group shadow-inner ring-1 ring-slate-900/10">
+                        <video controls preload="metadata" poster="./img/sde-poster-placeholder.jpg"
+                            class="w-full aspect-video object-cover slide-video">
+                            <source src="./img/CWD50thAnnivSDE.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-6 px-2 md:px-4 pb-2">
+                        <div class="flex items-center gap-4 md:gap-5 w-full md:w-auto">
+                            <div
+                                class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-[#1a589e] to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
+                                <i class="fa-solid fa-film text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">Official
+                                    Anniversary SDE Video</h4>
+                                <p class="text-xs md:text-sm text-slate-500 font-medium">Capturing 50 Years of
+                                    Excellence, Unity, and Legacy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
 
+            <!-- SLIDE 2: PAWD Greetings -->
+            <div class="anniversary-slide transition-all duration-500 block">
+                <div class="text-center mb-8 flex flex-col items-center">
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+                        Water Districts Congratulate CWD for its <span class="text-[#1a589e] relative inline-block">50th
+                            Year!</span>
+                    </h2>
+                    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        Through the Philippine Association of Water Districts (PAWD), fellow water districts show their
+                        heartfelt support and congratulate Calamba Water District for 50 years of dedicated service.
+                    </p>
+                </div>
+
+                <div
+                    class="glass-container p-3 md:p-5 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10">
+                    <div
+                        class="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-950 group shadow-inner ring-1 ring-slate-900/10">
+                        <video controls preload="metadata" poster="./img/video-poster-placeholder.jpg"
+                            class="w-full aspect-video object-cover slide-video">
+                            <source src="./img/PAWDGreetsCWD@50th.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-6 px-2 md:px-4 pb-2">
+                        <div class="flex items-center gap-4 md:gap-5 w-full md:w-auto">
+                            <div
+                                class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-[#1a589e] to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
+                                <i class="fa-solid fa-gift text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">PAWD Video
+                                    Greetings for CWD @ 50</h4>
+                                <p class="text-xs md:text-sm text-slate-500 font-medium">50 Years of Service – Securing
+                                    Life and Progress for our Community</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+            <!-- CONTROLS: Left & Right Buttons -->
+            <button type="button" onclick="moveSlide(-1)"
+                class="absolute top-1/2 -left-3 md:-left-6 -translate-y-1/2 w-11 h-11 bg-white/90 hover:bg-[#1a589e] text-slate-700 hover:text-white rounded-full flex items-center justify-center shadow-lg border border-slate-200/80 transition-all duration-300 z-30 cursor-pointer pointer-events-auto">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <button type="button" onclick="moveSlide(1)"
+                class="absolute top-1/2 -right-3 md:-right-6 -translate-y-1/2 w-11 h-11 bg-white/90 hover:bg-[#1a589e] text-slate-700 hover:text-white rounded-full flex items-center justify-center shadow-lg border border-slate-200/80 transition-all duration-300 z-30 cursor-pointer pointer-events-auto">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+
+            <!-- INDICATORS -->
+            <div class="flex justify-center items-center gap-2 mt-6">
+                <button type="button" class="slide-dot w-8 h-2.5 rounded-full bg-[#1a589e] transition-all duration-300"
+                    onclick="goToSlide(0)"></button>
+                <button type="button"
+                    class="slide-dot w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300"
+                    onclick="goToSlide(1)"></button>
             </div>
 
         </div>
-
     </div>
 
     <br>
@@ -789,7 +840,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                     <span
                                         class="text-xs font-bold text-slate-700 group-hover:text-red-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
                                     <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
                                     </span>
                                 </div>
                                 <div
@@ -824,7 +876,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                     <span
                                         class="text-xs font-bold text-slate-700 group-hover:text-blue-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
                                     <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
                                     </span>
                                 </div>
                                 <div
@@ -860,7 +913,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                     <span
                                         class="text-xs font-bold text-slate-700 group-hover:text-amber-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
                                     <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
                                     </span>
                                 </div>
                                 <div
@@ -1346,6 +1400,56 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                 }
             });
         });
+    </script>
+
+    <script>
+        let currentSlide = 0;
+
+        function updateCarousel() {
+            const annivSlides = document.querySelectorAll('.anniversary-slide');
+            const annivDots = document.querySelectorAll('.slide-dot');
+            const annivVideos = document.querySelectorAll('.slide-video');
+
+            if (!annivSlides || annivSlides.length === 0) return;
+
+            annivSlides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('hidden');
+                    slide.classList.add('block');
+                } else {
+                    slide.classList.add('hidden');
+                    slide.classList.remove('block');
+                }
+            });
+
+            annivDots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.remove('w-2.5', 'bg-slate-300');
+                    dot.classList.add('w-8', 'bg-[#1a589e]');
+                } else {
+                    dot.classList.remove('w-8', 'bg-[#1a589e]');
+                    dot.classList.add('w-2.5', 'bg-slate-300');
+                }
+            });
+
+            // Pause video kapag lumipat ng slide
+            annivVideos.forEach(video => video.pause());
+        }
+
+        // Direct slide navigation (sa indicators/dots)
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Prev / Next button navigation
+        function moveSlide(direction) {
+            const annivSlides = document.querySelectorAll('.anniversary-slide');
+            if (!annivSlides || annivSlides.length === 0) return;
+
+            currentSlide = (currentSlide + direction + annivSlides.length) % annivSlides.length;
+            updateCarousel();
+        }
     </script>
 
 </body>
