@@ -403,97 +403,113 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
         </div>
     </div>
 
-    <!-- About -->
-    <section class="py-20 px-4 font-['Montserrat']">
-        <div class="max-w-7xl mx-auto">
+    <!-- Enhanced About Us Section -->
+    <section class="py-20 px-4 font-['Montserrat'] bg-slate-50/50 relative overflow-hidden">
+        <!-- Subtle Background Accent Shapes -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none">
+        </div>
 
+        <div class="max-w-7xl mx-auto relative z-10">
             <div
-                class="relative bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-100">
+                class="bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(26,88,158,0.08)] overflow-hidden border border-slate-200/80">
                 <div class="flex flex-wrap items-stretch">
 
                     <!-- Content Column (Left) -->
-                    <div class="w-full lg:w-7/12 p-8 md:p-16 relative z-10">
-                        <div class="mb-10">
-                            <span
-                                class="text-[#1a589e] font-black text-[15px] uppercase tracking-[0.3em] mt-3 mb-3 block">We
-                                are</span>
-                            <h2 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight"><span
-                                    class="text-[#1a589e]">Calamba Water District</span></h2>
-                        </div>
-
-                        <!-- Tabs Navigation -->
-                        <div class="flex gap-10 border-b border-slate-100 mb-12">
-                            <button onclick="switchTab('mission')" id="btn-mission"
-                                class="tab-btn pb-4 font-bold uppercase tracking-widest text-xs transition-all border-b-4 border-[#1a589e] text-[#1a589e]">
-                                <i class="fa-solid fa-bullseye"></i>
-                                Our Mission
-                            </button>
-                            <button onclick="switchTab('vision')" id="btn-vision"
-                                class="tab-btn pb-4 font-bold uppercase tracking-widest text-xs transition-all border-b-4 border-transparent text-slate-400 hover:text-slate-600">
-                                <i class="fa-solid fa-eye"></i>
-                                Our Vision
-                            </button>
-                        </div>
-
-                        <!-- Tab Panels -->
-                        <div class="min-h-[180px]">
-                            <!-- Mission Content -->
-                            <div id="pane-mission" class="tab-pane block">
-                                <p
-                                    class="text-xl md:text-2xl font-medium text-slate-700 leading-relaxed italic relative">
-                                    <span
-                                        class="text-7xl absolute -top-8 -left-5 font-serif text-[#1a589e]/60 italic drop-shadow-[2px_2px_rgba(30,58,138,0.05)] select-none mb-2">
-                                        &ldquo; </span>
-                                    Calamba Water District will ensure the Calambeños with sufficient supply of potable
-                                    water 24/7 along with its commitment to establish sewerage and septage management
-                                    system as part of our environmental concern.
-                                </p>
+                    <div class="w-full lg:w-7/12 p-8 sm:p-12 md:p-16 flex flex-col justify-between relative z-10">
+                        <div>
+                            <!-- Section Badge -->
+                            <div
+                                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-[#1a589e] text-xs font-extrabold uppercase tracking-widest mb-4">
+                                <span class="w-2 h-2 rounded-full bg-[#1a589e] animate-ping"></span>
+                                Who We Are
                             </div>
 
-                            <!-- Vision Content -->
-                            <div id="pane-vision" class="tab-pane hidden">
-                                <p
-                                    class="text-xl md:text-2xl font-medium text-slate-700 leading-relaxed italic relative">
-                                    <span
-                                        class="text-7xl absolute -top-8 -left-5 font-serif text-[#1a589e]/60 italic drop-shadow-[2px_2px_rgba(30,58,138,0.05)] select-none">
-                                        &ldquo; </span>
-                                    A Water District with the highest quality of service that ensures customer
-                                    satisfaction by providing continuous supply of potable water at an affordable cost
-                                    and committed to an environmental preservation and protection.
-                                </p>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-8">
+                                Calamba Water <span
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#1a589e] to-blue-600">District</span>
+                            </h2>
+
+                            <!-- Modern Modernized Tab Pills -->
+                            <div class="inline-flex p-1.5 bg-slate-100/80 rounded-2xl mb-8 border border-slate-200/60">
+                                <button onclick="switchTab('mission')" id="btn-mission"
+                                    class="tab-btn px-6 py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 bg-[#1a589e] text-white shadow-md shadow-blue-900/10">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                    Our Mission
+                                </button>
+                                <button onclick="switchTab('vision')" id="btn-vision"
+                                    class="tab-btn px-6 py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 text-slate-500 hover:text-slate-800">
+                                    <i class="fa-solid fa-eye"></i>
+                                    Our Vision
+                                </button>
+                            </div>
+
+                            <!-- Tab Panels Container -->
+                            <div class="min-h-[160px] relative">
+                                <!-- Mission Content -->
+                                <div id="pane-mission" class="tab-pane block transition-opacity duration-300">
+                                    <div class="relative pl-6 border-l-4 border-[#1a589e]">
+                                        <p class="text-lg md:text-xl font-medium text-slate-700 leading-relaxed italic">
+                                            &ldquo;Calamba Water District will ensure the Calambeños with sufficient
+                                            supply of potable water 24/7 along with its commitment to establish sewerage
+                                            and septage management system as part of our environmental concern.&rdquo;
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Vision Content -->
+                                <div id="pane-vision" class="tab-pane hidden transition-opacity duration-300">
+                                    <div class="relative pl-6 border-l-4 border-[#1a589e]">
+                                        <p class="text-lg md:text-xl font-medium text-slate-700 leading-relaxed italic">
+                                            &ldquo;A Water District with the highest quality of service that ensures
+                                            customer satisfaction by providing continuous supply of potable water at an
+                                            affordable cost and committed to an environmental preservation and
+                                            protection.&rdquo;
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="mt-12">
+                        <!-- Call To Action Button -->
+                        <div class="mt-10 pt-6 border-t border-slate-100">
                             <a href="about_us"
-                                class="group inline-flex items-center bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-[#1a589e] transition-all shadow-lg hover:shadow-blue-200">
-                                Discover More
+                                class="group inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#1a589e] transition-all duration-300 shadow-xl hover:shadow-blue-500/25 hover:-translate-y-0.5">
+                                Discover Our Story
                                 <i
-                                    class="fa-solid fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                                    class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1.5 transition-transform"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Dynamic Logo Column (Right) -->
+                    <!-- Dynamic Branding Column (Right) -->
                     <div
-                        class="w-full lg:w-5/12 bg-gradient-to-br from-[#1a589e] to-[#0e3a6b] p-12 flex flex-col justify-center items-center relative overflow-hidden">
-                        <!-- Decorative background circles -->
-                        <div class="absolute w-64 h-64 bg-white/5 rounded-full -top-20 -right-20"></div>
-                        <div class="absolute w-32 h-32 bg-white/5 rounded-full bottom-10 left-10"></div>
+                        class="w-full lg:w-5/12 bg-gradient-to-br from-[#1a589e] via-[#144782] to-[#0d3159] p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[380px]">
+                        <!-- Decorative Background Spheres -->
+                        <div class="absolute w-72 h-72 bg-blue-400/10 rounded-full -top-16 -right-16 blur-xl"></div>
+                        <div class="absolute w-48 h-48 bg-cyan-300/10 rounded-full -bottom-10 -left-10 blur-xl"></div>
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px] opacity-10">
+                        </div>
 
+                        <!-- Floating Logo Container -->
                         <div class="relative z-10 animate-float">
-                            <div class="p-8 rounded-[3rem] shadow-2xl logo-glow">
-                                <img src="./img/CWDIcon2.png" class="w-55 h-auto object-contain" alt="CWD 24/7"
-                                    onerror="this.src='https://via.placeholder.com/200?text=CWD+24/7'">
+                            <div
+                                class="p-8 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl logo-glow">
+                                <img src="./img/CWDIcon2.png" class="w-48 md:w-56 h-auto object-contain drop-shadow-lg"
+                                    alt="CWD 24/7" onerror="this.src='https://via.placeholder.com/200?text=CWD+24/7'">
                             </div>
                         </div>
 
-                        <div class="mt-10 text-center z-10">
-                            <h4 class="text-white font-bold tracking-[0.4em] uppercase text-[18px]">24 / 7
-                                Public Service</h4>
-                            <div class="w-12 h-1 bg-white/20 mx-auto mt-4 rounded-full"></div>
+                        <!-- Status Label -->
+                        <div class="mt-8 text-center z-10">
+                            <span
+                                class="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-white font-extrabold tracking-[0.3em] uppercase text-xs border border-white/10 shadow-inner">
+                                24 / 7 Public Service
+                            </span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -1495,36 +1511,27 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
             const btnMission = document.getElementById('btn-mission');
             const btnVision = document.getElementById('btn-vision');
 
-            if (tab === 'mission') {
-                // Ipakita ang Mission Pane
-                paneMission.classList.remove('hidden');
-                paneMission.classList.add('block');
+            const activeClasses = ['bg-[#1a589e]', 'text-white', 'shadow-md', 'shadow-blue-900/10'];
+            const inactiveClasses = ['text-slate-500', 'hover:text-slate-800'];
 
-                // Itago ang Vision Pane
-                paneVision.classList.remove('block');
+            if (tab === 'mission') {
+                paneMission.classList.remove('hidden');
                 paneVision.classList.add('hidden');
 
-                // Style updates sa Buttons
-                btnMission.classList.add('border-[#1a589e]', 'text-[#1a589e]');
-                btnMission.classList.remove('border-transparent', 'text-slate-400');
+                btnMission.classList.add(...activeClasses);
+                btnMission.classList.remove(...inactiveClasses);
 
-                btnVision.classList.remove('border-[#1a589e]', 'text-[#1a589e]');
-                btnVision.classList.add('border-transparent', 'text-slate-400');
+                btnVision.classList.remove(...activeClasses);
+                btnVision.classList.add(...inactiveClasses);
             } else if (tab === 'vision') {
-                // Ipakita ang Vision Pane
                 paneVision.classList.remove('hidden');
-                paneVision.classList.add('block');
-
-                // Itago ang Mission Pane
-                paneMission.classList.remove('block');
                 paneMission.classList.add('hidden');
 
-                // Style updates sa Buttons
-                btnVision.classList.add('border-[#1a589e]', 'text-[#1a589e]');
-                btnVision.classList.remove('border-transparent', 'text-slate-400');
+                btnVision.classList.add(...activeClasses);
+                btnVision.classList.remove(...inactiveClasses);
 
-                btnMission.classList.remove('border-[#1a589e]', 'text-[#1a589e]');
-                btnMission.classList.add('border-transparent', 'text-slate-400');
+                btnMission.classList.remove(...activeClasses);
+                btnMission.classList.add(...inactiveClasses);
             }
         }
     </script>
