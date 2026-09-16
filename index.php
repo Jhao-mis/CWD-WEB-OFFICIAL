@@ -514,8 +514,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
         <!-- CAROUSEL WRAPPER -->
         <div class="relative group">
 
-            <!-- SLIDE 1: Same Day Edit (SDE) -->
-            <div class="anniversary-slide transition-all duration-500 hidden">
+            <!-- SLIDE 1: Same Day Edit (SDE) - NAKA-SET SA BLOCK (ACTIVE 1ST SLIDE) -->
+            <div class="anniversary-slide transition-all duration-500 block">
                 <div class="text-center mb-8 flex flex-col items-center">
                     <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
                         50th Anniversary Celebration <span class="text-[#1a589e] relative inline-block">Same Day
@@ -554,8 +554,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                 </div>
             </div>
 
-            <!-- SLIDE 2: PAWD Greetings -->
-            <div class="anniversary-slide transition-all duration-500 block">
+            <!-- SLIDE 2: PAWD Greetings - NAKA-SET SA HIDDEN -->
+            <div class="anniversary-slide transition-all duration-500 hidden">
                 <div class="text-center mb-8 flex flex-col items-center">
                     <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
                         Water Districts Congratulate CWD for its <span class="text-[#1a589e] relative inline-block">50th
@@ -581,7 +581,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                         <div class="flex items-center gap-4 md:gap-5 w-full md:w-auto">
                             <div
                                 class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-[#1a589e] to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
-                                <i class="fa-solid fa-gift text-lg md:text-xl"></i>
+                                <i class="fa-solid fa-[#1a589e] text-lg md:text-xl"></i>
                             </div>
                             <div>
                                 <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">PAWD Video
@@ -616,6 +616,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
             </div>
 
         </div>
+
     </div>
 
     <br>
