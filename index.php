@@ -404,7 +404,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
     </div>
 
     <!-- Enhanced About Us Section -->
-    <section class="py-20 px-4 font-['Montserrat'] bg-slate-50/50 relative overflow-hidden">
+    <section class="py-20 px-4 font-['Montserrat'] bg-[#1a589e] relative overflow-hidden">
         <!-- Subtle Background Accent Shapes -->
         <div class="absolute top-1/4 -left-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-10 right-10 w-80 h-80 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none">
@@ -496,7 +496,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                         <div class="relative z-10 animate-float">
                             <div
                                 class="p-8 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl logo-glow">
-                                <img src="./img/CWDIcon2.png" class="w-48 md:w-56 h-auto object-contain drop-shadow-lg"
+                                <img src="./img/cwd3d.png" class="w-48 md:w-56 h-auto object-contain drop-shadow-lg"
                                     alt="CWD 24/7" onerror="this.src='https://via.placeholder.com/200?text=CWD+24/7'">
                             </div>
                         </div>
