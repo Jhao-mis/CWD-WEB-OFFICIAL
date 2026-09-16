@@ -500,7 +500,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
 
 
     <!-- Anniversary Highlight Section -->
-    <div class="max-w-5xl mx-auto relative z-10 mt-8 px-4">
+    <div id="anniversary-section" class="max-w-5xl mx-auto relative z-10 mt-8 px-4">
 
         <!-- Header & Badge Tag (Fixed sa Taas) -->
         <div class="text-center mb-8 flex flex-col items-center">
@@ -513,7 +513,6 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
 
         <!-- CAROUSEL WRAPPER -->
         <div class="relative group">
-
 
             <!-- SLIDE 1: Same Day Edit (SDE) -->
             <div class="anniversary-slide transition-all duration-500 hidden">
@@ -532,7 +531,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                     class="glass-container p-3 md:p-5 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10">
                     <div
                         class="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-950 group shadow-inner ring-1 ring-slate-900/10">
-                        <video controls preload="metadata" poster="./img/sde-poster-placeholder.jpg"
+                        <video controls muted preload="metadata" poster="./img/sde-poster-placeholder.png"
                             class="w-full aspect-video object-cover slide-video">
                             <source src="./img/CWD50thAnnivSDE.mp4" type="video/mp4">
                             Your browser does not support the video tag.
@@ -545,7 +544,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                 <i class="fa-solid fa-film text-lg md:text-xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">Official
+                                <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">Official 50th
                                     Anniversary SDE Video</h4>
                                 <p class="text-xs md:text-sm text-slate-500 font-medium">Capturing 50 Years of
                                     Excellence, Unity, and Legacy</p>
@@ -553,7 +552,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
 
             <!-- SLIDE 2: PAWD Greetings -->
             <div class="anniversary-slide transition-all duration-500 block">
@@ -572,7 +571,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                     class="glass-container p-3 md:p-5 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10">
                     <div
                         class="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-950 group shadow-inner ring-1 ring-slate-900/10">
-                        <video controls preload="metadata" poster="./img/video-poster-placeholder.jpg"
+                        <video controls muted preload="metadata" poster="./img/pawd-placeholder.png"
                             class="w-full aspect-video object-cover slide-video">
                             <source src="./img/PAWDGreetsCWD@50th.mp4" type="video/mp4">
                             Your browser does not support the video tag.
@@ -594,9 +593,6 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                     </div>
                 </div>
             </div>
-
-            
-
 
             <!-- CONTROLS: Left & Right Buttons -->
             <button type="button" onclick="moveSlide(-1)"
@@ -1404,11 +1400,32 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
 
     <script>
         let currentSlide = 0;
+        let isCarouselInView = false; // Taga-check kung nasa viewport ang carousel section
+
+        // Helper function para i-play o i-pause ang video sa partikular na slide
+        function handleVideoPlayback() {
+            const annivSlides = document.querySelectorAll('.anniversary-slide');
+
+            annivSlides.forEach((slide, index) => {
+                const video = slide.querySelector('.slide-video');
+                if (!video) return; // Swabe lang kung Image slide (Slide 3)
+
+                if (index === currentSlide && isCarouselInView) {
+                    // I-play lang kung active slide AT nakikita sa screen
+                    video.play().catch(error => {
+                        // Kinakailangan ang muted sa karamihan ng browsers para mag-autoplay
+                        console.log("Autoplay blocked or waiting for user interaction:", error);
+                    });
+                } else {
+                    // I-pause kung hindi active slide o wala sa screen
+                    video.pause();
+                }
+            });
+        }
 
         function updateCarousel() {
             const annivSlides = document.querySelectorAll('.anniversary-slide');
             const annivDots = document.querySelectorAll('.slide-dot');
-            const annivVideos = document.querySelectorAll('.slide-video');
 
             if (!annivSlides || annivSlides.length === 0) return;
 
@@ -1432,17 +1449,15 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                 }
             });
 
-            // Pause video kapag lumipat ng slide
-            annivVideos.forEach(video => video.pause());
+            // Kontrolin ang video playback pagkatapos mag-update ng slide
+            handleVideoPlayback();
         }
 
-        // Direct slide navigation (sa indicators/dots)
         function goToSlide(index) {
             currentSlide = index;
             updateCarousel();
         }
 
-        // Prev / Next button navigation
         function moveSlide(direction) {
             const annivSlides = document.querySelectorAll('.anniversary-slide');
             if (!annivSlides || annivSlides.length === 0) return;
@@ -1450,6 +1465,25 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
             currentSlide = (currentSlide + direction + annivSlides.length) % annivSlides.length;
             updateCarousel();
         }
+
+        // INTERSECTION OBSERVER: Detektiyon kung nasa screen ang section
+        document.addEventListener('DOMContentLoaded', () => {
+            const sectionTarget = document.querySelector('#anniversary-section');
+
+            if (sectionTarget) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        // Kapag nakita na sa viewport (at least 50% ng section)
+                        isCarouselInView = entry.isIntersecting;
+                        handleVideoPlayback();
+                    });
+                }, {
+                    threshold: 0.5 // 50% ng section ay kailangang nakikita sa screen bago mag-play
+                });
+
+                observer.observe(sectionTarget);
+            }
+        });
     </script>
 
 </body>
