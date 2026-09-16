@@ -581,7 +581,7 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                         <div class="flex items-center gap-4 md:gap-5 w-full md:w-auto">
                             <div
                                 class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-[#1a589e] to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
-                                <i class="fa-solid fa-[#1a589e] text-lg md:text-xl"></i>
+                                <i class="fa-solid fa-gift fa-[#1a589e] text-lg md:text-xl"></i>
                             </div>
                             <div>
                                 <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">PAWD Video
