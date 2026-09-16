@@ -424,12 +424,12 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                         <!-- Tabs Navigation -->
                         <div class="flex gap-10 border-b border-slate-100 mb-12">
                             <button onclick="switchTab('mission')" id="btn-mission"
-                                class="tab-btn pb-4 font-bold uppercase tracking-widest text-xs transition-all border-b-4 border-transparent text-slate-400 active-tab">
+                                class="tab-btn pb-4 font-bold uppercase tracking-widest text-xs transition-all border-b-4 border-[#1a589e] text-[#1a589e]">
                                 <i class="fa-solid fa-bullseye"></i>
                                 Our Mission
                             </button>
                             <button onclick="switchTab('vision')" id="btn-vision"
-                                class="tab-btn pb-4 font-bold uppercase tracking-widest text-xs transition-all border-b-4 border-transparent text-slate-400">
+                                class="tab-btn pb-4 font-bold uppercase tracking-widest text-xs transition-all border-b-4 border-transparent text-slate-400 hover:text-slate-600">
                                 <i class="fa-solid fa-eye"></i>
                                 Our Vision
                             </button>
@@ -438,11 +438,12 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                         <!-- Tab Panels -->
                         <div class="min-h-[180px]">
                             <!-- Mission Content -->
-                            <div id="pane-mission" class="tab-pane">
+                            <div id="pane-mission" class="tab-pane block">
                                 <p
                                     class="text-xl md:text-2xl font-medium text-slate-700 leading-relaxed italic relative">
-                                    <span class="text-7xl absolute -top-8 -left-5 font-serif text-[#1a589e]/60 italic 
-                                    drop-shadow-[2px_2px_rgba(30,58,138,0.05)] select-none mb-2"> &ldquo; </span>
+                                    <span
+                                        class="text-7xl absolute -top-8 -left-5 font-serif text-[#1a589e]/60 italic drop-shadow-[2px_2px_rgba(30,58,138,0.05)] select-none mb-2">
+                                        &ldquo; </span>
                                     Calamba Water District will ensure the Calambeños with sufficient supply of potable
                                     water 24/7 along with its commitment to establish sewerage and septage management
                                     system as part of our environmental concern.
@@ -450,17 +451,17 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                             </div>
 
                             <!-- Vision Content -->
-                            <div id="pane-vision" class="tab-pane tab-content-hidden">
+                            <div id="pane-vision" class="tab-pane hidden">
                                 <p
                                     class="text-xl md:text-2xl font-medium text-slate-700 leading-relaxed italic relative">
-                                    <span class="text-7xl absolute -top-8 -left-5 font-serif text-[#1a589e]/60 italic 
-                                    drop-shadow-[2px_2px_rgba(30,58,138,0.05)] select-none"> &ldquo; </span>
+                                    <span
+                                        class="text-7xl absolute -top-8 -left-5 font-serif text-[#1a589e]/60 italic drop-shadow-[2px_2px_rgba(30,58,138,0.05)] select-none">
+                                        &ldquo; </span>
                                     A Water District with the highest quality of service that ensures customer
                                     satisfaction by providing continuous supply of potable water at an affordable cost
                                     and committed to an environmental preservation and protection.
                                 </p>
                             </div>
-
                         </div>
 
                         <div class="mt-12">
@@ -1485,6 +1486,47 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                 observer.observe(sectionTarget);
             }
         });
+    </script>
+
+    <script>
+        function switchTab(tab) {
+            const paneMission = document.getElementById('pane-mission');
+            const paneVision = document.getElementById('pane-vision');
+            const btnMission = document.getElementById('btn-mission');
+            const btnVision = document.getElementById('btn-vision');
+
+            if (tab === 'mission') {
+                // Ipakita ang Mission Pane
+                paneMission.classList.remove('hidden');
+                paneMission.classList.add('block');
+
+                // Itago ang Vision Pane
+                paneVision.classList.remove('block');
+                paneVision.classList.add('hidden');
+
+                // Style updates sa Buttons
+                btnMission.classList.add('border-[#1a589e]', 'text-[#1a589e]');
+                btnMission.classList.remove('border-transparent', 'text-slate-400');
+
+                btnVision.classList.remove('border-[#1a589e]', 'text-[#1a589e]');
+                btnVision.classList.add('border-transparent', 'text-slate-400');
+            } else if (tab === 'vision') {
+                // Ipakita ang Vision Pane
+                paneVision.classList.remove('hidden');
+                paneVision.classList.add('block');
+
+                // Itago ang Mission Pane
+                paneMission.classList.remove('block');
+                paneMission.classList.add('hidden');
+
+                // Style updates sa Buttons
+                btnVision.classList.add('border-[#1a589e]', 'text-[#1a589e]');
+                btnVision.classList.remove('border-transparent', 'text-slate-400');
+
+                btnMission.classList.remove('border-[#1a589e]', 'text-[#1a589e]');
+                btnMission.classList.add('border-transparent', 'text-slate-400');
+            }
+        }
     </script>
 
 </body>
