@@ -403,168 +403,233 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
         </div>
     </div>
 
-    <!-- About -->
-    <section class="py-20 px-4 font-['Montserrat']">
-        <div class="max-w-7xl mx-auto">
+    <!-- Enhanced About Us Section -->
+    <section class="py-20 px-4 font-['Montserrat'] bg-[#1a589e] relative overflow-hidden">
+        <!-- Subtle Background Accent Shapes -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-cyan-100/30 rounded-full blur-3xl pointer-events-none">
+        </div>
 
+        <div class="max-w-7xl mx-auto relative z-10">
             <div
-                class="relative bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-100">
+                class="bg-white/90 backdrop-blur-xl rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(26,88,158,0.08)] overflow-hidden border border-slate-200/80">
                 <div class="flex flex-wrap items-stretch">
 
                     <!-- Content Column (Left) -->
-                    <div class="w-full lg:w-7/12 p-8 md:p-16 relative z-10">
-                        <div class="mb-10">
-                            <span
-                                class="text-[#1a589e] font-black text-[15px] uppercase tracking-[0.3em] mt-3 mb-3 block">We
-                                are</span>
-                            <h2 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight"><span
-                                    class="text-[#1a589e]">Calamba Water District</span></h2>
-                        </div>
-
-                        <!-- Tabs Navigation -->
-                        <div class="flex gap-10 border-b border-slate-100 mb-12">
-                            <button onclick="switchTab('mission')" id="btn-mission"
-                                class="tab-btn pb-4 font-bold uppercase tracking-widest text-xs transition-all border-b-4 border-transparent text-slate-400 active-tab">
-                                <i class="fa-solid fa-bullseye"></i>
-                                Our Mission
-                            </button>
-                            <button onclick="switchTab('vision')" id="btn-vision"
-                                class="tab-btn pb-4 font-bold uppercase tracking-widest text-xs transition-all border-b-4 border-transparent text-slate-400">
-                                <i class="fa-solid fa-eye"></i>
-                                Our Vision
-                            </button>
-                        </div>
-
-                        <!-- Tab Panels -->
-                        <div class="min-h-[180px]">
-                            <!-- Mission Content -->
-                            <div id="pane-mission" class="tab-pane">
-                                <p
-                                    class="text-xl md:text-2xl font-medium text-slate-700 leading-relaxed italic relative">
-                                    <span class="text-7xl absolute -top-8 -left-5 font-serif text-[#1a589e]/60 italic 
-                                    drop-shadow-[2px_2px_rgba(30,58,138,0.05)] select-none mb-2"> &ldquo; </span>
-                                    Calamba Water District will ensure the Calambeños with sufficient supply of potable
-                                    water 24/7 along with its commitment to establish sewerage and septage management
-                                    system as part of our environmental concern.
-                                </p>
+                    <div class="w-full lg:w-7/12 p-8 sm:p-12 md:p-16 flex flex-col justify-between relative z-10">
+                        <div>
+                            <!-- Section Badge -->
+                            <div
+                                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-[#1a589e] text-xs font-extrabold uppercase tracking-widest mb-4">
+                                <span class="w-2 h-2 rounded-full bg-[#1a589e] animate-ping"></span>
+                                Who We Are
                             </div>
 
-                            <!-- Vision Content -->
-                            <div id="pane-vision" class="tab-pane tab-content-hidden">
-                                <p
-                                    class="text-xl md:text-2xl font-medium text-slate-700 leading-relaxed italic relative">
-                                    <span class="text-7xl absolute -top-8 -left-5 font-serif text-[#1a589e]/60 italic 
-                                    drop-shadow-[2px_2px_rgba(30,58,138,0.05)] select-none"> &ldquo; </span>
-                                    A Water District with the highest quality of service that ensures customer
-                                    satisfaction by providing continuous supply of potable water at an affordable cost
-                                    and committed to an environmental preservation and protection.
-                                </p>
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-8">
+                                Calamba Water <span
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#1a589e] to-blue-600">District</span>
+                            </h2>
+
+                            <!-- Modern Modernized Tab Pills -->
+                            <div class="inline-flex p-1.5 bg-slate-100/80 rounded-2xl mb-8 border border-slate-200/60">
+                                <button onclick="switchTab('mission')" id="btn-mission"
+                                    class="tab-btn px-6 py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 bg-[#1a589e] text-white shadow-md shadow-blue-900/10">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                    Our Mission
+                                </button>
+                                <button onclick="switchTab('vision')" id="btn-vision"
+                                    class="tab-btn px-6 py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all duration-300 flex items-center gap-2 text-slate-500 hover:text-slate-800">
+                                    <i class="fa-solid fa-eye"></i>
+                                    Our Vision
+                                </button>
                             </div>
 
+                            <!-- Tab Panels Container -->
+                            <div class="min-h-[160px] relative">
+                                <!-- Mission Content -->
+                                <div id="pane-mission" class="tab-pane block transition-opacity duration-300">
+                                    <div class="relative pl-6 border-l-4 border-[#1a589e]">
+                                        <p class="text-lg md:text-xl font-medium text-slate-700 leading-relaxed italic">
+                                            &ldquo;Calamba Water District will ensure the Calambeños with sufficient
+                                            supply of potable water 24/7 along with its commitment to establish sewerage
+                                            and septage management system as part of our environmental concern.&rdquo;
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Vision Content -->
+                                <div id="pane-vision" class="tab-pane hidden transition-opacity duration-300">
+                                    <div class="relative pl-6 border-l-4 border-[#1a589e]">
+                                        <p class="text-lg md:text-xl font-medium text-slate-700 leading-relaxed italic">
+                                            &ldquo;A Water District with the highest quality of service that ensures
+                                            customer satisfaction by providing continuous supply of potable water at an
+                                            affordable cost and committed to an environmental preservation and
+                                            protection.&rdquo;
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mt-12">
+                        <!-- Call To Action Button -->
+                        <div class="mt-10 pt-6 border-t border-slate-100">
                             <a href="about_us"
-                                class="group inline-flex items-center bg-slate-900 text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-[#1a589e] transition-all shadow-lg hover:shadow-blue-200">
-                                Discover More
+                                class="group inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#1a589e] transition-all duration-300 shadow-xl hover:shadow-blue-500/25 hover:-translate-y-0.5">
+                                Discover Our Story
                                 <i
-                                    class="fa-solid fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                                    class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1.5 transition-transform"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Dynamic Logo Column (Right) -->
+                    <!-- Dynamic Branding Column (Right) -->
                     <div
-                        class="w-full lg:w-5/12 bg-gradient-to-br from-[#1a589e] to-[#0e3a6b] p-12 flex flex-col justify-center items-center relative overflow-hidden">
-                        <!-- Decorative background circles -->
-                        <div class="absolute w-64 h-64 bg-white/5 rounded-full -top-20 -right-20"></div>
-                        <div class="absolute w-32 h-32 bg-white/5 rounded-full bottom-10 left-10"></div>
+                        class="w-full lg:w-5/12 bg-gradient-to-br from-[#1a589e] via-[#144782] to-[#0d3159] p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[380px]">
+                        <!-- Decorative Background Spheres -->
+                        <div class="absolute w-72 h-72 bg-blue-400/10 rounded-full -top-16 -right-16 blur-xl"></div>
+                        <div class="absolute w-48 h-48 bg-cyan-300/10 rounded-full -bottom-10 -left-10 blur-xl"></div>
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px] opacity-10">
+                        </div>
 
+                        <!-- Floating Logo Container -->
                         <div class="relative z-10 animate-float">
-                            <div class="p-8 rounded-[3rem] shadow-2xl logo-glow">
-                                <img src="./img/CWDIcon2.png" class="w-55 h-auto object-contain" alt="CWD 24/7"
-                                    onerror="this.src='https://via.placeholder.com/200?text=CWD+24/7'">
+                            <div
+                                class="p-8 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl logo-glow">
+                                <img src="./img/cwd3d.png" class="w-48 md:w-56 h-auto object-contain drop-shadow-lg"
+                                    alt="CWD 24/7" onerror="this.src='https://via.placeholder.com/200?text=CWD+24/7'">
                             </div>
                         </div>
 
-                        <div class="mt-10 text-center z-10">
-                            <h4 class="text-white font-bold tracking-[0.4em] uppercase text-[18px]">24 / 7
-                                Public Service</h4>
-                            <div class="w-12 h-1 bg-white/20 mx-auto mt-4 rounded-full"></div>
+                        <!-- Status Label -->
+                        <div class="mt-8 text-center z-10">
+                            <span
+                                class="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-white font-extrabold tracking-[0.3em] uppercase text-xs border border-white/10 shadow-inner">
+                                24 / 7 Public Service
+                            </span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="max-w-5xl mx-auto relative z-10 mt-8 px-4">
 
-        <!-- Header Section -->
-        <div class="text-center mb-10 flex flex-col items-center">
+    <!-- Anniversary Highlight Section -->
+    <div id="anniversary-section" class="max-w-5xl mx-auto relative z-10 mt-8 px-4">
 
-            <!-- 50th Anniversary Logo Placeholder -->
-            <div class="mb-4 transition-transform duration-300 hover:scale-105">
-                <img src="./img/CWD50th.png" alt="CWD 50th Anniversary Logo"
-                    class="h-36 md:h-42 w-auto object-contain drop-shadow-md">
-            </div>
-
+        <!-- Header & Badge Tag (Fixed sa Taas) -->
+        <div class="text-center mb-8 flex flex-col items-center">
             <!-- Badge Tag -->
             <span
-                class="inline-flex items-center px-4 py-1.5 mb-5 text-xs md:text-[13px] font-black uppercase tracking-[0.2em] text-[#1a589e] bg-blue-50/80 backdrop-blur-sm rounded-full border border-blue-200/60 shadow-sm">
+                class="inline-flex items-center px-4 py-1.5 mb-2 text-xs md:text-[13px] font-black uppercase tracking-[0.2em] text-[#1a589e] bg-blue-50/80 backdrop-blur-sm rounded-full border border-blue-200/60 shadow-sm">
                 <i class="fa-solid fa-clapperboard mr-2 text-blue-600"></i>50th Anniversary Highlight
             </span>
-
-            <!-- Main Title -->
-            <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
-                Water Districts Congratulate CWD for its <span class="text-[#1a589e] relative inline-block">50th
-                    Year!</span>
-            </h2>
-
-            <!-- Description Text -->
-            <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                Through the Philippine Association of Water Districts (PAWD), fellow water districts show their
-                heartfelt support and congratulates Calamba Water District for 50 years of dedicated service to the
-                community.
-            </p>
         </div>
 
-        <!-- Modern Video Player Container -->
-        <div
-            class="glass-container p-3 md:p-5 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10">
+        <!-- CAROUSEL WRAPPER -->
+        <div class="relative group">
 
-            <!-- Video Wrapper -->
-            <div
-                class="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-950 group shadow-inner ring-1 ring-slate-900/10">
-                <video controls preload="metadata" poster="./img/video-poster-placeholder.jpg"
-                    class="w-full aspect-video object-cover">
-                    <source src="./img/PAWDGreetsCWD@50th.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-
-            <!-- Info Bar Below Video -->
-            <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-6 px-2 md:px-4 pb-2">
-                <div class="flex items-center gap-4 md:gap-5 w-full md:w-auto">
-
-                    <!-- Icon Box -->
-                    <div
-                        class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-[#1a589e] to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
-                        <i class="fa-solid fa-gift text-lg md:text-xl"></i>
-                    </div>
-
-                    <!-- Video Title & Description -->
-                    <div>
-                        <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">PAWD Video Greetings
-                            for CWD @ 50</h4>
-                        <p class="text-xs md:text-sm text-slate-500 font-medium">50 Years of Service – Securing Life
-                            and Progress for our Community</p>
-                    </div>
-
+            <!-- SLIDE 1: Same Day Edit (SDE) - NAKA-SET SA BLOCK (ACTIVE 1ST SLIDE) -->
+            <div class="anniversary-slide transition-all duration-500 block">
+                <div class="text-center mb-8 flex flex-col items-center">
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+                        50th Anniversary Celebration <span class="text-[#1a589e] relative inline-block">Same Day
+                            Edit</span>
+                    </h2>
+                    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        Relive the highlights, joy, and memorable moments of Calamba Water District's golden anniversary
+                        celebration.
+                    </p>
                 </div>
 
-                <!-- Optional Quick Action / Badge Tag on the Right -->
+                <div
+                    class="glass-container p-3 md:p-5 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10">
+                    <div
+                        class="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-950 group shadow-inner ring-1 ring-slate-900/10">
+                        <video controls muted preload="metadata" poster="./img/sde-poster-placeholder.png"
+                            class="w-full aspect-video object-cover slide-video">
+                            <source src="./img/CWD50thAnnivSDE.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-6 px-2 md:px-4 pb-2">
+                        <div class="flex items-center gap-4 md:gap-5 w-full md:w-auto">
+                            <div
+                                class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-[#1a589e] to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
+                                <i class="fa-solid fa-film text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">Official 50th
+                                    Anniversary SDE Video</h4>
+                                <p class="text-xs md:text-sm text-slate-500 font-medium">Capturing 50 Years of
+                                    Excellence, Unity, and Legacy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- SLIDE 2: PAWD Greetings - NAKA-SET SA HIDDEN -->
+            <div class="anniversary-slide transition-all duration-500 hidden">
+                <div class="text-center mb-8 flex flex-col items-center">
+                    <h2 class="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+                        Water Districts Congratulate CWD for its <span class="text-[#1a589e] relative inline-block">50th
+                            Year!</span>
+                    </h2>
+                    <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                        Through the Philippine Association of Water Districts (PAWD), fellow water districts show their
+                        heartfelt support and congratulate Calamba Water District for 50 years of dedicated service.
+                    </p>
+                </div>
+
+                <div
+                    class="glass-container p-3 md:p-5 rounded-[2.5rem] bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-900/10">
+                    <div
+                        class="relative rounded-2xl md:rounded-[1.5rem] overflow-hidden bg-slate-950 group shadow-inner ring-1 ring-slate-900/10">
+                        <video controls muted preload="metadata" poster="./img/pawd-placeholder.png"
+                            class="w-full aspect-video object-cover slide-video">
+                            <source src="./img/PAWDGreetsCWD@50th.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-6 px-2 md:px-4 pb-2">
+                        <div class="flex items-center gap-4 md:gap-5 w-full md:w-auto">
+                            <div
+                                class="shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-tr from-[#1a589e] to-blue-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 text-white">
+                                <i class="fa-solid fa-gift fa-[#1a589e] text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg md:text-xl font-bold text-slate-900 tracking-tight">PAWD Video
+                                    Greetings for CWD @ 50</h4>
+                                <p class="text-xs md:text-sm text-slate-500 font-medium">50 Years of Service – Securing
+                                    Life and Progress for our Community</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTROLS: Left & Right Buttons -->
+            <button type="button" onclick="moveSlide(-1)"
+                class="absolute top-1/2 -left-3 md:-left-6 -translate-y-1/2 w-11 h-11 bg-white/90 hover:bg-[#1a589e] text-slate-700 hover:text-white rounded-full flex items-center justify-center shadow-lg border border-slate-200/80 transition-all duration-300 z-30 cursor-pointer pointer-events-auto">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <button type="button" onclick="moveSlide(1)"
+                class="absolute top-1/2 -right-3 md:-right-6 -translate-y-1/2 w-11 h-11 bg-white/90 hover:bg-[#1a589e] text-slate-700 hover:text-white rounded-full flex items-center justify-center shadow-lg border border-slate-200/80 transition-all duration-300 z-30 cursor-pointer pointer-events-auto">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+
+            <!-- INDICATORS -->
+            <div class="flex justify-center items-center gap-2 mt-6">
+                <button type="button" class="slide-dot w-8 h-2.5 rounded-full bg-[#1a589e] transition-all duration-300"
+                    onclick="goToSlide(0)"></button>
+                <button type="button"
+                    class="slide-dot w-2.5 h-2.5 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300"
+                    onclick="goToSlide(1)"></button>
             </div>
 
         </div>
@@ -789,7 +854,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                     <span
                                         class="text-xs font-bold text-slate-700 group-hover:text-red-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
                                     <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
                                     </span>
                                 </div>
                                 <div
@@ -824,7 +890,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                     <span
                                         class="text-xs font-bold text-slate-700 group-hover:text-blue-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
                                     <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
                                     </span>
                                 </div>
                                 <div
@@ -860,7 +927,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                     <span
                                         class="text-xs font-bold text-slate-700 group-hover:text-amber-700 leading-snug line-clamp-2"><?= htmlspecialchars($adv['advisory_title']) ?></span>
                                     <span class="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
-                                        <i class="fa-regular fa-calendar"></i> <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        <?= date("F d, Y", strtotime($adv['advisory_date'])) ?>
                                     </span>
                                 </div>
                                 <div
@@ -1346,6 +1414,126 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                 }
             });
         });
+    </script>
+
+    <script>
+        let currentSlide = 0;
+        let isCarouselInView = false; // Taga-check kung nasa viewport ang carousel section
+
+        // Helper function para i-play o i-pause ang video sa partikular na slide
+        function handleVideoPlayback() {
+            const annivSlides = document.querySelectorAll('.anniversary-slide');
+
+            annivSlides.forEach((slide, index) => {
+                const video = slide.querySelector('.slide-video');
+                if (!video) return; // Swabe lang kung Image slide (Slide 3)
+
+                if (index === currentSlide && isCarouselInView) {
+                    // I-play lang kung active slide AT nakikita sa screen
+                    video.play().catch(error => {
+                        // Kinakailangan ang muted sa karamihan ng browsers para mag-autoplay
+                        console.log("Autoplay blocked or waiting for user interaction:", error);
+                    });
+                } else {
+                    // I-pause kung hindi active slide o wala sa screen
+                    video.pause();
+                }
+            });
+        }
+
+        function updateCarousel() {
+            const annivSlides = document.querySelectorAll('.anniversary-slide');
+            const annivDots = document.querySelectorAll('.slide-dot');
+
+            if (!annivSlides || annivSlides.length === 0) return;
+
+            annivSlides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('hidden');
+                    slide.classList.add('block');
+                } else {
+                    slide.classList.add('hidden');
+                    slide.classList.remove('block');
+                }
+            });
+
+            annivDots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.remove('w-2.5', 'bg-slate-300');
+                    dot.classList.add('w-8', 'bg-[#1a589e]');
+                } else {
+                    dot.classList.remove('w-8', 'bg-[#1a589e]');
+                    dot.classList.add('w-2.5', 'bg-slate-300');
+                }
+            });
+
+            // Kontrolin ang video playback pagkatapos mag-update ng slide
+            handleVideoPlayback();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function moveSlide(direction) {
+            const annivSlides = document.querySelectorAll('.anniversary-slide');
+            if (!annivSlides || annivSlides.length === 0) return;
+
+            currentSlide = (currentSlide + direction + annivSlides.length) % annivSlides.length;
+            updateCarousel();
+        }
+
+        // INTERSECTION OBSERVER: Detektiyon kung nasa screen ang section
+        document.addEventListener('DOMContentLoaded', () => {
+            const sectionTarget = document.querySelector('#anniversary-section');
+
+            if (sectionTarget) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        // Kapag nakita na sa viewport (at least 50% ng section)
+                        isCarouselInView = entry.isIntersecting;
+                        handleVideoPlayback();
+                    });
+                }, {
+                    threshold: 0.5 // 50% ng section ay kailangang nakikita sa screen bago mag-play
+                });
+
+                observer.observe(sectionTarget);
+            }
+        });
+    </script>
+
+    <script>
+        function switchTab(tab) {
+            const paneMission = document.getElementById('pane-mission');
+            const paneVision = document.getElementById('pane-vision');
+            const btnMission = document.getElementById('btn-mission');
+            const btnVision = document.getElementById('btn-vision');
+
+            const activeClasses = ['bg-[#1a589e]', 'text-white', 'shadow-md', 'shadow-blue-900/10'];
+            const inactiveClasses = ['text-slate-500', 'hover:text-slate-800'];
+
+            if (tab === 'mission') {
+                paneMission.classList.remove('hidden');
+                paneVision.classList.add('hidden');
+
+                btnMission.classList.add(...activeClasses);
+                btnMission.classList.remove(...inactiveClasses);
+
+                btnVision.classList.remove(...activeClasses);
+                btnVision.classList.add(...inactiveClasses);
+            } else if (tab === 'vision') {
+                paneVision.classList.remove('hidden');
+                paneMission.classList.add('hidden');
+
+                btnVision.classList.add(...activeClasses);
+                btnVision.classList.remove(...inactiveClasses);
+
+                btnMission.classList.remove(...activeClasses);
+                btnMission.classList.add(...inactiveClasses);
+            }
+        }
     </script>
 
 </body>

@@ -42,6 +42,8 @@ if (!$userInfo || empty($userInfo['role'])) {
     header("Location: login.php");
     exit;
 }
+
+$fullName = trim($userInfo['firstname'] . ' ' . $userInfo['lastname']);
 ?>
 
 <!DOCTYPE html>
@@ -117,36 +119,73 @@ if (!$userInfo || empty($userInfo['role'])) {
         </div>
     </div>
 
-    <!-- TOP BASIC PROFILE INFO -->
-    <div class="relative z-10 max-w-6xl mx-auto bg-white/70 backdrop-blur rounded-xl shadow-md p-4 mt-6">
+    <main class="relative z-10 max-w-6xl mx-auto pt-6 pb-10">
+        <section class="bg-white/80 backdrop-blur rounded-xl shadow-md overflow-hidden">
+            <div class="bg-gradient-to-r from-[#1a589e] to-[#287fc1] px-5 py-6 sm:px-8 text-white">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-2xl font-bold">
+                            <?= htmlspecialchars(strtoupper(substr($userInfo['firstname'], 0, 1) . substr($userInfo['lastname'], 0, 1))) ?>
+                        </div>
+                        <div>
+                            <p class="text-blue-100 text-xs uppercase tracking-wider">Welcome back</p>
+                            <h1 class="text-2xl font-bold"><?= htmlspecialchars($fullName) ?></h1>
+                        </div>
+                    </div>
 
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm">
-
-            <div>
-                <p class="text-gray-500 text-xs">Employee</p>
-                <p class="font-semibold text-gray-900">
-                    <?= htmlspecialchars($userInfo['firstname'] . ' ' . $userInfo['lastname']) ?>
-                </p>
+                    <div class="lg:text-right">
+                        <p id="liveDate" class="text-blue-100 text-sm" aria-live="polite">Loading date...</p>
+                        <p id="liveTime" class="text-3xl font-semibold tracking-tight" aria-live="polite">--:--:--</p>
+                        <p class="text-blue-100 text-xs mt-1">Philippine Standard Time</p>
+                    </div>
+                </div>
             </div>
 
-            <div>
-                <p class="text-gray-500 text-xs">Employee ID</p>
-                <p class="font-semibold text-gray-900">
-                    <?= htmlspecialchars($userInfo['emp_id']) ?>
-                </p>
+            <div class="p-5 sm:p-8">
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-sm">
+                    <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+                        <p class="text-gray-500 text-xs uppercase tracking-wide">Employee ID</p>
+                        <p class="font-semibold text-gray-900 mt-2"><?= htmlspecialchars($userInfo['emp_id']) ?></p>
+                    </div>
+                    <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+                        <p class="text-gray-500 text-xs uppercase tracking-wide">Department</p>
+                        <p class="font-semibold text-gray-900 mt-2"><?= htmlspecialchars($userInfo['department']) ?></p>
+                    </div>
+                    <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+                        <p class="text-gray-500 text-xs uppercase tracking-wide">Username</p>
+                        <p class="font-semibold text-gray-900 mt-2 break-words"><?= htmlspecialchars($userInfo['username']) ?></p>
+                    </div>
+                    <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
+                        <p class="text-gray-500 text-xs uppercase tracking-wide">Email</p>
+                        <p class="font-semibold text-gray-900 mt-2 break-words"><?= htmlspecialchars($userInfo['email']) ?></p>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="text-sm font-bold text-gray-900">Account overview</h2>
+                        <span class="text-xs text-gray-500">Updated live</span>
+                    </div>
+                    <div class="grid gap-3 sm:grid-cols-3">
+                        <div class="flex items-center gap-3 rounded-lg border border-green-100 bg-green-50 px-4 py-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500" aria-hidden="true"></span>
+                            <div>
+                                <p class="text-xs text-green-700">Account status</p>
+                                <p class="font-semibold text-green-900">Active</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 rounded-lg border border-cyan-100 bg-cyan-50 px-4 py-3">
+                            <span class="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse" aria-hidden="true"></span>
+                            <div>
+                                <p class="text-xs text-cyan-700">Session status</p>
+                                <p class="font-semibold text-cyan-900">Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div>
-                <p class="text-gray-500 text-xs">Department</p>
-                <p class="font-semibold text-gray-900">
-                    <?= htmlspecialchars($userInfo['department']) ?>
-                </p>
-            </div>
-
-            
-
-        </div>
-    </div>
+        </section>
+    </main>
 
 </div>
 
@@ -160,7 +199,30 @@ if (!$userInfo || empty($userInfo['role'])) {
 
     <script src="../js/sidenav.js"></script>
     <script>
+        const dateElement = document.getElementById('liveDate');
+        const timeElement = document.getElementById('liveTime');
+        const timeZone = 'Asia/Manila';
 
+        function updateLiveDateTime() {
+            const now = new Date();
+            dateElement.textContent = new Intl.DateTimeFormat('en-PH', {
+                timeZone,
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            }).format(now);
+            timeElement.textContent = new Intl.DateTimeFormat('en-PH', {
+                timeZone,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            }).format(now);
+        }
+
+        updateLiveDateTime();
+        setInterval(updateLiveDateTime, 1000);
     </script>
 
 </body>
