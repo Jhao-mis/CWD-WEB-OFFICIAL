@@ -1005,7 +1005,7 @@
 
                 </div>
 
-                <!-- Org Chart -->
+                <!-- Org Chart Tab Content -->
                 <div id="chart" class="tab-content">
 
                     <!-- Chart Main Title -->
@@ -1016,259 +1016,354 @@
                     </h2>
 
                     <!-- TOP LEVEL: Board of Directors -->
-                    <div class="mb-4 flex justify-center">
-                        <div
-                            class="w-full sm:w-72 text-center p-6 rounded-xl bg-white border border-slate-100 shadow-md">
+                    <div class="mb-6 flex justify-center">
+                        <div onclick="openOrgModal('bod')"
+                            class="cursor-pointer transform hover:-translate-y-1 transition-all duration-200 w-full sm:w-80 text-center p-6 rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl group">
                             <img src="https://placehold.co/96x96/15467e/ffffff?text=BOD" alt="Board of Directors"
-                                class="w-20 h-20 mx-auto rounded-full object-cover mb-3 ring-4 ring-blue-50">
+                                class="w-20 h-20 mx-auto rounded-full object-cover mb-3 ring-4 ring-blue-50 group-hover:scale-105 transition-transform">
                             <p class="text-lg font-black text-slate-800 leading-tight">Board of Directors</p>
-                            <p class="text-xs font-bold text-slate-500 mt-1 uppercase tracking-wider">Office of the
-                                B.O.D</p>
+                            <p class="text-xs font-bold text-blue-600 mt-1 uppercase tracking-wider">Office of the B.O.D
+                            </p>
                         </div>
                     </div>
 
-                    <!-- LEVEL 1: General Manager -->
+                    <!-- LEVEL 1: Office of the General Manager (OGM) -->
                     <div class="mb-4 flex justify-center">
-                        <div
-                            class="w-full sm:w-72 text-center p-6 rounded-xl bg-white border border-slate-100 shadow-md">
+                        <div onclick="openOrgModal('ogm')"
+                            class="cursor-pointer transform hover:-translate-y-1 transition-all duration-200 w-full sm:w-80 text-center p-6 rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl group">
                             <img src="https://placehold.co/96x96/15467e/ffffff?text=OGM" alt="General Manager's Office"
-                                class="w-20 h-20 mx-auto rounded-full object-cover mb-3 ring-4 ring-blue-50">
+                                class="w-20 h-20 mx-auto rounded-full object-cover mb-3 ring-4 ring-blue-50 group-hover:scale-105 transition-transform">
                             <p class="text-lg font-black text-slate-800 leading-tight">General Manager</p>
-                            <p class="text-xs font-bold text-slate-500 mt-1 uppercase tracking-wider">Office of the
+                            <p class="text-xs font-bold text-blue-600 mt-1 uppercase tracking-wider">Office of the
                                 General Manager</p>
                         </div>
                     </div>
 
-                    <!-- STAFF LEVEL: MIS Section (Attached to OGM Side/Below) -->
+                    <!-- EXCEPTION: MIS Section Attached Below OGM -->
                     <div class="flex justify-center mb-12">
-                        <!-- Ginawang flex row at text-left para magkapantay ang imahe at teksto -->
-                        <div
-                            class="p-3 px-4 rounded-xl bg-slate-50 border border-slate-200 shadow-sm max-w-xs flex items-center gap-3 text-left">
-
-                            <!-- MIS Avatar Image -->
-                            <img src="https://placehold.co/48x48/34d399/ffffff?text=MIS"
-                                alt="Management Information Services Section"
-                                class="w-8 h-8 rounded-full object-cover shrink-0 ring-2 ring-white shadow-sm">
-
-                            <!-- MIS Text Content -->
+                        <div onclick="openOrgModal('mis')"
+                            class="cursor-pointer transform hover:-translate-y-0.5 transition-all p-3 px-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm max-w-sm flex items-center gap-3 text-left hover:bg-white hover:shadow-md">
+                            <img src="https://placehold.co/48x48/34d399/ffffff?text=MIS" alt="MIS Section"
+                                class="w-9 h-9 rounded-full object-cover shrink-0 ring-2 ring-white shadow-sm">
                             <div>
-                                <p class="text-xs font-bold text-slate-600 text-center uppercase tracking-wide leading-tight">
+                                <p class="text-xs font-bold text-slate-700 uppercase tracking-wide leading-tight">
                                     Management Information Services Section
                                 </p>
                             </div>
-
                         </div>
                     </div>
 
-                    <!-- LOWER LEVELS: Departments, Divisions, and Sections Container -->
-                    <div class="pt-4 border-t border-slate-100">
-
+                    <!-- DEPARTMENTS & DIVISIONS GRID -->
+                    <div class="pt-6 border-t border-slate-100">
                         <h3 class="text-xl font-extrabold text-slate-700 mb-8 text-center uppercase tracking-wide">
-                            Departments, Divisions & Sections
+                            Departments & Divisions
                         </h3>
 
-                        <!-- ROW 1: 3 Main Departments -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                        <!-- Main Departments Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
 
                             <!-- 1. Administrative Department -->
-                            <div class="flex flex-col bg-slate-50/50 p-4 rounded-xl border border-slate-100">
-                                <!-- Dept Head Card -->
-                                <div
-                                    class="p-4 rounded-xl bg-white border-l-4 border-emerald-500 shadow-sm flex items-center space-x-3 mb-4">
-                                    <img src="https://placehold.co/48x48/34d399/ffffff?text=ADM"
-                                        alt="Administrative Department"
-                                        class="w-10 h-10 rounded-full object-cover shrink-0">
-                                    <div class="text-left">
-                                        <p class="text-sm font-black text-slate-800">Administrative Department</p>
+                            <div
+                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
+                                <!-- Dept Header Card -->
+                                <div onclick="openOrgModal('admin')"
+                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="fa-solid fa-[#1a589e] fa-briefcase text-sm"></i>
+                                        <p class="text-sm font-black transition-colors leading-snug">
+                                            Administrative
+                                        </p>
                                     </div>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
                                 </div>
-                                <!-- L3 Divisions -->
-                                <div class="space-y-2">
-                                    <div
-                                        class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                        <img src="https://placehold.co/32x32/60a5fa/ffffff?text=HRD"
-                                            alt="Human Resource Division"
-                                            class="w-7 h-7 rounded-full object-cover shrink-0">
-                                        <p class="text-xs font-bold text-slate-700">Human Resource Division</p>
+
+                                <!-- Divisions List -->
+                                <div class="space-y-2 flex-1">
+                                    <div onclick="openOrgModal('hrd')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-user text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Human
+                                                Resource Division</span>
+                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
-                                    <div
-                                        class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                        <img src="https://placehold.co/32x32/60a5fa/ffffff?text=PMMD"
-                                            alt="Property & Materials Management Division"
-                                            class="w-7 h-7 rounded-full object-cover shrink-0">
-                                        <p class="text-xs font-bold text-slate-700">Property & Materials Management
-                                            Division</p>
+
+                                    <div onclick="openOrgModal('pmmd')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-box text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Property
+                                                & Materials Management</span>
+                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
-                                    <div
-                                        class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                        <img src="https://placehold.co/32x32/60a5fa/ffffff?text=GSD"
-                                            alt="General Services Division"
-                                            class="w-7 h-7 rounded-full object-cover shrink-0">
-                                        <p class="text-xs font-bold text-slate-700">General Services Division</p>
+
+                                    <div onclick="openOrgModal('gsd')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-wrench text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">General
+                                                Services Division</span>
+                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- 2. Finance Department -->
-                            <div class="flex flex-col bg-slate-50/50 p-4 rounded-xl border border-slate-100">
-                                <!-- Dept Head Card -->
-                                <div
-                                    class="p-4 rounded-xl bg-white border-l-4 border-emerald-500 shadow-sm flex items-center space-x-3 mb-4">
-                                    <img src="https://placehold.co/48x48/34d399/ffffff?text=FIN"
-                                        alt="Finance Department" class="w-10 h-10 rounded-full object-cover shrink-0">
-                                    <div class="text-left">
-                                        <p class="text-sm font-black text-slate-800">Finance Department</p>
+                            <div
+                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
+                                <!-- Dept Header Card -->
+                                <div onclick="openOrgModal('finance')"
+                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="fa-solid fa-circle-dollar-to-slot text-sm"></i>
+                                        <p class="text-sm font-black transition-colors leading-snug">
+                                            Finance
+                                        </p>
                                     </div>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
                                 </div>
-                                <!-- L3 Divisions -->
-                                <div class="space-y-2">
-                                    <div
-                                        class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                        <img src="https://placehold.co/32x32/60a5fa/ffffff?text=BD"
-                                            alt="Budget Division" class="w-7 h-7 rounded-full object-cover shrink-0">
-                                        <p class="text-xs font-bold text-slate-700">Budget Division</p>
+
+                                <!-- Divisions List -->
+                                <div class="space-y-2 flex-1">
+                                    <div onclick="openOrgModal('budget')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-chart-pie text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Budget
+                                                Division</span>
+                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
-                                    <div
-                                        class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                        <img src="https://placehold.co/32x32/60a5fa/ffffff?text=GAD"
-                                            alt="General Accounting Division"
-                                            class="w-7 h-7 rounded-full object-cover shrink-0">
-                                        <p class="text-xs font-bold text-slate-700">General Accounting Division</p>
+
+                                    <div onclick="openOrgModal('accounting')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-calculator text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">General
+                                                Accounting Division</span>
+                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- 3. Commercial Department -->
-                            <div class="flex flex-col bg-slate-50/50 p-4 rounded-xl border border-slate-100">
-                                <!-- Dept Head Card -->
-                                <div
-                                    class="p-4 rounded-xl bg-white border-l-4 border-emerald-500 shadow-sm flex items-center space-x-3 mb-4">
-                                    <img src="https://placehold.co/48x48/34d399/ffffff?text=COM"
-                                        alt="Commercial Department"
-                                        class="w-10 h-10 rounded-full object-cover shrink-0">
-                                    <div class="text-left">
-                                        <p class="text-sm font-black text-slate-800">Commercial Department</p>
-                                    </div>
-                                </div>
-                                <!-- L3 Divisions & L4 Sections -->
-                                <div class="space-y-3">
-                                    <!-- Div 1: No Sections -->
-                                    <div
-                                        class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                        <img src="https://placehold.co/32x32/60a5fa/ffffff?text=BMD"
-                                            alt="Billing and Meter Reading Division"
-                                            class="w-7 h-7 rounded-full object-cover shrink-0">
-                                        <p class="text-xs font-bold text-slate-700">Billing and Meter Reading Division
+                            <div
+                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
+                                <!-- Dept Header Card -->
+                                <div onclick="openOrgModal('commercial')"
+                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="fa-solid fa-[#1a589e] fa-store text-sm"></i>
+                                        <p class="text-sm font-black transition-colors leading-snug">
+                                            Commercial
                                         </p>
                                     </div>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
+                                </div>
 
-                                    <!-- Div 2: With Sections -->
-                                    <div class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50">
-                                        <div class="flex items-center space-x-3 mb-2">
-                                            <img src="https://placehold.co/32x32/60a5fa/ffffff?text=CA"
-                                                alt="Customer Accounts Division"
-                                                class="w-7 h-7 rounded-full object-cover shrink-0">
-                                            <p class="text-xs font-bold text-slate-700">Customer Accounts Division</p>
+                                <!-- Divisions List -->
+                                <div class="space-y-2 flex-1">
+                                    <div onclick="openOrgModal('bmrd')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-file-invoice text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Billing
+                                                & Meter Reading</span>
                                         </div>
-                                        <!-- L4 Sub-Sections -->
-                                        <div class="pl-10 space-y-1 border-l-2 border-slate-200">
-                                            <p class="text-[11px] font-semibold text-slate-500 py-0.5">• Billing Section
-                                            </p>
-                                            <p class="text-[11px] font-semibold text-slate-500 py-0.5">• Meter Reading
-                                                Section</p>
-                                            <p class="text-[11px] font-semibold text-slate-500 py-0.5">• Collection
-                                                Section</p>
-                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
 
-                                    <!-- Div 3: With Sections -->
-                                    <div class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50">
-                                        <div class="flex items-center space-x-3 mb-2">
-                                            <img src="https://placehold.co/32x32/60a5fa/ffffff?text=CC"
-                                                alt="Customer Care Division"
-                                                class="w-7 h-7 rounded-full object-cover shrink-0">
-                                            <p class="text-xs font-bold text-slate-700">Customer Care Division</p>
+                                    <div onclick="openOrgModal('cad')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-[#1a589e] fa-users text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Customer
+                                                Accounts Division</span>
                                         </div>
-                                        <!-- L4 Sub-Sections -->
-                                        <div class="pl-10 space-y-1 border-l-2 border-slate-200">
-                                            <p class="text-[11px] font-semibold text-slate-500 py-0.5">• Investigation
-                                                Section</p>
-                                            <p class="text-[11px] font-semibold text-slate-500 py-0.5">• Servicing
-                                                Section</p>
-                                            <p class="text-[11px] font-semibold text-slate-500 py-0.5">•
-                                                Disconnection/Reconnection Section</p>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
+                                    </div>
+
+                                    <div onclick="openOrgModal('ccd')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-headset text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Customer
+                                                Care Division</span>
                                         </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <!-- ROW 2: 2 Technical/Ops Departments (Centered Grid) -->
-                        <div class="flex justify-center">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full lg:w-2/3">
+                        <!-- ROW 2: Technical Services & Operations Departments -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mx-auto">
 
-                                <!-- 4. Technical Services Department -->
-                                <div class="flex flex-col bg-slate-50/50 p-4 rounded-xl border border-slate-100">
-                                    <!-- Dept Head Card -->
-                                    <div
-                                        class="p-4 rounded-xl bg-white border-l-4 border-emerald-500 shadow-sm flex items-center space-x-3 mb-4">
-                                        <img src="https://placehold.co/48x48/34d399/ffffff?text=TSD"
-                                            alt="Technical Services Department"
-                                            class="w-10 h-10 rounded-full object-cover shrink-0">
-                                        <div class="text-left">
-                                            <p class="text-sm font-black text-slate-800">Technical Services Department
-                                            </p>
-                                        </div>
+                            <!-- 4. Technical Services Department -->
+                            <div
+                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
+                                <div onclick="openOrgModal('tsd')"
+                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="fa-solid fa-gear text-sm"></i>
+                                        <p class="text-sm font-black transition-colors leading-snug">
+                                            Technical Services
+                                        </p>
                                     </div>
-                                    <!-- L3 Divisions -->
-                                    <div class="space-y-2">
-                                        <div
-                                            class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                            <img src="https://placehold.co/32x32/60a5fa/ffffff?text=EAMD"
-                                                alt="Engineering and Maintenance Division"
-                                                class="w-7 h-7 rounded-full object-cover shrink-0">
-                                            <p class="text-xs font-bold text-slate-700">Engineering and Maintenance
-                                                Division</p>
-                                        </div>
-                                        <div
-                                            class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                            <img src="https://placehold.co/32x32/60a5fa/ffffff?text=PAMD"
-                                                alt="Pipeline and Maintenance Division"
-                                                class="w-7 h-7 rounded-full object-cover shrink-0">
-                                            <p class="text-xs font-bold text-slate-700">Pipeline and Maintenance
-                                                Division</p>
-                                        </div>
-                                    </div>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
                                 </div>
 
-                                <!-- 5. Operations Department -->
-                                <div class="flex flex-col bg-slate-50/50 p-4 rounded-xl border border-slate-100">
-                                    <!-- Dept Head Card -->
-                                    <div
-                                        class="p-4 rounded-xl bg-white border-l-4 border-emerald-500 shadow-sm flex items-center space-x-3 mb-4">
-                                        <img src="https://placehold.co/48x48/34d399/ffffff?text=OPS"
-                                            alt="Operations Department"
-                                            class="w-10 h-10 rounded-full object-cover shrink-0">
-                                        <div class="text-left">
-                                            <p class="text-sm font-black text-slate-800">Operations Department</p>
+                                <div class="space-y-2 flex-1">
+                                    <div onclick="openOrgModal('eamd')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-microchip text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Engineering
+                                                & Maintenance</span>
                                         </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
-                                    <!-- L3 Divisions -->
-                                    <div class="space-y-2">
-                                        <div
-                                            class="p-3 rounded-lg bg-blue-50/60 border border-blue-100/50 flex items-center space-x-3">
-                                            <img src="https://placehold.co/32x32/60a5fa/ffffff?text=PV"
-                                                alt="Production Division"
-                                                class="w-7 h-7 rounded-full object-cover shrink-0">
-                                            <p class="text-xs font-bold text-slate-700">Production Division</p>
+
+                                    <div onclick="openOrgModal('pamd')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-[#1a589e] fa-circle-nodes text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Pipeline
+                                                & Appurtenances Maint.</span>
                                         </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
                                     </div>
                                 </div>
+                            </div>
 
+                            <!-- 5. Operations Department -->
+                            <div
+                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
+                                <div onclick="openOrgModal('ops')"
+                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="fa-solid fa-city text-sm"></i>
+                                        <p class="text-sm font-black transition-colors leading-snug">
+                                            Operations
+                                        </p>
+                                    </div>
+                                    <i
+                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
+                                </div>
+
+                                <div class="space-y-2 flex-1">
+                                    <div onclick="openOrgModal('production')"
+                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
+                                        <div class="flex items-center gap-2.5">
+                                            <div
+                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
+                                                <i class="fa-solid fa-water text-xs"></i>
+                                            </div>
+                                            <span
+                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Production
+                                                Division</span>
+                                        </div>
+                                        <i
+                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REFACTORED INTERACTIVE POP-UP MODAL CONTAINER -->
+                <div id="orgChartModal"
+                    class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 pt-20 pb-6 overflow-hidden">
+
+                    <div
+                        class="bg-white rounded-3xl shadow-2xl border border-slate-100 w-full max-w-4xl max-h-full flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
+
+                        <!-- Modal Header (Tinanggal ang X close button) -->
+                        <div
+                            class="p-5 sm:p-6 bg-gradient-to-r from-[#1a589e] to-[#15467e] text-white flex items-center justify-between shrink-0">
+                            <div>
+                                <span id="modalCategory"
+                                    class="text-xs uppercase tracking-widest text-blue-200 font-bold">
+                                    Department View
+                                </span>
+                                <h3 id="modalTitle" class="text-xl sm:text-2xl font-black leading-tight">Department Name
+                                </h3>
                             </div>
                         </div>
 
+                        <!-- Modal Dynamic Scrollable Body -->
+                        <div id="modalBody" class="p-6 lg:p-8 overflow-y-auto space-y-6 flex-1 bg-slate-50/50">
+                            <!-- Dynamic Hierarchy Content inserted via JavaScript -->
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <div class="p-4 bg-white border-t border-slate-100 flex justify-end shrink-0">
+                            <button onclick="closeOrgModal()"
+                                class="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-xl transition-colors">
+                                Close View
+                            </button>
+                        </div>
                     </div>
                 </div>
 
