@@ -1,7 +1,9 @@
 <?php
 // api.php
 header('Content-Type: application/json');
+ob_start();
 require_once 'db.php';
+ob_end_clean();
 
 $action = $_GET['action'] ?? '';
 $code   = trim($_GET['code'] ?? '');
@@ -9,6 +11,10 @@ $code   = trim($_GET['code'] ?? '');
 if ($action === 'get_details' && !empty($code)) {
     try {
         $searchCode = strtolower($code);
+        $departmentSearch = [
+            'bod' => 'board of directors',
+            'ogm' => 'general manager'
+        ][$searchCode] ?? $searchCode;
 
         // Helper function para mag-format ng position card object
         function formatPositionCard($p) {
@@ -31,7 +37,7 @@ if ($action === 'get_details' && !empty($code)) {
             WHERE LOWER(dept_code) = :code OR LOWER(department) LIKE :likeCode 
             LIMIT 1
         ");
-        $stmtDept->execute([':code' => $searchCode, ':likeCode' => "%$searchCode%"]);
+        $stmtDept->execute([':code' => $searchCode, ':likeCode' => "%$departmentSearch%"]);
         $deptRow = $stmtDept->fetch(PDO::FETCH_ASSOC);
 
         if ($deptRow) {

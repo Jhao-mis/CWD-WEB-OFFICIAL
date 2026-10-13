@@ -111,14 +111,29 @@
 
     <script>
         async function openOrgModal(code) {
+            const modal = document.getElementById('orgChartModal');
+            const modalBody = document.getElementById('modalBody');
+            const mainNavbar = document.getElementById('main-navbar');
+
+            if (!modal || !modalBody) {
+                alert('Hindi maipakita ang organizational chart details.');
+                return;
+            }
+
+            modalBody.innerHTML = '<p class="text-slate-500">Loading organization details...</p>';
+            modal.classList.remove('hidden');
+            if (mainNavbar) mainNavbar.classList.add('hidden');
+
             try {
                 const response = await fetch(`api.php?action=get_details&code=${encodeURIComponent(code)}`);
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status}.`);
+                }
                 const data = await response.json();
 
                 // Pagsuri kung matagumpay ang pagkuha ng datos
                 if (!data || data.status !== 'success') {
-                    alert(data.message || 'Hindi mahanap ang datos.');
-                    return;
+                    throw new Error(data?.message || 'Hindi mahanap ang datos.');
                 }
 
                 // I-populate ang Category at Title ng Modal
@@ -281,19 +296,13 @@
                 }
 
                 // I-inject ang HTML sa Modal
-                const modalBody = document.getElementById('modalBody');
-                const modal = document.getElementById('orgChartModal');
-                
-                if (modalBody) modalBody.innerHTML = html;
-                if (modal) modal.classList.remove('hidden');
-
-                // Itago ang navbar kapag nakabukas ang modal
-                const mainNavbar = document.getElementById('main-navbar');
-                if (mainNavbar) mainNavbar.classList.add('hidden');
+                modalBody.innerHTML = html;
 
             } catch (error) {
                 console.error('Error fetching org chart details:', error);
-                alert('Nagkaroon ng problema sa pag-load ng datos mula sa server.');
+                modalBody.textContent = error instanceof Error
+                    ? error.message
+                    : 'Nagkaroon ng problema sa pag-load ng datos mula sa server.';
             }
         }
 
