@@ -450,9 +450,8 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                 <div id="pane-mission" class="tab-pane block transition-opacity duration-300">
                                     <div class="relative pl-6 border-l-4 border-[#1a589e]">
                                         <p class="text-lg md:text-xl font-medium text-slate-700 leading-relaxed italic">
-                                            &ldquo;Calamba Water District will ensure the Calambeños with sufficient
-                                            supply of potable water 24/7 along with its commitment to establish sewerage
-                                            and septage management system as part of our environmental concern.&rdquo;
+                                            &ldquo;The District will ensure the women and men in Calamba City to equitably access potable water
+                                            24/7 and will promote participative discussion and feedback to enhancing services.&rdquo;
                                         </p>
                                     </div>
                                 </div>
@@ -461,10 +460,9 @@ $generalAdvisories = getLatestAdvisories($conn, 'General');
                                 <div id="pane-vision" class="tab-pane hidden transition-opacity duration-300">
                                     <div class="relative pl-6 border-l-4 border-[#1a589e]">
                                         <p class="text-lg md:text-xl font-medium text-slate-700 leading-relaxed italic">
-                                            &ldquo;A Water District with the highest quality of service that ensures
-                                            customer satisfaction by providing continuous supply of potable water at an
-                                            affordable cost and committed to an environmental preservation and
-                                            protection.&rdquo;
+                                            &ldquo;A gender responsive water district providing the highest quality of service to ensure
+                                        continuous supply of potable water at an affordable cost to women and men in Calamba City,
+                                        and committed to an environmental preservation and protection.&rdquo;
                                         </p>
                                     </div>
                                 </div>

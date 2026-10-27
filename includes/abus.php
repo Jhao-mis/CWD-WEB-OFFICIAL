@@ -66,11 +66,12 @@
                     <span>Key Personnel</span>
                 </button>
 
-                <button onclick="switchTab(event, 'chart')"
+                <button onclick="switchTab(event, 'tree')"
                     class="tab-card w-full flex items-center px-4 py-3 text-left rounded-xl transition-all duration-200 font-bold text-sm">
                     <i class="fa-solid fa-sitemap mr-3 text-base shrink-0 w-5 text-center"></i>
                     <span>Organizational Chart</span>
                 </button>
+
             </div>
 
             <!-- Section: Others -->
@@ -100,6 +101,8 @@
                     </div>
                     <span class="leading-tight">CWD Archive Website</span>
                 </button>
+
+
             </div>
 
         </aside>
@@ -127,9 +130,8 @@
                     <!-- Mission Highlight Box -->
                     <div class="p-6 bg-blue-50/60 rounded-xl border-l-4 border-[#1a589e]">
                         <p class="font-semibold text-sm md:text-base text-blue-950 leading-relaxed text-justify mb-0">
-                            The District will ensure the Calambeños with sufficient supply of potable water 24/7 along
-                            with its commitment to establish sewerage and septage management system as part of our
-                            environmental concern.
+                            The District will ensure the women and men in Calamba City to equitably access potable water
+                            24/7 and will promote participative discussion and feedback to enhancing services.
                         </p>
                     </div>
 
@@ -153,9 +155,9 @@
                     <!-- Vision Highlight Box -->
                     <div class="p-6 bg-blue-50/60 rounded-xl border-l-4 border-[#1a589e]">
                         <p class="font-semibold text-sm md:text-base text-blue-950 leading-relaxed text-justify mb-0">
-                            A District with the highest quality of service that ensures customer satisfaction by
-                            providing continuous supply of potable water at an affordable cost and committed to an
-                            environmental preservation and protection.
+                            A gender responsive water district providing the highest quality of service to ensure
+                            continuous supply of potable water at an affordable cost to women and men in Calamba City,
+                            and committed to an environmental preservation and protection.
                         </p>
                     </div>
 
@@ -670,7 +672,7 @@
                                         class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500">
                                 </div>
                                 <div class="p-4 text-center">
-                                    <h5 class="text-m font-bold text-slate-800">Engr. Jonathan Dave A. Fajarda</h5>
+                                    <h5 class="text-m font-bold text-slate-800">Engr. Jonathan Dave A. Fajarda, PECE</h5>
                                     <p class="text-blue-600 text-[10px] font-bold uppercase mt-0.5">Management
                                         Information Design Specialist</p>
                                 </div>
@@ -1006,345 +1008,37 @@
                 </div>
 
                 <!-- Org Chart Tab Content -->
-                <div id="chart" class="tab-content">
-
-                    <!-- Chart Main Title -->
+                <div id="tree" class="tab-content hidden">
                     <h2
                         class="text-2xl text-center font-black mb-8 text-[#1a589e] flex items-center justify-center gap-2">
                         <i class="fa-solid fa-sitemap"></i>
                         <span>Organizational Chart</span>
                     </h2>
-
-                    <!-- TOP LEVEL: Board of Directors -->
-                    <div class="mb-6 flex justify-center">
-                        <div onclick="openOrgModal('bod')"
-                            class="cursor-pointer transform hover:-translate-y-1 transition-all duration-200 w-full sm:w-80 text-center p-6 rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl group">
-                            <img src="https://placehold.co/96x96/15467e/ffffff?text=BOD" alt="Board of Directors"
-                                class="w-20 h-20 mx-auto rounded-full object-cover mb-3 ring-4 ring-blue-50 group-hover:scale-105 transition-transform">
-                            <p class="text-lg font-black text-slate-800 leading-tight">Board of Directors</p>
-                            <p class="text-xs font-bold text-blue-600 mt-1 uppercase tracking-wider">Office of the B.O.D
-                            </p>
-                        </div>
+                    <div id="balkan-tree-container"
+                        style="width: 100%; height: 600px; background-color: #ffffff; border-radius: 1rem; overflow: hidden;">
+                        <p class="text-xs text-slate-500 font-medium">
+                            
+                        </p>
                     </div>
 
-                    <!-- LEVEL 1: Office of the General Manager (OGM) -->
-                    <div class="mb-4 flex justify-center">
-                        <div onclick="openOrgModal('ogm')"
-                            class="cursor-pointer transform hover:-translate-y-1 transition-all duration-200 w-full sm:w-80 text-center p-6 rounded-2xl bg-white border border-slate-100 shadow-md hover:shadow-xl group">
-                            <img src="https://placehold.co/96x96/15467e/ffffff?text=OGM" alt="General Manager's Office"
-                                class="w-20 h-20 mx-auto rounded-full object-cover mb-3 ring-4 ring-blue-50 group-hover:scale-105 transition-transform">
-                            <p class="text-lg font-black text-slate-800 leading-tight">General Manager</p>
-                            <p class="text-xs font-bold text-blue-600 mt-1 uppercase tracking-wider">Office of the
-                                General Manager</p>
-                        </div>
-                    </div>
-
-                    <!-- EXCEPTION: MIS Section Attached Below OGM -->
-                    <div class="flex justify-center mb-12">
-                        <div onclick="openOrgModal('mis')"
-                            class="cursor-pointer transform hover:-translate-y-0.5 transition-all p-3 px-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm max-w-sm flex items-center gap-3 text-left hover:bg-white hover:shadow-md">
-                            <img src="https://placehold.co/48x48/34d399/ffffff?text=MIS" alt="MIS Section"
-                                class="w-9 h-9 rounded-full object-cover shrink-0 ring-2 ring-white shadow-sm">
-                            <div>
-                                <p class="text-xs font-bold text-slate-700 uppercase tracking-wide leading-tight">
-                                    Management Information Services Section
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DEPARTMENTS & DIVISIONS GRID -->
-                    <div class="pt-6 border-t border-slate-100">
-                        <h3 class="text-xl font-extrabold text-slate-700 mb-8 text-center uppercase tracking-wide">
-                            Departments & Divisions
-                        </h3>
-
-                        <!-- Main Departments Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-
-                            <!-- 1. Administrative Department -->
-                            <div
-                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
-                                <!-- Dept Header Card -->
-                                <div onclick="openOrgModal('admin')"
-                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
-                                    <div class="flex items-center gap-2.5">
-                                        <i class="fa-solid fa-[#1a589e] fa-briefcase text-sm"></i>
-                                        <p class="text-sm font-black transition-colors leading-snug">
-                                            Administrative
-                                        </p>
-                                    </div>
-                                    <i
-                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
-                                </div>
-
-                                <!-- Divisions List -->
-                                <div class="space-y-2 flex-1">
-                                    <div onclick="openOrgModal('hrd')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-user text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Human
-                                                Resource Division</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-
-                                    <div onclick="openOrgModal('pmmd')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-box text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Property
-                                                & Materials Management</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-
-                                    <div onclick="openOrgModal('gsd')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-wrench text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">General
-                                                Services Division</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 2. Finance Department -->
-                            <div
-                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
-                                <!-- Dept Header Card -->
-                                <div onclick="openOrgModal('finance')"
-                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
-                                    <div class="flex items-center gap-2.5">
-                                        <i class="fa-solid fa-circle-dollar-to-slot text-sm"></i>
-                                        <p class="text-sm font-black transition-colors leading-snug">
-                                            Finance
-                                        </p>
-                                    </div>
-                                    <i
-                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
-                                </div>
-
-                                <!-- Divisions List -->
-                                <div class="space-y-2 flex-1">
-                                    <div onclick="openOrgModal('budget')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-chart-pie text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Budget
-                                                Division</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-
-                                    <div onclick="openOrgModal('accounting')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-calculator text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">General
-                                                Accounting Division</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 3. Commercial Department -->
-                            <div
-                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
-                                <!-- Dept Header Card -->
-                                <div onclick="openOrgModal('commercial')"
-                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
-                                    <div class="flex items-center gap-2.5">
-                                        <i class="fa-solid fa-[#1a589e] fa-store text-sm"></i>
-                                        <p class="text-sm font-black transition-colors leading-snug">
-                                            Commercial
-                                        </p>
-                                    </div>
-                                    <i
-                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
-                                </div>
-
-                                <!-- Divisions List -->
-                                <div class="space-y-2 flex-1">
-                                    <div onclick="openOrgModal('bmrd')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-file-invoice text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Billing
-                                                & Meter Reading</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-
-                                    <div onclick="openOrgModal('cad')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-[#1a589e] fa-users text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Customer
-                                                Accounts Division</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-
-                                    <div onclick="openOrgModal('ccd')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-headset text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Customer
-                                                Care Division</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- ROW 2: Technical Services & Operations Departments -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mx-auto">
-
-                            <!-- 4. Technical Services Department -->
-                            <div
-                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
-                                <div onclick="openOrgModal('tsd')"
-                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
-                                    <div class="flex items-center gap-2.5">
-                                        <i class="fa-solid fa-gear text-sm"></i>
-                                        <p class="text-sm font-black transition-colors leading-snug">
-                                            Technical Services
-                                        </p>
-                                    </div>
-                                    <i
-                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
-                                </div>
-
-                                <div class="space-y-2 flex-1">
-                                    <div onclick="openOrgModal('eamd')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-microchip text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Engineering
-                                                & Maintenance</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-
-                                    <div onclick="openOrgModal('pamd')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-[#1a589e] fa-circle-nodes text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Pipeline
-                                                & Appurtenances Maint.</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 5. Operations Department -->
-                            <div
-                                class="flex flex-col bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
-                                <div onclick="openOrgModal('ops')"
-                                    class="cursor-pointer p-3.5 rounded-xl bg-[#1a589e] text-white hover:bg-blue-800 transition-all mb-4 group flex items-center justify-between">
-                                    <div class="flex items-center gap-2.5">
-                                        <i class="fa-solid fa-city text-sm"></i>
-                                        <p class="text-sm font-black transition-colors leading-snug">
-                                            Operations
-                                        </p>
-                                    </div>
-                                    <i
-                                        class="fa-solid fa-chevron-right text-xs opacity-75 group-hover:translate-x-0.5 transition-all"></i>
-                                </div>
-
-                                <div class="space-y-2 flex-1">
-                                    <div onclick="openOrgModal('production')"
-                                        class="cursor-pointer p-2.5 px-3 rounded-xl bg-slate-50/80 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-sm transition-all flex items-center justify-between group">
-                                        <div class="flex items-center gap-2.5">
-                                            <div
-                                                class="w-7 h-7 rounded-lg bg-blue-50 text-[#1a589e] flex items-center justify-center shrink-0">
-                                                <i class="fa-solid fa-water text-xs"></i>
-                                            </div>
-                                            <span
-                                                class="text-xs font-bold text-slate-700 group-hover:text-[#1a589e]">Production
-                                                Division</span>
-                                        </div>
-                                        <i
-                                            class="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#1a589e] group-hover:translate-x-0.5 transition-all"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
 
-                <!-- REFACTORED INTERACTIVE POP-UP MODAL CONTAINER -->
-                <div id="orgChartModal"
-                    class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 pt-20 pb-6 overflow-hidden">
+                <!-- INTERACTIVE POP-UP MODAL CONTAINER -->
+                <div id="orgChartModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+                    class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-hidden">
 
                     <div
-                        class="bg-white rounded-3xl shadow-2xl border border-slate-100 w-full max-w-4xl max-h-full flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
+                        class="bg-white rounded-3xl shadow-2xl border border-slate-100 w-full max-w-5xl max-h-full flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
 
-                        <!-- Modal Header (Tinanggal ang X close button) -->
+                        <!-- Modal Header -->
                         <div
-                            class="p-5 sm:p-6 bg-gradient-to-r from-[#1a589e] to-[#15467e] text-white flex items-center justify-between shrink-0">
-                            <div>
+                            class="px-5 py-4 sm:px-7 sm:py-5 bg-gradient-to-r from-[#1a589e] to-[#15467e] text-white flex items-center gap-4 shrink-0">
+                            <div class="w-11 h-11 rounded-2xl bg-white/15 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-sitemap text-lg"></i>
+                            </div>
+                            <div class="min-w-0">
                                 <span id="modalCategory"
-                                    class="text-xs uppercase tracking-widest text-blue-200 font-bold">
+                                    class="block text-[11px] uppercase tracking-widest text-blue-200 font-bold">
                                     Department View
                                 </span>
                                 <h3 id="modalTitle" class="text-xl sm:text-2xl font-black leading-tight">Department Name
@@ -1353,14 +1047,18 @@
                         </div>
 
                         <!-- Modal Dynamic Scrollable Body -->
-                        <div id="modalBody" class="p-6 lg:p-8 overflow-y-auto space-y-6 flex-1 bg-slate-50/50">
+                        <div id="modalBody" class="p-4 sm:p-6 overflow-y-auto flex-1 bg-slate-50/50">
                             <!-- Dynamic Hierarchy Content inserted via JavaScript -->
                         </div>
 
                         <!-- Modal Footer -->
-                        <div class="p-4 bg-white border-t border-slate-100 flex justify-end shrink-0">
+                        <div
+                            class="px-5 py-3 sm:px-7 bg-white border-t border-slate-100 flex items-center justify-between gap-4 shrink-0">
+                            <p class="hidden sm:block text-xs text-slate-500">
+                                Scroll to zoom &middot; Drag to pan &middot; Esc to close
+                            </p>
                             <button onclick="closeOrgModal()"
-                                class="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-xl transition-colors">
+                                class="ml-auto px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-xl transition-colors">
                                 Close View
                             </button>
                         </div>
@@ -1450,8 +1148,11 @@
                     </div>
                 </div>
 
+
             </div>
-        </article>
+
+    </div>
+    </article>
     </div>
 
 </section>
